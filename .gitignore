@@ -1,11 +1,11 @@
+bower_components
+node_modules
 pom.xml
-pom.xml.asc
+.lein*
+.nrepl*
+.env
 *jar
 /lib/
 /classes/
 /target/
-/checkouts/
 .lein-deps-sum
-.lein-repl-history
-.lein-plugins/
-.lein-failures

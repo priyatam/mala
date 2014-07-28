@@ -1,0 +1,27 @@
+{
+  "name": "ringo",
+  "version": "0.1.0",
+  "main": [
+    "./dist/css/ringo.css",
+    "./dist/js/ringo.js",
+    "./dist/fonts/glyphicons-halflings-regular.eot",
+    "./dist/fonts/glyphicons-halflings-regular.svg",
+    "./dist/fonts/glyphicons-halflings-regular.ttf",
+    "./dist/fonts/glyphicons-halflings-regular.woff"
+  ],
+  "ignore": [
+    "**/.*",
+    "_config.yml",
+    "CNAME",
+    "project.clj",
+    "README.md",
+    "services",
+    "ui",
+    "docs",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": ">= 1.11.0",
+    "bootstrap": ">= 3.2.0"
+  }
+}
