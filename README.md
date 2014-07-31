@@ -7,11 +7,10 @@ A starterkit for building single-page apps with Ring and Om.
 
 Optimize workflows for beginner Clojure/Clojurescript developers.
 
-- separate design, ui, and services
-- bower.json + profiles.clj
-- leiningen task pipeline
+- separate workflows for design, ui, and services
+- unified bower.json + profiles.clj leiningen build pipeline
 - a _fast_ static server
-- optimized jetty webserver
+- sync/async webserver with sensible defaults
 - curated ring middleware
 - oauth2
 - integration tests
@@ -21,7 +20,8 @@ Optimize workflows for beginner Clojure/Clojurescript developers.
 _Core dependencies:_
 
 - ring/compojure
-- om, sablano, secretary
+- om, secretary
+- hiccup/sablano
 
 Curated utilities from [malloy](https://github.com/amalloy/useful), [raynes](https://github.com/Raynes/fs), and [prismatic](https://github.com/Prismatic/plumbing).
 
@@ -33,7 +33,7 @@ First-time Clojure developers, assuming you have [jdk7 or above](http://www.orac
 
 Checkout project and download dependencies (from Maven)
 
-   		lein deps
+   	lein deps
 
 Open a repl
 
@@ -41,28 +41,27 @@ Open a repl
 
 Run the server and auto reload classes and compile cljs->js
 
-    		lein cljsbuild auto
-   		lein run
+    lein cljsbuild auto
+   	lein run
 
 ## Editor support
 
 [Lighttable](http://www.lighttable.com) is currently the best editor for beginner Clojure/Clojusrescript developers. Use it with the following plugins:
 
+- bracketglow
 - emmet
 - gitlight
-- vim-mode for fans of Vim!
 - paredit and rainbow
-- bracketglow
+- vim-mode
 
 ## Status
 
 **Early development**.
 
-Currently, a playground to build quick prototypes. Roadmap includes curating utilities and best practices around non-trivial Ring/Om apps.
+Currently, a playground to build quick prototypes. Roadmap includes curating middleware and best practices around Ring/Om webapps.
 
-## Credits
+## Acknowledgements
 
-- Openid example modified from [friend-demo](https://github.com/cemerick/friend-demo)
 - Om example component from the Om [Typeahead](https://github.com/swannodette/om/blob/master/examples/typeahead/src/core.cljs) example
 
 ## License
