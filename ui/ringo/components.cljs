@@ -94,4 +94,5 @@
                          (not (zero? (.indexOf (:word x) text))) (assoc :hidden true))
                        x))})))))))
 
+
 (om/root typeahead app-state {:target (.getElementById js/document "app")})

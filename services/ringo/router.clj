@@ -1,24 +1,31 @@
 (ns ringo.router
-  (:require [clojure.java.io :as io]
-            [ring.middleware.params :as params]
+  (:require [environ.core :refer [env]]
+            [clojure.java.io :as io]
+            [cemerick.drawbridge :as drawbridge]
+            [ring.middleware.basic-authentication :as basic]
+            [ring.middleware.content-type :refer :all]
+            [ring.middleware.edn :refer :all]
             [ring.middleware.keyword-params :as keyword-params]
-            [ring.middleware.nested-params :as nested-params]
+            [ring.middleware.params :as params]
+            [ring.middleware.resource :refer :all]
             [ring.middleware.session :as session]
             [ring.middleware.session.cookie :as cookie]
+            [ring.middleware.nested-params :as nested-params]
             [ring.middleware.content-type :refer :all]
-            [ring.util.response :as resp]
-            [ring.middleware.edn :refer :all]
-            [ring.middleware.basic-authentication :as basic]
+            [ring.middleware.not-modified :refer :all]
+            [ring.util.response :refer :all]
             [compojure.core :refer [defroutes GET PUT POST DELETE ANY]]
-            [compojure.route :as route]
-            [cemerick.drawbridge :as drawbridge]
-            [environ.core :refer [env]])
-  (:use ring.util.response)
-  (:use ring.middleware.resource)
-  (:use ring.middleware.content-type)
-  (:use ring.middleware.not-modified)
+            [compojure.route :as route])
   (:import java.net.URI))
 
+
+;; Middleware
+
+(defn edn-response [data & [status]]
+  "Generate edn response"
+  {:status (or status 200)
+   :headers {"Content-Type" "application/edn"}
+   :body (pr-str data)})
 
 ;; Utils
 
