@@ -4,10 +4,6 @@
             [environ.core :refer [env]]))
 
 
-(defn gh-auth []
-  (str (:gh-user env ) ":" (:gh-pass env)))
-
-
 (defmacro dbg [body]
   "Cheap inline debugging"
   `(let [x# ~body]
@@ -36,7 +32,7 @@
 
 (defmacro interceptor
   "Simple interceptor"
-  [& body]
+  [fnc & body]
   `(let [es# (setup)]
      (binding [*out* s#]
        ~@body

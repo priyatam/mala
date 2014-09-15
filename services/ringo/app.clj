@@ -16,5 +16,5 @@
 
 (defn -main []
  (let [port (Integer. (or (System/getenv "PORT") 8082))]
-   (jetty/run-jetty (wrap-drawbridge app)
-                    {:port port :join? false})))
+   (jetty/run-jetty app {:port port :join? false})))
+

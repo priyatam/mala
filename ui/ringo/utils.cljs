@@ -7,8 +7,6 @@
             [om.dom :as dom :include-macros true]
             [cljs.reader :as reader]))
 
-(def $ js/jQuery)
-
 (def *debug* true)
 
 (defn to-clj [data]
@@ -18,15 +16,8 @@
   [seq elm]
   (some #(= elm %) seq))
 
-(defn fltten [nested-list]
-  "List of List to List"
-  (apply concat nested-list))
-
 (defn to-int [str]
   (js/parseInt str))
-
-(defn zenup->cljs [content]
-  (reader/read-string content))
 
 (defn string->clj [content]
   (reader/read-string content))
