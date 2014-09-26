@@ -12,7 +12,7 @@
             [ring.middleware.content-type :refer :all]
             [ring.middleware.not-modified :refer :all]
             [ring.util.response :refer :all]
-            [compojure.core :refer [defroutes GET PUT POST DELETE ANY]]
+            [compojure.core :refer [context defroutes GET PUT POST DELETE ANY]]
             [compojure.route :as route])
   (:import java.net.URI))
 
@@ -54,6 +54,14 @@
 
   (GET "/" []
        (slurp (io/resource "public/index.html")))
+
+  (context "/api" []
+     (GET "/libraries" []
+          (response #{:ring :clojure :om :sablono :secretary :garden}))
+     (GET "/authors" []
+          (response [{:name "James Reaves"  :famous-for #{:ring :compojure :hiccup}}
+                     {:name "Chris Granger" :famous-for #{:sqlkorma :clojurescript :lighttable }}
+                     {:name "David Nolen"   :famous-for #{:clojurescript :om}}])))
 
   (route/resources "/")
   (route/not-found "Page not found"))
