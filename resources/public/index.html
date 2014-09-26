@@ -16,7 +16,7 @@
       <script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-
+    <script type='text/javascript' id='lt_ws' src='http://localhost:56038/socket.io/lighttable/ws.js'></script>
 </head>
 <body>
 
@@ -25,6 +25,10 @@
     <header>
       <h1> Ringo </h1>
       <h2> Bootstrap, Ring, and Om </h2>
+
+      <!-- Inject Om component -->
+      <div id="main"/>
+
     </header>
 
     <article class="story row">
@@ -48,7 +52,7 @@
              <header>Libraries</header>
 
              <!-- Inject Om component -->
-             <div class="libraries"/>
+             <div id="libraries"/>
 
          </section>
      </section>
@@ -60,7 +64,7 @@
          <header>Articles</header>
 
           <!-- Inject Om component -->
-          <div class="blog"/>
+          <div id="blog"/>
 
       </section>
     </section>
