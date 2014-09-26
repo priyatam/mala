@@ -34,21 +34,26 @@
 
 ;; Middleware
 
-(defn edn-response [data & [status]]
+(defn wrap-edn-response [data & [status]]
   "Generate edn response"
   {:status (or status 200)
    :headers {"Content-Type" "application/edn"}
    :body (pr-str data)})
 
-(defn respond-edn [data & [status]]
-  "Generate edn response"
-  {:status (or status 200)
-   :headers {"Content-Type" "application/edn"}
-   :body (pr-str data)})
+(defn wrap-error-page [handler]
+  (fn [req]
+    (try (handler req)
+         (catch Exception e
+           {:status 500
+            :headers {"Content-Type" "text/html"}
+            :body (slurp (io/resource "public/500.html"))}))))
 
 ;; Routes
 
 (defroutes routes
 
   (GET "/" []
-       (slurp (io/resource (str "index.html")))))
+       (slurp (io/resource "public/index.html")))
+
+  (route/resources "/")
+  (route/not-found "Page not found"))
