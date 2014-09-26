@@ -1,0 +1,82 @@
+@import "mixins";
+
+/* Web Fonts */
+
+@import url(http://brick.a.ssl.fastly.net/Libre+Baskerville:400,400i,700);
+@import url(http://brick.a.ssl.fastly.net/Alegreya:400,400i,700,700i,900,900i);
+@import url(http://brick.a.ssl.fastly.net/BPreplay:400,400i,700);
+@import url(http://brick.a.ssl.fastly.net/Source+Code+Pro:200,300);
+
+/* Variables */
+
+@font-family-base: 'Libre Baskerville', serif;
+@font-family-serif: 'Alegreya', serif;
+@font-family-sans-serif: 'BPreplay', Helvetica, sans-serif;
+@font-family-monospace: "Source Code Pro", Monaco, monospace;
+
+@font-size-base: 1.5rem;
+@line-height-base: 1.45rem;
+
+.box {
+  color: saturate(@base-color, 5%);
+  border-color: lighten(@base-color, 30%);
+  div { .box-shadow(0 0 5px, 30%) }
+}
+
+header {
+  font: normal small-caps 900 4rem @font-family-sans-serif;
+}
+
+h1 {
+  font: normal normal 600 3rem @font-family-sans-serif;
+}
+
+h2 {
+  font: normal normal 600 3rem @font-family-sans-serif;
+}
+
+h3 {
+  font: normal normal 300 2rem @font-family-serif;
+}
+
+h4 {
+  font: normal normal 300 1.5rem @font-family-serif;
+}
+
+h5, h6 {
+  font: italic italic 300 1.5rem @font-family-serif;
+}
+
+body, p {
+  font: normal normal 300 2rem/3rem @font-family-base;
+}
+
+footer {
+  font: normal normal 100 1rem @font-family-sans-serif;
+}
+
+ul {
+  font: italic normal 300 1.5rem @font-family-sans-serif;
+  margin: 1px;
+  padding: 1px;
+  list-style-type: disc;
+  text-align: left;
+  display: block;
+}
+
+li {
+  font: normal normal 300 1.5rem @font-family-sans-serif;
+}
+
+a {
+  padding: 2px;
+}
+
+dl dt {
+   padding: 2rem 1rem;
+}
+
+dd {
+  font-style: italic;
+  font-weight:1rem;
+}
