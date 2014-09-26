@@ -1,27 +1,20 @@
-(ns ringo.core
-  (:require-macros [ringo.utils :refer [dbg mock]]
-                   [cljs.core.async.macros :as am :refer [go go-loop alt!]])
-  (:require [cljs.core.async :as async :refer [>! <! alts! chan sliding-buffer put! close!]]
-            [clojure.string :as string]
-            [om.core :as om :include-macros true]
+(ns ringo.utils
+  (:require [om.core :as om :include-macros true]
             [om.dom :as dom :include-macros true]
-            [cljs.reader :as reader]))
+            [cljs.reader :as reader])
+  (:import [goog.ui IdGenerator]))
 
-(def *debug* true)
+(def debug true)
 
-(defn to-clj [data]
-  (js->clj data :keywordize-keys true))
-
-(defn in?
-  [seq elm]
-  (some #(= elm %) seq))
-
-(defn to-int [str]
-  (js/parseInt str))
-
-(defn string->clj [content]
-  (reader/read-string content))
+(enable-console-print!)
 
 (defn log [x]
   (.log js/console (clj->js x)))
+
+(defn guid []
+  (-> IdGenerator
+      .getInstance
+      .getNextUniqueId))
+
+(defn $ [id] (.getElementById js/document id))
 
