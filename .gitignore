@@ -1,3 +1,5 @@
+resources/public/css
+
 out/
 bower_components
 node_modules
