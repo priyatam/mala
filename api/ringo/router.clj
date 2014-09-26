@@ -13,11 +13,18 @@
             [ring.middleware.not-modified :refer :all]
             [ring.util.response :refer :all]
             [compojure.core :refer [context defroutes GET PUT POST DELETE ANY]]
-            [compojure.route :as route])
+            [compojure.route :as route]
+            [prone.debug :refer [debug]])
   (:import java.net.URI))
 
 
 ;; Utils
+
+(defn edn-response [data & [status]]
+  "Generate edn response"
+  {:status (or status 200)
+   :headers {"Content-Type" "application/edn"}
+   :body (pr-str data)})
 
 (defn resolve-uri
   [context uri]
@@ -32,22 +39,6 @@
     (str (resolve-uri base uri))
     uri))
 
-;; Middleware
-
-(defn wrap-edn-response [data & [status]]
-  "Generate edn response"
-  {:status (or status 200)
-   :headers {"Content-Type" "application/edn"}
-   :body (pr-str data)})
-
-(defn wrap-error-page [handler]
-  (fn [req]
-    (try (handler req)
-         (catch Exception e
-           {:status 500
-            :headers {"Content-Type" "text/html"}
-            :body (slurp (io/resource "public/500.html"))}))))
-
 ;; Routes
 
 (defroutes routes
@@ -57,11 +48,13 @@
 
   (context "/api" []
      (GET "/libraries" []
-          (response #{:ring :clojure :om :sablono :secretary :garden}))
+          (edn-response #{:ring :clojure :om :sablono :secretary :garden}))
      (GET "/authors" []
-          (response [{:name "James Reaves"  :famous-for #{:ring :compojure :hiccup}}
-                     {:name "Chris Granger" :famous-for #{:sqlkorma :clojurescript :lighttable }}
-                     {:name "David Nolen"   :famous-for #{:clojurescript :om}}])))
+          ;(debug)
+          (edn-response [{:name "James Reeves" :known-for #{:ring :compojure :hiccup}}
+                     {:name "Chris Granger" :known-for #{:sqlkorma :clojurescript :lighttable }}
+                     {:name "David Nolen"   :known-for #{:clojurescript :core-logic :om}}])))
+     (GET "/exception" []  (edn-response (/ 1 0)))
 
   (route/resources "/")
   (route/not-found "Page not found"))

@@ -1,8 +1,10 @@
 (ns ringo.server
   (:require [environ.core :refer [env]]
+            [clojure.java.io :as io]
             [cemerick.drawbridge :as drawbridge]
             [ring.middleware.cors :refer :all]
             [ring.middleware.defaults :refer :all]
+            [ring.middleware.edn :refer :all]
             [ring.middleware.json :refer [wrap-json-response wrap-json-body]]
             [ring.middleware.session :as session]
             [ring.middleware.params :as params]
@@ -13,8 +15,7 @@
             [prone.debug :refer [debug]]
             [prone.middleware :as prone]
             [org.httpkit.server :as httpkit]
-            [ringo.router :as router]
-            [ringo.router :refer :all])
+            [ringo.router :as router])
   (:gen-class))
 
 
@@ -36,20 +37,22 @@
       (params/wrap-params)
       (session/wrap-session)))
 
-(defn wrap-drawbridge [handler]
+;; Middleware
+
+(defn wrap-error-page [handler]
   (fn [req]
-    (let [handler (if (= "/repl" (:uri req))
-                    (basic/wrap-basic-authentication
-                     drawbridge-handler authenticated?)
-                    handler)]
-      (handler req))))
+    (try (handler req)
+         (catch Exception e
+           {:status 500
+            :headers {"Content-Type" "text/html"}
+            :body (slurp (io/resource "public/500.html"))}))))
 
 (def app
   (->
    (handler/site router/routes)
-   (wrap-json-body)
-   (wrap-json-response)
-   ;(wrap-edn-response)
+   ;(wrap-json-body)
+   ;(wrap-json-response)
+   (wrap-edn-params)
    (wrap-defaults site-defaults)
    (wrap-defaults api-defaults)
    (prone/wrap-exceptions)
