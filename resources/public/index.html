@@ -7,8 +7,8 @@
     <title>Ringo, a starterkit for Ring and Om</title>
 
     <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
-    <link rel="stylesheet/less" type="text/css" href="/css/typography.less" />
-    <link rel="stylesheet/less" type="text/css" href="/css/layout.less" />
+    <link rel="stylesheet" type="text/css" href="/css/typography.css" />
+    <link rel="stylesheet" type="text/css" href="/css/layout.css" />
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -24,7 +24,7 @@
 
     <header>
       <h1> Ringo </h1>
-      <h2> a starterkit for building apps with Bootstrap, Om, and Ring </h2>
+      <h2> Bootstrap, Ring, and Om </h2>
     </header>
 
     <article class="story row">
@@ -32,7 +32,7 @@
 
       <section class="col-md-9">
         <header>The world's most powerful languages</header>
-        <h3>Clojure <span class="lang">and Clojurescript </span> </h3>
+          <h3 class="lang">Clojure <span class="and">&</span> Clojurescript</h3>
 
           <p> Clojure is a dynamic programming language that targets the Java Virtual Machine. It's
               elegant, powerful, practical and fun to use.</p>
@@ -42,7 +42,7 @@
      </article>
 
      <section class="story row">
-         <aside class="col-md-3 box">No of libraries built on Clojure/Clojurescript</aside>
+         <aside class="col-md-3 box" id="library-count">254</aside>
 
          <section class="col-md-9">
              <header>Libraries</header>
@@ -54,7 +54,7 @@
      </section>
 
     <section class="story row">
-      <aside class="col-md-3 box">Bloggers</aside>
+      <aside class="col-md-3 box" id="blogger-count">902</aside>
 
       <section class="col-md-9">
          <header>Articles</header>
@@ -65,18 +65,7 @@
       </section>
     </section>
 
-    <section class="story row">
-      <aside class="col-md-3 box">About</aside>
-      <section class="col-md-9">
-         <header>About the author</header>
-
-         <!--Inject Om Components -->
-         <div id="author"/>
-
-      </section>
-    </section>
-
-  <footer> © 2014 Ringo </footer>
+  <footer> © 2014 Ringo 2014 </footer>
 
   <!-- React/Om -->
   <script src="http://fb.me/react-with-addons-0.9.0.min.js"></script>
