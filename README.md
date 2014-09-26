@@ -1,24 +1,30 @@
 Ringo
 =====
 
-![](docs/ringo.png)
-
 A starterkit for building apps with Bootstrap, Om, and Ring. Optimized for beginner Clojure/Clojurescript developers.
+
+## Overview
+
+The Clojure community builds libraries that do one thing and one thing only, and justifiably so. However, newcomers to the community — especially those coming from the world of Express, Flask, or Sinatra could benefit from a curated web stack composed of mature libraries and middleware to get things done.
+
+Ringo is an effort to realize that core.
+
+	lein new ringo myapp
 
 ## Goals
 
-- separate workflows for design, ui, and services
+- separate workflows for design, ui, and apis
 - unified bower.json + profiles.clj build pipeline
-- unified static server and _async_ webserver
+- static server and _async_ webserver
 - curated ring middleware
 - oauth2
 - nRepl over http!
 
-_Core dependencies:_
+_Core dependencies_
 
-Ring/Compojure, Om, Kioo, Secretary
+Ring/Compojure, Om/Sablono, Bootstrap/Less
 
-Curated utilities from [prismatic](https://github.com/Prismatic/plumbing), [raynes](https://github.com/Raynes/fs), and [sam aaron](https://github.com/sritchie).
+Tools from [prismatic](https://github.com/Prismatic/plumbing).
 
 ## Getting started
 
@@ -32,8 +38,7 @@ Checkout project and download dependencies
 
 Run server, auto reload classes, and compile cljs->js
 
-	lein cljsbuild auto
-	lein run
+	lein ringo
 
 ## Editor support
 
@@ -53,8 +58,7 @@ The API and organizational structure are subject to change. Comments and contrib
 
 ## Acknowledgements
 
-- Om example component from the Om [Typeahead](https://github.com/swannodette/om/blob/master/examples/typeahead/src/core.cljs)
-- 'Ringo' logo by [Matt Martini](http://mistermartini.tumblr.com).
+- Om example component from the official Om [examples](https://github.com/swannodette/om/blob/master/examples/)
 
 ## License
 
