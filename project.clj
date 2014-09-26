@@ -29,7 +29,7 @@
                  [secretary "1.2.0"]
                  [garden "1.2.1"]]
 
-  :source-paths ["services"]
+  :source-paths ["api"]
 
   :cljsbuild {:builds [{:id "dev"
                         :source-paths ["ui"]
