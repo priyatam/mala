@@ -8,6 +8,9 @@
 
 (enable-console-print!)
 
+(defn to-clj [data]
+  (js->clj data :keywordize-keys true))
+
 (defn log [x]
   (.log js/console (clj->js x)))
 
