@@ -1,11 +1,93 @@
+<!DOCTYPE html>
 <html lang="en">
-  <body>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ringo, a starterkit for Ring and Om</title>
+
+    <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
+    <link rel="stylesheet/less" type="text/css" href="/css/typography.less" />
+    <link rel="stylesheet/less" type="text/css" href="/css/layout.less" />
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+
+<main role="main" class="container-fluid">
+
     <header>
-      <h1>Header placeholder</h1>
-      <ul id="navigation">
-        <li class="nav-item"><a href="#">Placeholder</a></li>
-      </ul>
+      <h1> Ringo </h1>
+      <h2> a starterkit for building apps with Bootstrap, Om, and Ring </h2>
     </header>
-    <div class="content">place holder</div>
-  </body>
+
+    <article class="story row">
+      <aside class="col-md-3 box">20345 views</aside>
+
+      <section class="col-md-9">
+        <header>The world's most powerful languages</header>
+        <h3>Clojure <span class="lang">and Clojurescript </span> </h3>
+
+          <p> Clojure is a dynamic programming language that targets the Java Virtual Machine. It's
+              elegant, powerful, practical and fun to use.</p>
+
+          <p> Clojurescrupt leverages the strength of Javascript, suppleness of Coffeescript, and the power of Clojure.
+        <section>
+     </article>
+
+     <section class="story row">
+         <aside class="col-md-3 box">No of libraries built on Clojure/Clojurescript</aside>
+
+         <section class="col-md-9">
+             <header>Libraries</header>
+
+             <!-- Inject Om component -->
+             <div class="libraries"/>
+
+         </section>
+     </section>
+
+    <section class="story row">
+      <aside class="col-md-3 box">Bloggers</aside>
+
+      <section class="col-md-9">
+         <header>Articles</header>
+
+          <!-- Inject Om component -->
+          <div class="blog"/>
+
+      </section>
+    </section>
+
+    <section class="story row">
+      <aside class="col-md-3 box">About</aside>
+      <section class="col-md-9">
+         <header>About the author</header>
+
+         <!--Inject Om Components -->
+         <div id="author"/>
+
+      </section>
+    </section>
+
+  <footer> © 2014 Ringo </footer>
+
+  <!-- React/Om -->
+  <script src="http://fb.me/react-with-addons-0.9.0.min.js"></script>
+  <script src="js/out/goog/base.js" type="text/javascript"></script>
+  <script src="js/components.js" type="text/javascript"></script>
+  <script type="text/javascript">goog.require("ringo.components");</script>
+
+</main>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+</body>
 </html>
