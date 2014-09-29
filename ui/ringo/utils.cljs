@@ -1,7 +1,7 @@
 (ns ringo.utils
   (:require [om.core :as om :include-macros true]
-            [om.dom :as dom :include-macros true]
-            [cljs.reader :as reader])
+             [om.dom :as dom :include-macros true]
+             [cljs.reader :as reader])
   (:import [goog.ui IdGenerator]))
 
 (def debug true)
