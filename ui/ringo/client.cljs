@@ -1,8 +1,8 @@
 (ns ringo.client
   (:require-macros [cljs.core.async.macros :refer [go]])
-  (:require [ajax.core :refer [GET POST]
+  (:require [ajax.core :refer [GET POST]]
             [cljs.core.async :refer [<!]]
-            [ringo.utils :refer :all]))
+            [ringo.utils :refer [log guid debug]]))
 
 (def host "http://localhost:3000" )
 
