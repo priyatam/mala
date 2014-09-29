@@ -25,9 +25,7 @@
                      [compojure "1.1.9"]
                      [http-kit "2.1.19"]
                      [fogus/ring-edn "0.2.0"]
-                     [listora/constraint "0.0.6"]
                      [prone "0.6.0"]
-                     [weasel "0.4.0-SNAPSHOT"]
                      [cljs-ajax "0.3.0"]
                      [om "0.7.1"]
                      [sablono "0.2.22"]]
@@ -35,21 +33,21 @@
   :source-paths ["api"]
 
   :cljsbuild {:builds [{:id "dev"
-                            :source-paths ["ui"]
-                            :compiler {
-                                :output-to "resources/public/js/components.js"
-                                :output-dir "resources/public/js/out"
-                                :optimizations :none
-                                :pretty-print true
-                                :source-map true}}
-                           {:id "release"
-                            :source-paths ["ui"]
-                            :compiler {
-                                :output-to "resources/public/js/components.js"
-                                :optimizations :advanced
-                                :pretty-print false
-                                :preamble ["react/react.min.js"]
-                                :externs ["react/externs/react.js"]}}]}
+                        :source-paths ["ui"]
+                        :compiler {
+                                   :output-to "resources/public/js/components.js"
+                                   :output-dir "resources/public/js/out"
+                                   :optimizations :none
+                                   :pretty-print true
+                                   :source-map true}}
+                       {:id "release"
+                        :source-paths ["ui"]
+                        :compiler {
+                                   :output-to "resources/public/js/components.js"
+                                   :optimizations :advanced
+                                   :pretty-print false
+                                   :preamble ["react/react.min.js"]
+                                   :externs ["react/externs/react.js"]}}]}
 
   :less {:source-paths ["design/less"]
           :target-path "resources/public/css"}
