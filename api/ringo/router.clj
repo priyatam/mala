@@ -14,7 +14,8 @@
             [ring.util.response :refer :all]
             [compojure.core :refer [context defroutes GET PUT POST DELETE ANY]]
             [compojure.route :as route]
-            [prone.debug :refer [debug]])
+            [prone.debug :refer [debug]]
+            [ringo.db :as db])
   (:import java.net.URI))
 
 
@@ -48,13 +49,31 @@
 
   (context "/api" []
      (GET "/libraries" []
-          (edn-response #{:ring :clojure :om :sablono :secretary :garden}))
+          (let [libraries (get-in db/data [:libraries])]
+            (when libraries
+               (edn-response libraries))))
+
      (GET "/authors" []
           ;(debug)
-          (edn-response [{:name "James Reeves" :known-for #{:ring :compojure :hiccup}}
-                     {:name "Chris Granger" :known-for #{:sqlkorma :clojurescript :lighttable }}
-                     {:name "David Nolen"   :known-for #{:clojurescript :core-logic :om}}])))
-     (GET "/exception" []  (edn-response (/ 1 0)))
+          (let [authors (get-in db/data [:authors])]
+             (when authors
+               (edn-response authors))))
+
+     (GET "/devices" []
+          (let [devices (get-in db/data [:devices])]
+             (when devices
+               (edn-response devices))))
+
+     (GET "/device/:id/type/:type/measurements" [id type]
+          (let [measurements (filter #(and (= (:id %) id) (= (:type %) type)) (get-in db/data [:measurements]))]
+            (when measurements
+              (response measurements)))))
+
+  (GET "/exception" []  (edn-response (/ 1 0)))
 
   (route/resources "/")
+
   (route/not-found "Page not found"))
+
+
+(get-in db/data [:devices])

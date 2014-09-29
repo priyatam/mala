@@ -50,18 +50,17 @@
 (def app
   (->
    (handler/site router/routes)
-   ;(wrap-json-body)
-   ;(wrap-json-response)
+   (wrap-json-body)
+   (wrap-json-response)
    (wrap-edn-params)
    (wrap-defaults site-defaults)
    (wrap-defaults api-defaults)
    (prone/wrap-exceptions)
    (wrap-error-page)
    (wrap-cors
-    :access-control-allow-origin #"http://localhost:8000"
+    :access-control-allow-origin #"http://localhost:3000"
     :access-control-allow-methods ["GET"]
-    :access-control-allow-headers ["Content-Type"])))
-
+    :access-control-allow-headers ["Content-Type" "X-Requested-With"])))
 
 (defn -main []
  (let [port (Integer. (or (System/getenv "PORT") 8000))]
