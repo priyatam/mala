@@ -15,6 +15,7 @@
             [compojure.core :refer [context defroutes GET PUT POST DELETE ANY]]
             [compojure.route :as route]
             [prone.debug :refer [debug]]
+            [oauth.twitter :refer :all]
             [ringo.db :as db])
   (:import java.net.URI))
 
@@ -40,12 +41,41 @@
     (str (resolve-uri base uri))
     uri))
 
+;; OAuth
+
+(def consumer-key (env :twitter-api-key))
+(def consumer-secret (env :twitter-api-secret))
+
+;; Temporary / Maitain a db
+(def access-token (atom nil))
+
+(def oauth
+  (oauth-client
+   consumer-key
+   consumer-secret
+   (:oauth-token access-token)
+   (:oauth-verifier access-token)))
+
 ;; Routes
 
 (defroutes routes
 
   (GET "/" []
        (slurp (io/resource "public/index.html")))
+
+  (GET "/login" []
+       (let [token (oauth-request-token consumer-key consumer-secret)]
+         (oauth-authorize (:oauth-token token))))
+
+  (GET "/oauth" [oauth-token oauth-verifier]
+       (let [token (oauth-access-token consumer-key oauth-token oauth-verifier)]
+            (swap! access-token conj token)))
+
+  (POST "/tweet" [status]
+       (oauth
+        {:method :post
+         :url "http://api.twitter.com/1/statuses/update.json"
+         :body (str status)}))
 
   (context "/api" []
      (GET "/libraries" []
