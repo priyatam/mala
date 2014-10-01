@@ -18,13 +18,12 @@ Ringo is an effort to realize that core.
 - Static server and _async_ webserver (http-kit)
 - Frontend asset pipeline
 - Curated Ring middleware
-- OAuth2
 - Ajax & core.async
-- nRepl over http!
-- Error handling for humans
-- Visual debugger in the browser
+- OAuth2 workflows
+- nRepl over Http
+- Error handling in the browser
 
-How about debugging Ring Requests? Thanks to Magnar's [Prone](https://github.com/magnars/prone), this is a breeze.
+  Thanks to Magnar's [Prone](https://github.com/magnars/prone), Exceptions and Ring errors can be visually inspected:
 
 ![](docs/img/browser-debug.png)
 
@@ -34,6 +33,8 @@ Ring/Compojure, Om/Sablono, Bootstrap/Less
 
 ## Usage
 
+### Setup
+
 First-time Clojure developers, assuming you have [jdk7 or above](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html), must first install leiningen (a build and task runner similar to mvn, pip, or npm):
 
     brew install leiningen
@@ -42,9 +43,29 @@ Checkout new leiningen template (a boilerplate/generator for new projects)
 
     lein new ringo kickstart
 
-Run server, auto reload classes, compile less files, and compile cljs->js, all in one go.
+Run the server, auto reload classes, compile less files and cljs->js, all _in one go_.
 
     lein ringo
+
+### Advanced Setup
+
+Optinally, add the following ENV variables using [environ](https://github.com/weavejester/environ) in your local, `~/.lein/profiles.clj` to enable oAuth and AWS actions.
+
+- :aws-access-key
+- :aws-secret-key
+- :s3-bucket
+- :twitter-api-key
+- :twitter-api-secret
+
+For fast Jvm launching with [drip](https://github.com/ninjudd/drip), install
+
+    brew install drip
+
+Initialize drip by running [lein-drip](https://github.com/josteink/lein-drip) once as:
+
+    lein drip
+
+Read drip's settings for more info.
 
 ## Editor support
 
@@ -56,30 +77,30 @@ Run server, auto reload classes, compile less files, and compile cljs->js, all i
 - Paredit and rainbow
 - Vim-mode (if you're a Vim fan, like me)
 
+## FAQ
+
+TODO.
+
 ## Thanks
 
-A big thanks to @weavejester for creating beautiful Clojure libraries like Hiccup, Ring and Compojure. @swannodette for his leadership and pushing the limits of Clojurescript and Om. 
+A big thanks to @weavejester for creating beautiful Clojure libraries like Hiccup, Ring and Compojure; @swannodette for pushing the limits of Clojurescript and Om.
 
-Thanks to [Anna](https://github.com/annapawlicka/om-data-vis), whose examples I used and modified in this repo.
-
-This project is inspired by the reference apps created in other communities, like [Flask](https://github.com/zachwill/flask_heroku) and [Express](https://github.com/madhums/node-express-mongoose-demo).
+Thanks to [Anna](https://github.com/annapawlicka/om-data-vis), whose modified Om example is used in this repo.
 
 ## Status & Roadmap
 
-**Early development**.
+**Early development**. Feedback is appreciated.
 
-The API and organizational structure are subject to change.
+The organizational structure is subject to change.
 
-This project was created to enable single-page app workflows for a designer/developer duo. Future roadmap includes stabilizing the core, improving the lein template experience, and adding detailed documentation with examples, like the incredible docs of [Flask](http://flask.pocoo.org/docs/latest/).
-
-Feedback much appreciated.
+Future roadmap includes stabilizing the core, improving the lein template experience, and adding detailed docs with examples. An ideal reference app would be similar to the likes of [Flask](https://github.com/zachwill/flask_heroku) and [Express](https://github.com/madhums/node-express-mongoose-demo).
 
 TODO:
 
 - Integrate [Om-Bootstrap](https://github.com/racehub/om-bootstrap), as an alternate workflow to HTML5/Less
 - Integrate [Garden](https://github.com/noprompt/garden)
-- Better Frontend asset pipeline with [Optimus](https://github.com/magnars/optimus)
-- Core.Async
+- Frontend asset pipeline with [Optimus](https://github.com/magnars/optimus)
+- Core.async integration
 
 ## License
 
