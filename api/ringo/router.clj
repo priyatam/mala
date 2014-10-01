@@ -104,6 +104,3 @@
   (route/resources "/")
 
   (route/not-found "Page not found"))
-
-
-(get-in db/data [:devices])

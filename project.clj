@@ -10,7 +10,6 @@
   :dependencies [[org.clojure/clojure "1.6.0"]
                  [org.clojure/clojurescript "0.0-2311"]
                  [org.clojure/core.async "0.1.267.0-0d7780-alpha"]
-                 [org.clojure/core.cache "0.6.4"]
                  [org.clojure/tools.nrepl "0.2.3"]
                  [com.cemerick/drawbridge "0.0.6" :exclusions [[org.clojure/tools.nrepl] [ring/ring-core] [cheshire]]]
                  [environ "1.0.0"]
@@ -85,6 +84,6 @@
   :aliases {"init"  ["pdo" "bower" "install," "deps"]
             "ringo" ["pdo" "cljsbuild" "auto," "less" "auto," "ring" "server"]}
 
-  :main ^:skip-aot ringo.services
+  :main ^:skip-aot ringo.api
   :ring {:handler ringo.server/app}
   :uberjar-name "ringo.jar")
