@@ -19,11 +19,9 @@
 
     <script type='text/javascript' id='lt_ws' src='http://localhost:50438/socket.io/lighttable/ws.js'></script>
 
-
 </head>
 
 <body>
-
 
 <main role="main" class="container-fluid">
 
@@ -33,7 +31,7 @@
     </header>
 
     <article class="story row">
-      <aside class="col-md-3 box">20345 views</aside>
+      <aside class="col-md-2 box"></aside>
 
       <section class="col-md-9">
         <header>The world's most powerful languages</header>
@@ -42,24 +40,26 @@
           <p> Clojure is a dynamic programming language that targets the Java Virtual Machine. It's
               elegant, powerful, practical and fun to use.</p>
 
-          <p> Clojurescrupt leverages the strength of Javascript, suppleness of Coffeescript, and the power of Clojure.
+          <p> Clojurescrupt builds on the strength of Javascript, suppleness of Coffeescript, and the power of Clojure.
         <section>
      </article>
 
      <section class="story row">
-         <aside class="col-md-3 box" id="library-count">254</aside>
+         <aside class="col-md-2 box" id="followers">254 followers</aside>
 
          <section class="col-md-9">
-             <header>Libraries</header>
+            <form action="/login">
+                <input type="submit" class="btn btn-default btn-lg" value="Sign in with Twitter">
+            </form>
 
-             <!-- Inject Om component -->
-             <div id="libraries"/>
+            <!-- Inject Om component -->
+            <div id="libraries"/>
 
          </section>
      </section>
 
     <section class="story row">
-      <aside class="col-md-3 box" id="blogger-count">902</aside>
+      <aside class="col-md-2 box" id="blogger-count">902 followers</aside>
 
       <section class="col-md-9">
          <header>Articles</header>
