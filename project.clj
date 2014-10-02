@@ -2,7 +2,9 @@
   :description "A starterkit for building apps with Ring and Om"
   :url "https://github.com/priyatam/ringo"
   :license {:name "Eclipse Public License"
-              :url "http://www.eclipse.org/legal/epl-v10.html"}
+            :url "http://www.eclipse.org/legal/epl-v10.html"}
+  :scm {:name "git"
+        :url "https://github.com/priyatam/ringo"}
   :min-lein-version "2.3.0"
   :jvm-opts ["-Xms768m" "-Xmx768m"]
   :global-vars {*warn-on-reflection* false *assert* false}

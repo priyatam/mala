@@ -16,16 +16,13 @@ Ringo is an effort to realize that core.
 - Separate workflows for Design, UI, and API development
 - Unified `bower.json` + `profiles.clj` build pipeline
 - Static server and _async_ webserver (http-kit)
-- Frontend asset pipeline
+- Asset pipeline (LESS)
 - Curated Ring middleware
 - Ajax & core.async
 - OAuth2 workflows
 - nRepl over Http
 - Error handling in the browser
-
-  Thanks to Magnar's [Prone](https://github.com/magnars/prone), Exceptions and Ring errors can be visually inspected:
-
-![](docs/img/browser-debug.png)
+- and more ...
 
 _Core dependencies_
 
@@ -43,18 +40,41 @@ Checkout new leiningen template (a boilerplate/generator for new projects)
 
     lein new ringo kickstart
 
+The project structure looks like this:
+
+    ├── api
+    │   └── kickstart
+    │       ├── db.clj
+    │       ├── router.clj
+    │       ├── server.clj
+    │       └── utils.clj
+    ├── design
+    │   └── less
+    │       └── layout.less
+    ├── resources
+    │   └── public
+    │       └── index.html
+    └── ui
+        └── kickstart
+            ├── client.cljs
+            ├── components.cljs
+            └── utils.cljs
+    ├── bower.json
+    ├── project.clj
+
 Run the server, auto reload classes, compile less files and cljs->js, all _in one go_.
 
     lein ringo
 
-### Advanced Setup
-
-Optinally, add the following ENV variables using [environ](https://github.com/weavejester/environ) in your local, `~/.lein/profiles.clj` to enable oAuth and AWS actions.
+Optionally, add the following ENV variables using [environ](https://github.com/weavejester/environ) in your local, `~/.lein/profiles.clj` to enable oAuth and AWS actions.
 
 - :aws-access-key
 - :aws-secret-key
 - :s3-bucket
 - :twitter-api-key
+
+### Advanced Setup
+
 - :twitter-api-secret
 
 For fast Jvm launching with [drip](https://github.com/ninjudd/drip), install
@@ -67,6 +87,13 @@ Initialize drip by running [lein-drip](https://github.com/josteink/lein-drip) on
 
 Read drip's settings for more info.
 
+## Visuall Debugger
+
+Thanks to Magnar's [Prone](https://github.com/magnars/prone), Exceptions and Ring errors can be visually inspected:
+
+![](docs/img/browser-debug.png)
+
+
 ## Editor support
 
 [Lighttable](http://www.lighttable.com) is the best editor for beginner Clojure/Clojusrescript developers. I recommend the following plugins:
@@ -76,10 +103,6 @@ Read drip's settings for more info.
 - Gitlight
 - Paredit and rainbow
 - Vim-mode (if you're a Vim fan, like me)
-
-## FAQ
-
-TODO.
 
 ## Thanks
 
@@ -101,6 +124,13 @@ TODO:
 - Integrate [Garden](https://github.com/noprompt/garden)
 - Frontend asset pipeline with [Optimus](https://github.com/magnars/optimus)
 - Core.async integration
+- Midje Tests
+
+## CONTRIBUTING
+
+The lein template is generated from [here](https://github.com/priyatam/ringo-template). The template is a subset of the ringo reference app.
+
+Contributing guidlines will be added soon.
 
 ## License
 
