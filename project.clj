@@ -52,7 +52,7 @@
                                    :externs ["react/externs/react.js"]}}]}
 
   :less {:source-paths ["design/less"]
-          :target-path "resources/public/css"}
+         :target-path "resources/public/css"}
 
   :minify-assets {:dev
                   {:assets
@@ -70,8 +70,7 @@
              :repl-options {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}
              :uberjar {:aot :all}}
 
-  :plugins [;[lein-drip "0.1.1-SNAPSHOT"]
-            [lein-cljsbuild "1.0.3"]
+  :plugins [[lein-cljsbuild "1.0.3"]
             [lein-less "1.7.2"]
             [lein-environ "1.0.0"]
             [lein-marginalia "0.7.1"]
@@ -84,8 +83,9 @@
             [lein-midje "3.1.1"]]
 
   :aliases {"init"  ["pdo" "bower" "install," "deps"]
-            "ringo" ["pdo" "cljsbuild" "auto," "less" "auto," "ring" "server"]}
+            "ringo" ["pdo" "cljsbuild" "auto," "less" "auto," "ring" "server"]
+            "release" ["pdo" "cljsbuild" "once" "release," "minify-assets"]}
 
-  :main ^:skip-aot ringo.api
+  :main ^:skip-aot ringo.server
   :ring {:handler ringo.server/app}
   :uberjar-name "ringo.jar")

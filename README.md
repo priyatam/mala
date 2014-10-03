@@ -1,7 +1,7 @@
 Ringo
 =====
 
-A starterkit for building apps with Bootstrap, Om, and Ring. Optimized for beginner Clojure/Clojurescript developers.
+A starterkit for building apps with Bootstrap, Ring, and Om. Optimized for beginner Clojure/Clojurescript developers.
 
 ## Rationale
 
@@ -24,7 +24,7 @@ Ringo is an effort to realize that core.
 - Error handling in the browser
 - and more ...
 
-_Core dependencies_
+Ringo is made up of the following core dependencies:
 
 Ring/Compojure, Om/Sablono, Bootstrap/Less
 
@@ -72,12 +72,19 @@ Optionally, add the following ENV variables using [environ](https://github.com/w
 - :aws-secret-key
 - :s3-bucket
 - :twitter-api-key
+- :twitter-api-secret
+
+## Deployment
+
+To deploy to Heroku, first set up the keys using `lein heroku keys:add`
+
+    lein heroku apps:create
+    git push heroku master
+    lein heroku logs
 
 ### Advanced Setup
 
-- :twitter-api-secret
-
-For fast Jvm launching with [drip](https://github.com/ninjudd/drip), install
+Improve Jvm launch times with [drip](https://github.com/ninjudd/drip)
 
     brew install drip
 
@@ -93,7 +100,6 @@ Thanks to Magnar's [Prone](https://github.com/magnars/prone), Exceptions and Rin
 
 ![](docs/img/browser-debug.png)
 
-
 ## Editor support
 
 [Lighttable](http://www.lighttable.com) is the best editor for beginner Clojure/Clojusrescript developers. I recommend the following plugins:
@@ -104,6 +110,8 @@ Thanks to Magnar's [Prone](https://github.com/magnars/prone), Exceptions and Rin
 - Paredit and rainbow
 - Vim-mode (if you're a Vim fan, like me)
 
+Don't forget to enable **live coding** by evaluating Clojurescript code by _connecting_ "External Browser", and incliding the websocket javascript src show by Lighttable.
+
 ## Thanks
 
 A big thanks to @weavejester for creating beautiful Clojure libraries like Hiccup, Ring and Compojure; @swannodette for pushing the limits of Clojurescript and Om.
@@ -112,13 +120,13 @@ Thanks to [Anna](https://github.com/annapawlicka/om-data-vis), whose modified Om
 
 ## Status & Roadmap
 
-**Early development**. Feedback is appreciated.
+**Early development**.
 
 The organizational structure is subject to change.
 
-Future roadmap includes stabilizing the core, improving the lein template experience, and adding detailed docs with examples. An ideal reference app would be similar to the likes of [Flask](https://github.com/zachwill/flask_heroku) and [Express](https://github.com/madhums/node-express-mongoose-demo).
+Future roadmap includes stabilizing the core, improving the lein template experience, and adding developer guides. An ideal reference app would be similar to the likes of [Flask-Heroku](https://github.com/zachwill/flask_heroku) and [Express](https://github.com/madhums/node-express-mongoose-demo).
 
-TODO:
+The following tasks are on my priority list. Your feedback is much appreciated!
 
 - Integrate [Om-Bootstrap](https://github.com/racehub/om-bootstrap), as an alternate workflow to HTML5/Less
 - Integrate [Garden](https://github.com/noprompt/garden)
