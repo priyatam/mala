@@ -128,7 +128,15 @@
                                    :y-axis "value"
                                    :plot js/dimple.plot.line}}})]]))))
 
+(defn widget [data]
+  (om/component
+    (html
+       [:div [:h2 "Hello Ringo!"]])))
+
 ;; ROOT BINDING ;;
+
+(om/root widget {}
+  {:target (.getElementById js/document "hello")})
 
 (om/root chart-http app-model
   {:target (.getElementById js/document "app")
