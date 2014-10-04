@@ -1,4 +1,4 @@
-(defproject ringo "0.1.0"
+(defproject ringo "0.1.1"
   :description "A starterkit for building apps with Ring and Om"
   :url "https://github.com/priyatam/ringo"
   :license {:name "Eclipse Public License"
