@@ -30,7 +30,8 @@
                  [oauth-clj "0.1.13"]
                  [cljs-ajax "0.3.9"]
                  [org.omcljs/om "0.8.8"]
-                 [sablono "0.3.1"]]
+                 [sablono "0.3.1"]
+                 [garden "1.2.5" :exclusions [org.clojure/clojurescript]]]
 
   :source-paths ["api" "target/classes"]
 
@@ -52,8 +53,21 @@
                                    :optimizations :advanced
                                    :pretty-print false}}]}
 
-  :less {:source-paths ["design/less"]
-         :target-path "resources/public/css"}
+  :garden {:builds [{:id "components"
+                     :source-paths ["design"]
+                     :stylesheet ringo.components/styles
+                     :compiler {:output-to "resources/public/css/components.css"
+                                :pretty-print? true}}
+                    {:id "layout"
+                     :source-paths ["design"]
+                     :stylesheet ringo.layout/styles
+                     :compiler {:output-to "resources/public/css/layout.css"
+                                :pretty-print? true}}
+                    {:id "typography"
+                     :source-paths ["design"]
+                     :stylesheet ringo.typography/styles
+                     :compiler {:output-to "resources/public/css/typography.css"
+                                :pretty-print? true}}]}
 
   :minify-assets {:dev
                   {:assets
@@ -72,18 +86,18 @@
              :uberjar {:aot :all}}
 
   :plugins [[lein-cljsbuild "1.0.4"]
-            [lein-less "1.7.2"]
             [lein-environ "1.0.0"]
             [lein-marginalia "0.7.1"]
-            [lein-ring "0.8.11"]
+            [lein-ring "0.9.1"]
             [lein-pprint "1.1.1"]
             [org.clojars.wokier/lein-bower "0.3.0"]
             [lein-asset-minifier "0.2.0"]
+            [lein-garden "0.2.5"]
             [lein-pdo "0.1.1"]
             [lein-midje "3.1.1"]]
 
   :aliases {"init"  ["pdo" "bower" "install," "deps"]
-            "ringo" ["pdo" "cljsbuild" "auto" "dev,"  "less" "auto," "ring" "server"]
+            "ringo" ["pdo" "cljsbuild" "auto" "dev,"  "garden" "auto," "ring" "server"]
             "release" ["pdo" "cljsbuild" "once" "prod," "minify-assets" "prod"]}
 
   :main ^:skip-aot ringo.server
