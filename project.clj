@@ -48,7 +48,7 @@
                                    :source-map true}}
                        {:id "prod"
                         :source-paths ["ui"]
-                        :compiler {:output-to "dist/js/components.min.js"
+                        :compiler {:output-to "dist/components.min.js"
                                    :main ringo.components
                                    :optimizations :advanced
                                    :pretty-print false}}]}
@@ -69,13 +69,9 @@
                      :compiler {:output-to "resources/public/css/typography.css"
                                 :pretty-print? true}}]}
 
-  :minify-assets {:dev
+  :minify-assets {:prod
                   {:assets
-                   {"resources/public/css/site.min.css" "resources/public/css"}
-                   :options {:optimization :none}}
-                  :prod
-                  {:assets
-                   {"resources/public/css/site.min.css" "resources/public/css"}
+                   {"dist/styles.min.css" "dist"}
                    :options {:optimization :advanced}}}
 
   :profiles {:dev {:dependencies [[ring-mock "0.1.5"]
