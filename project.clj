@@ -13,7 +13,8 @@
                  [org.clojure/clojurescript "0.0-2755"]
                  [org.clojure/core.async "0.1.346.0-17112a-alpha"]
                  [org.clojure/tools.nrepl "0.2.3"]
-                 [com.cemerick/drawbridge "0.0.6" :exclusions [[org.clojure/tools.nrepl] [ring/ring-core] [cheshire]]]
+                 [com.cemerick/drawbridge "0.0.6"
+                  :exclusions [[org.clojure/tools.nrepl] [ring/ring-core] [cheshire]]]
                  [environ "1.0.0"]
                  [clj-time "0.8.0"]
                  [ring/ring-core "1.3.2"]
@@ -31,7 +32,8 @@
                  [cljs-ajax "0.3.9"]
                  [org.omcljs/om "0.8.8"]
                  [sablono "0.3.1"]
-                 [garden "1.2.5" :exclusions [org.clojure/clojurescript]]]
+                 [garden "1.2.5" :exclusions [org.clojure/clojurescript]]
+                 [figwheel "0.2.3-SNAPSHOT"]]
 
   :source-paths ["api" "target/classes"]
 
@@ -52,6 +54,13 @@
                                    :main ringo.components
                                    :optimizations :advanced
                                    :pretty-print false}}]}
+
+  :figwheel {
+             :http-server-root "public"
+             :server-port 3449
+             :css-dirs ["resources/public/css"]
+             :open-file-command "emacsclient"
+             :ring-handler ringo.server/app}
 
   :garden {:builds [{:id "components"
                      :source-paths ["design"]
@@ -76,12 +85,13 @@
 
   :profiles {:dev {:dependencies [[ring-mock "0.1.5"]
                                   [ring/ring-devel "1.3.1"]
-                                  [midje "1.6.3" :exclusions [org.codehaus.plexus/plexus-utils]]]}
-
+                                  [midje "1.6.3"
+                                   :exclusions [org.codehaus.plexus/plexus-utils]]]}
              :repl-options {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}
              :uberjar {:aot :all}}
 
   :plugins [[lein-cljsbuild "1.0.4"]
+            [lein-figwheel "0.2.3-SNAPSHOT"]
             [lein-environ "1.0.0"]
             [lein-marginalia "0.7.1"]
             [lein-ring "0.9.1"]
@@ -93,9 +103,8 @@
             [lein-midje "3.1.1"]]
 
   :aliases {"init"  ["pdo" "bower" "install," "deps"]
-            "ringo" ["pdo" "cljsbuild" "auto" "dev,"  "garden" "auto," "ring" "server"]
+            "dev" ["pdo" "figwheel," "garden" "auto"]
             "release" ["pdo" "cljsbuild" "once" "prod," "minify-assets" "prod"]}
 
   :main ^:skip-aot ringo.server
-  :ring {:handler ringo.server/app}
   :uberjar-name "ringo.jar")

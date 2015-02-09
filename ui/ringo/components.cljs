@@ -3,7 +3,8 @@
   (:require [om.core :as om  :include-macros true]
             [cljs.core.async :refer [<! chan put! sliding-buffer]]
             [ajax.core :refer (GET)]
-            [sablono.core :as html :refer-macros [html]]))
+            [sablono.core :as html :refer-macros [html]]
+            [ringo.client :as client]))
 
 (enable-console-print!)
 
@@ -140,4 +141,4 @@
 
 (om/root chart-http app-model
   {:target (.getElementById js/document "app")
-   :shared {:url "http://localhost:3000/"}})
+   :shared {:url client/host}})

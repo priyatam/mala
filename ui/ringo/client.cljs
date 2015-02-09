@@ -4,7 +4,7 @@
             [cljs.core.async :refer [<!]]
             [ringo.utils :refer [log guid debug]]))
 
-(def host "http://localhost:3000" )
+(def host "http://localhost:3449/" )
 
 (defn handler [response]
   (.log js/console (str response)))
