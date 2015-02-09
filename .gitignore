@@ -1,4 +1,5 @@
 resources/public/css
+resources/public/js
 
 out/
 bower_components
