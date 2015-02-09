@@ -98,8 +98,6 @@ Read drip's settings for more info.
 
 Thanks to Magnar's [Prone](https://github.com/magnars/prone), Exceptions and Ring errors can be visually inspected:
 
-![](docs/img/browser-debug.png)
-
 ## Editor support
 
 [Lighttable](http://www.lighttable.com) is the best editor for beginner Clojure/Clojusrescript developers. I recommend the following plugins:
@@ -108,7 +106,6 @@ Thanks to Magnar's [Prone](https://github.com/magnars/prone), Exceptions and Rin
 - Emmet
 - Gitlight
 - Paredit and rainbow
-- Vim-mode (if you're a Vim fan, like me)
 
 Don't forget to enable **live coding** by evaluating Clojurescript code by _connecting_ "External Browser", and incliding the websocket javascript src show by Lighttable.
 
