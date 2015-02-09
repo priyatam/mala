@@ -10,46 +10,47 @@
   :global-vars {*warn-on-reflection* false *assert* false}
 
   :dependencies [[org.clojure/clojure "1.6.0"]
-                 [org.clojure/clojurescript "0.0-2311"]
-                 [org.clojure/core.async "0.1.267.0-0d7780-alpha"]
+                 [org.clojure/clojurescript "0.0-2755"]
+                 [org.clojure/core.async "0.1.346.0-17112a-alpha"]
                  [org.clojure/tools.nrepl "0.2.3"]
                  [com.cemerick/drawbridge "0.0.6" :exclusions [[org.clojure/tools.nrepl] [ring/ring-core] [cheshire]]]
                  [environ "1.0.0"]
                  [clj-time "0.8.0"]
-                 [ring/ring-core "1.3.1"]
-                 [ring/ring-defaults "0.1.1"]
-                 [ring/ring-headers "0.1.0"]
+                 [ring/ring-core "1.3.2"]
+                 [ring/ring-defaults "0.1.3"]
+                 [ring/ring-headers "0.1.1"]
                  [ring/ring-json "0.3.1"]
-                 [ring-cors "0.1.4"]
+                 [ring-cors "0.1.6"]
                  [ring-basic-authentication "1.0.5"]
-                 [compojure "1.1.9"]
-                 [http-kit "2.1.19"]
-                 [clj-http "1.0.0"]
+                 [compojure "1.3.1"]
+                 [clj-http "1.0.1"]
+                 [http-kit "2.1.18"]
                  [fogus/ring-edn "0.2.0"]
                  [prone "0.6.0"]
                  [oauth-clj "0.1.13"]
-                 [cljs-ajax "0.3.0"]
-                 [om "0.7.1"]
-                 [sablono "0.2.22"]]
+                 [cljs-ajax "0.3.9"]
+                 [org.omcljs/om "0.8.8"]
+                 [sablono "0.3.1"]]
 
-  :source-paths ["api"]
+  :source-paths ["api" "target/classes"]
 
-  :cljsbuild {:builds [{:id "dev"
+  :cljsbuild {
+              :builds [{:id "dev"
                         :source-paths ["ui"]
                         :compiler {
                                    :output-to "resources/public/js/components.js"
                                    :output-dir "resources/public/js/out"
+                                   :main ringo.components
+                                   :asset-path "js/out"
                                    :optimizations :none
-                                   :pretty-print true
+                                   :cache-analysis true
                                    :source-map true}}
-                       {:id "release"
+                       {:id "prod"
                         :source-paths ["ui"]
-                        :compiler {
-                                   :output-to "resources/public/js/components.js"
+                        :compiler {:output-to "dist/js/components.min.js"
+                                   :main ringo.components
                                    :optimizations :advanced
-                                   :pretty-print false
-                                   :preamble ["react/react.min.js"]
-                                   :externs ["react/externs/react.js"]}}]}
+                                   :pretty-print false}}]}
 
   :less {:source-paths ["design/less"]
          :target-path "resources/public/css"}
@@ -58,7 +59,7 @@
                   {:assets
                    {"resources/public/css/site.min.css" "resources/public/css"}
                    :options {:optimization :none}}
-                  :release
+                  :prod
                   {:assets
                    {"resources/public/css/site.min.css" "resources/public/css"}
                    :options {:optimization :advanced}}}
@@ -70,7 +71,7 @@
              :repl-options {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}
              :uberjar {:aot :all}}
 
-  :plugins [[lein-cljsbuild "1.0.3"]
+  :plugins [[lein-cljsbuild "1.0.4"]
             [lein-less "1.7.2"]
             [lein-environ "1.0.0"]
             [lein-marginalia "0.7.1"]
@@ -78,13 +79,12 @@
             [lein-pprint "1.1.1"]
             [org.clojars.wokier/lein-bower "0.3.0"]
             [lein-asset-minifier "0.2.0"]
-            [lein-heroku "0.1.1"]
             [lein-pdo "0.1.1"]
             [lein-midje "3.1.1"]]
 
   :aliases {"init"  ["pdo" "bower" "install," "deps"]
-            "ringo" ["pdo" "cljsbuild" "auto," "less" "auto," "ring" "server"]
-            "release" ["pdo" "cljsbuild" "once" "release," "minify-assets"]}
+            "ringo" ["pdo" "cljsbuild" "auto" "dev,"  "less" "auto," "ring" "server"]
+            "release" ["pdo" "cljsbuild" "once" "prod," "minify-assets" "prod"]}
 
   :main ^:skip-aot ringo.server
   :ring {:handler ringo.server/app}
