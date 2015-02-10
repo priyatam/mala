@@ -4,7 +4,7 @@
 
 ;; Dummy Database
 
-(def data {:authors [{:name "Chris Granger" :known-for #{:sqlkorma :clojurescript :lighttable }}
+(def data {:authors [{:name "Chris Granger" :known-for #{:sqlkorma :clojurescript :lighttable}}
                      {:name "David Nolen"   :known-for #{:clojurescript :core-logic :om}}
                      {:name "James Reeves"  :known-for #{:ring :compojure :hiccup}}]
 

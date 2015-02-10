@@ -61,43 +61,45 @@
 (defroutes routes
 
   (GET "/" []
-       (slurp (io/resource "public/index.html")))
+    (slurp (io/resource "public/index.html")))
 
   (GET "/login" []
-       (let [token (oauth-request-token consumer-key consumer-secret)]
-         (oauth-authorize (:oauth-token token))))
+    (let [token (oauth-request-token consumer-key consumer-secret)]
+      (oauth-authorize (:oauth-token token))))
 
   (GET "/oauth" [oauth-token oauth-verifier]
-       (let [token (oauth-access-token consumer-key oauth-token oauth-verifier)]
-            (swap! access-token conj token)))
+    (let [token (oauth-access-token consumer-key oauth-token oauth-verifier)]
+      (swap! access-token conj token)))
 
   (POST "/tweet" [status]
-       (oauth
-        {:method :post
-         :url "http://api.twitter.com/1/statuses/update.json"
-         :body (str status)}))
+    (oauth
+     {:method :post
+      :url "http://api.twitter.com/1/statuses/update.json"
+      :body (str status)}))
 
   (context "/api" []
-     (GET "/libraries" []
-          (let [libraries (get-in db/data [:libraries])]
-            (when libraries
-               (edn-response libraries))))
+    (GET "/libraries" []
+      (let [libraries (get-in db/data [:libraries])]
+        (when libraries
+          (edn-response libraries))))
 
-     (GET "/authors" []
+    (GET "/authors" []
           ;(debug)
-          (let [authors (get-in db/data [:authors])]
-             (when authors
-               (edn-response authors))))
+      (let [authors (get-in db/data [:authors])]
+        (when authors
+          (edn-response authors))))
 
-     (GET "/devices" []
-          (let [devices (get-in db/data [:devices])]
-             (when devices
-               (edn-response devices))))
+    (GET "/devices" []
+      (let [devices (get-in db/data [:devices])]
+        (when devices
+          (edn-response devices))))
 
-     (GET "/device/:id/type/:type/measurements" [id type]
-          (let [measurements (filter #(and (= (:id %) id) (= (:type %) type)) (get-in db/data [:measurements]))]
-            (when measurements
-              (response measurements)))))
+    (GET "/device/:id/type/:type/measurements" [id type]
+      (let [measurements (filter #(and
+                                   (= (:id %) id) (= (:type %) type))
+                                 (get-in db/data [:measurements]))]
+        (when measurements
+          (response measurements)))))
 
   (GET "/exception" []  (edn-response (/ 1 0)))
 

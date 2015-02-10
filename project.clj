@@ -93,6 +93,7 @@
             [lein-asset-minifier "0.2.0"]
             [lein-garden "0.2.5"]
             [lein-pdo "0.1.1"]
+            [lein-cljfmt "0.1.7"]
             [lein-midje "3.1.1"]]
 
   :aliases {"init"  ["pdo" "bower" "install," "deps"]

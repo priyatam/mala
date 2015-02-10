@@ -42,6 +42,6 @@
     :access-control-allow-headers ["Content-Type" "X-Requested-With"])))
 
 (defn -main []
- (let [port (Integer. (or (System/getenv "PORT") 3449))]
-  (httpkit/run-server app {:port port})
-  (println "server started")))
+  (let [port (Integer. (or (System/getenv "PORT") 3449))]
+    (httpkit/run-server app {:port port})
+    (println "server started")))
