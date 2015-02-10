@@ -37,11 +37,11 @@
 
   :cljsbuild {
               :builds [{:id "dev"
-                        :source-paths ["ui"]
+                        :source-paths ["ui" "env"]
                         :compiler {
                                    :output-to "resources/public/js/components.js"
                                    :output-dir "resources/public/js/out"
-                                   :main ringo.components
+                                   :main dev
                                    :asset-path "js/out"
                                    :optimizations :none
                                    :cache-analysis true
@@ -53,29 +53,6 @@
                                    :optimizations :advanced
                                    :pretty-print false}}]}
 
-  :figwheel {
-             :http-server-root "public"
-             :server-port 3449
-             :css-dirs ["resources/public/css"]
-             :open-file-command "emacsclient"
-             :ring-handler ringo.server/app}
-
-  :garden {:builds [{:id "components"
-                     :source-paths ["design"]
-                     :stylesheet ringo.components/styles
-                     :compiler {:output-to "resources/public/css/components.css"
-                                :pretty-print? true}}
-                    {:id "layout"
-                     :source-paths ["design"]
-                     :stylesheet ringo.layout/styles
-                     :compiler {:output-to "resources/public/css/layout.css"
-                                :pretty-print? true}}
-                    {:id "typography"
-                     :source-paths ["design"]
-                     :stylesheet ringo.typography/styles
-                     :compiler {:output-to "resources/public/css/typography.css"
-                                :pretty-print? true}}]}
-
   :minify-assets {:prod
                   {:assets
                    {"dist/styles.min.css" "dist"}
@@ -85,8 +62,29 @@
                                   [ring-mock "0.1.5"]
                                   [ring/ring-devel "1.3.1"]
                                   [midje "1.6.3"
-                                   :exclusions [org.codehaus.plexus/plexus-utils]]]}
-             :repl-options {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}
+                                   :exclusions [org.codehaus.plexus/plexus-utils]]]
+                   :figwheel {:http-server-root "public"
+                              :server-port 3449
+                              :css-dirs ["resources/public/css"]
+                              :open-file-command "emacsclient"
+                              :ring-handler ringo.server/app}
+                   :garden {:builds [{:id "components"
+                                      :source-paths ["design"]
+                                      :stylesheet ringo.components/styles
+                                      :compiler {:output-to "resources/public/css/components.css"
+                                                 :pretty-print? true}}
+                                     {:id "layout"
+                                      :source-paths ["design"]
+                                      :stylesheet ringo.layout/styles
+                                      :compiler {:output-to "resources/public/css/layout.css"
+                                                 :pretty-print? true}}
+                                     {:id "typography"
+                                      :source-paths ["design"]
+                                      :stylesheet ringo.typography/styles
+                                      :compiler {:output-to "resources/public/css/typography.css"
+                                                 :pretty-print? true}}]}
+                   :repl-options {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}}
+
              :uberjar {:aot :all}}
 
   :plugins [[lein-cljsbuild "1.0.4"]
@@ -101,12 +99,9 @@
             [lein-pdo "0.1.1"]
             [lein-midje "3.1.1"]]
 
-  :aliases {"init"  ["pdo" "bower" "install,"
-                     "deps"]
-            "dev" ["pdo" "figwheel,"
-                   "garden" "auto"]
-            "release" ["pdo" "cljsbuild" "once" "prod,"
-                       "minify-assets" "prod,"]}
+  :aliases {"init"  ["pdo" "bower" "install," "deps"]
+            "dev" ["pdo" "figwheel," "garden" "auto"]
+            "release" ["pdo" "cljsbuild" "once" "prod," "minify-assets" "prod"]}
 
   :main ^:skip-aot ringo.server
   :uberjar-name "ringo.jar")

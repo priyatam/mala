@@ -5,6 +5,7 @@
 (enable-console-print!)
 
 (fw/start
- {:on-jsload (fn []
+ {:websocket-url "ws://localhost:3449/figwheel-ws"
+  :on-jsload (fn []
                (print "Starting Chant ... "))
   :load-warninged-code true})
