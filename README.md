@@ -1,7 +1,7 @@
 Ringo
 =====
 
-A starterkit for building apps with Bootstrap, Ring, and Om. Optimized for beginner Clojure/Clojurescript developers.
+A starterkit for building apps with Garden, Ring, and Om, optimized for new Clojure/Clojurescript developers.
 
 ## Rationale
 
@@ -13,20 +13,21 @@ Ringo is an effort to realize that core.
 
 ## Goals
 
-- Separate workflows for Design, UI, and API development
-- Unified `bower.json` + `profiles.clj` build pipeline
-- Static server and _async_ webserver (http-kit)
-- Asset pipeline (LESS)
+Clojurescript _all_ the way.
+
 - Curated Ring middleware
-- Ajax & core.async
+- Separate workflows for Design, UI, and API development
+- Integrated asset pipeline in leiningen
+- Live reloading and browser repl, with [figwheel](https://github.com/bhauman/lein-figwheel)
+- Sane project structure and namespaces
+- Static and _async_ server, with [http-kit](http://www.http-kit.org)
 - OAuth2 workflows
-- nRepl over Http
+- Ajax & core.async
 - Error handling in the browser
+- nRepl over Http, with [drawbridge](https://github.com/cemerick/drawbridge)
 - and more ...
 
-Ringo is made up of the following core dependencies:
-
-Ring/Compojure, Om/Sablono, Bootstrap/Less
+Core dependencies: **Ring, Om, Garden**.
 
 ## Usage
 
@@ -48,12 +49,19 @@ The project structure looks like this:
     │       ├── router.clj
     │       ├── server.clj
     │       └── utils.clj
-    ├── design
-    │   └── less
-    │       └── layout.less
-    ├── resources
-    │   └── public
-    │       └── index.html
+	├── design
+	│   └── kickstart
+	│       ├── components.clj
+	│       ├── layout.clj
+	│       └── typography.clj
+	├── resources
+	│   ├── data
+	│   │   └── population.csv
+	│   └── public
+	│       ├── 404.html
+	│       ├── 500.html
+	│       ├── img
+	│       ├── index.html
     └── ui
         └── kickstart
             ├── client.cljs
@@ -64,25 +72,37 @@ The project structure looks like this:
 
 Run the server, auto reload classes, compile less files and cljs->js, all _in one go_.
 
-    lein ringo
+    lein dev
 
-Optionally, add the following ENV variables using [environ](https://github.com/weavejester/environ) in your local, `~/.lein/profiles.clj` to enable oAuth and AWS actions.
+Generate optimized assets (css, js)
 
-- :aws-access-key
-- :aws-secret-key
-- :s3-bucket
+	lein release
+
+Optionally, add the following ENV variables using [environ](https://github.com/weavejester/environ) in your local, `~/.lein/profiles.clj` to enable twitter oAuth.
+
 - :twitter-api-key
 - :twitter-api-secret
 
 ## Deployment
 
-To deploy to Heroku, first set up the keys using `lein heroku keys:add`
+Deploy user interface assets to `dist`.
 
-    lein heroku apps:create
-    git push heroku master
-    lein heroku logs
+	lein deploy
+
+Build and deploy uberjar to heroku
+
+	TODO
 
 ### Advanced Setup
+
+First-time Clojurescript developers, add the following to your bash .profile:
+
+    export LEIN_FAST_TRAMPOLINE=y
+    alias cljsbuild="lein trampoline cljsbuild $@"
+
+To avoid compiling ClojureScript for each build, AOT Clojurescript locally in your project with the following:
+
+	lein trampoline run -m clojure.main -e "(compile 'cljs.repl.node) (compile 'cljs.repl.browser) (compile 'cljs.core)"
 
 Improve Jvm launch times with [drip](https://github.com/ninjudd/drip)
 
@@ -100,20 +120,26 @@ Thanks to Magnar's [Prone](https://github.com/magnars/prone), Exceptions and Rin
 
 ## Editor support
 
+### Lighttable
+
 [Lighttable](http://www.lighttable.com) is the best editor for beginner Clojure/Clojusrescript developers. I recommend the following plugins:
 
 - Bracketglow
 - Emmet
 - Gitlight
-- Paredit and rainbow
+- Paredit
 
-Don't forget to enable **live coding** by evaluating Clojurescript code by _connecting_ "External Browser", and incliding the websocket javascript src show by Lighttable.
+Enable **live coding** by evaluating Clojurescript code by _connecting_ "External Browser", and including the websocket js src shown by Lighttable.
+
+## Emacs/Cider
+
+Emacs is recommended for those looking beyond Lighttable. If you're new to Emacs, checkout [Cider-light](https://github.com/priyatam/cider-light), my guide and Cider config to migrate from Lighttable. 
 
 ## Thanks
 
-A big thanks to @weavejester for creating beautiful Clojure libraries like Hiccup, Ring and Compojure; @swannodette for pushing the limits of Clojurescript and Om.
+A big thanks to @weavejester for creating beautiful libraries like Hiccup, Ring and Compojure; @swannodette for pushing the limits of Clojurescript and Om.
 
-Thanks to [Anna](https://github.com/annapawlicka/om-data-vis), whose modified Om example is used in this repo.
+Some examples are taken from [Om Cookbook](https://github.com/annapawlicka/om-cookbookhttps://github.com/omcljs/om-cookbook).
 
 ## Status & Roadmap
 
@@ -125,11 +151,9 @@ Future roadmap includes stabilizing the core, improving the lein template experi
 
 The following tasks are on my priority list. Your feedback is much appreciated!
 
-- Integrate [Om-Bootstrap](https://github.com/racehub/om-bootstrap), as an alternate workflow to HTML5/Less
-- Integrate [Garden](https://github.com/noprompt/garden)
 - Frontend asset pipeline with [Optimus](https://github.com/magnars/optimus)
 - Core.async integration
-- Midje Tests
+- Om Components showcase
 
 ## CONTRIBUTING
 
