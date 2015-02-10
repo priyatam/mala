@@ -12,26 +12,22 @@
   :dependencies [[org.clojure/clojure "1.6.0"]
                  [org.clojure/clojurescript "0.0-2755"]
                  [org.clojure/core.async "0.1.346.0-17112a-alpha"]
-                 [org.clojure/tools.nrepl "0.2.3"]
-                 [com.cemerick/drawbridge "0.0.6"
-                  :exclusions [[org.clojure/tools.nrepl] [ring/ring-core] [cheshire]]]
-                 [environ "1.0.0"]
                  [ring/ring-core "1.3.2"]
                  [ring/ring-defaults "0.1.3"]
                  [ring/ring-headers "0.1.1"]
                  [ring/ring-json "0.3.1"]
+                 [fogus/ring-edn "0.2.0"]
                  [ring-cors "0.1.6"]
                  [compojure "1.3.1"]
                  [clj-http "1.0.1"]
                  [http-kit "2.1.18"]
-                 [fogus/ring-edn "0.2.0"]
                  [oauth-clj "0.1.13"]
-                 [ring-basic-authentication "1.0.5"]
-                 [cljs-ajax "0.3.9"]
                  [org.omcljs/om "0.8.8"]
+                 [cljs-ajax "0.3.9"]
                  [sablono "0.3.1"]
-                 [garden "1.2.5" :exclusions [org.clojure/clojurescript]]
-                 [prone "0.6.0"]]
+                 [garden "1.2.5"]
+                 [prone "0.8.0"]
+                 [environ "1.0.0"]]
 
   :source-paths ["api" "tasks" "target/classes"]
 
@@ -53,16 +49,12 @@
                                    :optimizations :advanced
                                    :pretty-print false}}]}
 
-  :minify-assets {:prod
-                  {:assets
-                   {"dist/styles.min.css" "dist"}
-                   :options {:optimization :advanced}}}
-
   :profiles {:dev {:dependencies [[figwheel "0.2.3-SNAPSHOT"]
                                   [ring-mock "0.1.5"]
                                   [ring/ring-devel "1.3.1"]
                                   [midje "1.6.3"
                                    :exclusions [org.codehaus.plexus/plexus-utils]]]
+                   :env {:is-dev true}
                    :figwheel {:http-server-root "public"
                               :server-port 3449
                               :css-dirs ["resources/public/css"]
@@ -85,12 +77,16 @@
                                                  :pretty-print? true}}]}
                    :repl-options {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}}
 
-             :uberjar {:aot :all}}
+             :uberjar {:minify-assets {:prod
+                                       {:assets
+                                        {"dist/styles.min.css" "dist"}
+                                        :options {:optimization :advanced}}}
+
+                       :aot :all}}
 
   :plugins [[lein-cljsbuild "1.0.4"]
             [lein-figwheel "0.2.3-SNAPSHOT"]
             [lein-environ "1.0.0"]
-            [lein-marginalia "0.7.1"]
             [lein-ring "0.9.1"]
             [lein-pprint "1.1.1"]
             [org.clojars.wokier/lein-bower "0.3.0"]
