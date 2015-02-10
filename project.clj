@@ -88,16 +88,20 @@
             [lein-figwheel "0.2.3-SNAPSHOT"]
             [lein-environ "1.0.0"]
             [lein-ring "0.9.1"]
+            [lein-kibit "0.0.8"]
             [lein-pprint "1.1.1"]
-            [org.clojars.wokier/lein-bower "0.3.0"]
             [lein-asset-minifier "0.2.0"]
             [lein-garden "0.2.5"]
             [lein-pdo "0.1.1"]
             [lein-cljfmt "0.1.7"]
-            [lein-midje "3.1.1"]]
+            [lein-midje "3.1.1"]
+            [jonase/eastwood "0.2.1"]
+            [org.clojars.wokier/lein-bower "0.3.0"]]
 
   :aliases {"init"  ["pdo" "bower" "install," "deps"]
             "dev" ["pdo" "figwheel," "garden" "auto"]
+            "format" ["cljfmt" "check"]
+            "analyze" ["pdo" "kibit," "eastwood"]
             "release" ["pdo" "cljsbuild" "once" "prod," "minify-assets" "prod"]}
 
   :main ^:skip-aot ringo.server
