@@ -3,12 +3,13 @@ resources/public/css
 out/
 bower_components
 node_modules
-pom.xml
+/**/pom.xml*
 .lein*
 .nrepl*
 .env
 *jar
+*.log
 /lib/
 /classes/
-/target/
-.lein-deps-sum
+/**/target/*
+.lein*

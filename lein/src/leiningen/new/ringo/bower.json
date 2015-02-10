@@ -1,0 +1,22 @@
+{
+  "name": {{name}},
+  "version": "0.1.0",
+  "main": [
+    "./resources/public/css/site.min.css",
+    "./resources/public/js/site.min.js",
+  ],
+  "ignore": [
+    "**/.*",
+    "CNAME",
+    "project.clj",
+    "README.md",
+    "api",
+    "ui",
+    "docs",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": ">= 1.11.0",
+    "bootstrap": ">= 3.2.0"
+  }
+}

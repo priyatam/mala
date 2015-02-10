@@ -1,0 +1,75 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400,300,600,800);
+@import url(http://fonts.googleapis.com/css?family=Source+Code+Pro:200,300,400);
+
+/* Variables */
+
+@font-family-base: 'Open+Sans', sans-serif;
+@font-family-monospace: "Source Code Pro", Monaco, monospace;
+
+@font-size-base: 1.5rem;
+@line-height-base: 1.45rem;
+
+@base-color: #428bca;
+
+/* Mixins */
+
+.box-shadow(@style, @c) when (iscolor(@c)) {
+  -webkit-box-shadow: @style @c;
+  box-shadow:         @style @c;
+}
+
+/* Utils */
+
+.box {
+  color: saturate(@base-color, 5%);
+  border-color: lighten(@base-color, 30%);
+  div { .box-shadow(0 0 5px, 30%) }
+}
+
+/* Typography */
+
+header {
+  font: normal small-caps 900 4rem @font-family-base;
+}
+
+h1 {
+  font: normal normal 600 3rem @font-family-base;
+}
+
+body, p {
+  font: normal normal 300 @font-family-base;
+}
+
+footer {
+  font: normal normal 100 1rem @font-family-monospace;
+}
+
+/* Sections */
+
+.aside {
+  font-size: 2rem;
+  font-weight: 200;
+  font-family: @font-family-base;
+}
+
+main.container-fluid {
+   padding: 5rem 15rem 10rem 10rem;
+}
+
+main header > h1 {
+  padding: 1rem;
+  font: normal normal 900 6rem @font-family-base;
+  letter-spacing: 0.3em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+section {
+  padding: 1rem;
+}
+
+main footer {
+  padding: 15rem;
+  font: normal normal 200 2rem @font-family-base;
+  text-align: center;
+}
