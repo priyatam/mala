@@ -5,17 +5,7 @@
             [sablono.core :as html :refer-macros [html]]
             [ringo.client :as client :refer [GET]]))
 
-(enable-console-print!)
-
-;; STATE ;;
-
-(def app-model
-  (atom {:devices {:all []}
-         :chart {:data []}}))
-
-;; UTILS ;;
-
-(defn get-measurements [cursor owner message]
+(defn- get-measurements [cursor owner message]
   (let [host (:url (om/get-shared owner))
         {:keys [id type]} message
         url (str host "api/device/" id "/type/" type "/measurements")]
@@ -38,8 +28,6 @@
     (.attr (.selectAll (.-shapes x) "text")
            "transform" "rotate(45,0,12.6015625) translate(5, 0)")))
 
-;; COMPONENTS ;;
-
 (defn chart-figure [cursor owner {:keys [chart] :as opts}]
   (reify
     om/IWillMount
@@ -61,8 +49,6 @@
           (.removeChild n (.-lastChild n))))
       (when (seq (:data cursor))
         (draw-chart cursor chart)))))
-
-;; Form containing list of devices that can be plotted
 
 (defn form-row [event-chan]
   (fn [the-item owner]
@@ -104,9 +90,7 @@
                     [:th "Unit"]]]
            [:tbody (om/build-all (form-row event-chan) devices {:key :id})]]])))))
 
-;; Entire application view
-
-(defn chart-http [cursor owner]
+(defn d3-chart [cursor owner]
   (reify
     om/IInitState
     (init-state [_]
@@ -117,10 +101,11 @@
       (html
        [:div {:class "container"}
         [:h3 {:key "head"} (str "Mastering Clojure & Clojurescript")]
-        ;; Builds table with form components for selecting devices
-        (om/build device-form (:devices cursor)
+        ;; Build table with form components for selecting devices
+        (om/build device-form
+                  (:devices cursor)
                   {:init-state chans})
-        ;; Builds chart component
+        ;; Build chart component
         [:div {:class "well" :style {:width "100%" :height 600}}
          (om/build chart-figure
                    (:chart cursor)
@@ -132,16 +117,3 @@
                                    :y-axis "value"
                                    :plot js/dimple.plot.line}}})]]))))
 
-(defn widget [data]
-  (om/component
-    (html
-     [:div [:h2 "Hello Ringo!"]])))
-
-;; ROOT BINDING ;;
-
-(om/root widget {}
-         {:target (.getElementById js/document "hello")})
-
-(om/root chart-http app-model
-         {:target (.getElementById js/document "app")
-          :shared {:url client/host}})

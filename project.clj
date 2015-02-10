@@ -45,7 +45,7 @@
                        {:id "prod"
                         :source-paths ["ui"]
                         :compiler {:output-to "dist/components.min.js"
-                                   :main ringo.components
+                                   :main ringo.main
                                    :optimizations :advanced
                                    :pretty-print false}}]}
 

@@ -1,5 +1,5 @@
 (ns dev
-  (:require [ringo.components :as main]
+  (:require [ringo.main :as main]
             [figwheel.client :as fw]))
 
 (enable-console-print!)
