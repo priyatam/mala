@@ -26,13 +26,14 @@
                  [http-kit "2.1.18"]
                  [fogus/ring-edn "0.2.0"]
                  [oauth-clj "0.1.13"]
+                 [ring-basic-authentication "1.0.5"]
                  [cljs-ajax "0.3.9"]
                  [org.omcljs/om "0.8.8"]
                  [sablono "0.3.1"]
                  [garden "1.2.5" :exclusions [org.clojure/clojurescript]]
                  [prone "0.6.0"]]
 
-  :source-paths ["api" "target/classes"]
+  :source-paths ["api" "tasks" "target/classes"]
 
   :cljsbuild {
               :builds [{:id "dev"
