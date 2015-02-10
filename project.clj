@@ -25,6 +25,7 @@
                  [oauth-clj "0.1.13"]
                  [org.omcljs/om "0.8.8"]
                  [sablono "0.3.1"]
+                 [secretary "1.2.1"]
                  [garden "1.2.5"]
                  [prone "0.8.0"]
                  [environ "1.0.0"]]
