@@ -1,23 +1,22 @@
 Ringo
 =====
 
-A starterkit for building apps with Garden, Ring, and Om. Optimized for new Clojure/Clojurescript developers.
+A starterkit for building apps with Garden, Ring, and Om.
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+**Table of Contents**
 
 - [Rationale](#rationale)
+- [Goals](#goals)
 - [Usage](#usage)
   - [Quickstart](#quickstart)
+  - [Project Structure](#project-structure)
   - [Setup](#setup)
-  - [Env-vars](#env-vars)
-  - [REPL/BREPL](#replbrepl)
+  - [Env Vars](#env-vars)
+  - [REPL](#repl)
   - [Development](#development)
   - [Deployment](#deployment)
-  - [Advanced](#advanced)
 - [Plugins](#plugins)
-- [Project structure](#project-structure)
 - [Editors](#editors)
   - [Lighttable](#lighttable)
   - [Emacs/Cider](#emacscider)
@@ -35,7 +34,7 @@ middleware to get things done.
 
 Ringo is an effort to realize that core.
 
-**Goals**
+## Goals
 
 - curated Ring middleware
 - separate workflows for _design_, _ui_, and _api_
@@ -61,6 +60,44 @@ Seasoned Clojure/Clojurescript developers may install the template like so:
 
 You may still want to read the setup below that covers the newer repl/brepl and advanced cljs compilation notes.
 
+### Project Structure
+
+After running `lein new ringo kickstart` the project structure looks like this:
+
+    ├── api
+    │   └── kickstart
+    │       ├── db.clj
+    │       ├── router.clj
+    │       ├── server.clj
+    │       └── utils.clj
+	├── design
+	│   └── kickstart
+	│       ├── components.clj
+	│       ├── layout.clj
+	│       └── typography.clj
+	├── env
+	│   └── dev.cljs
+	├── resources
+	│   ├── data
+	│   └── public
+	│       ├── 404.html
+	│       ├── 500.html
+	│       ├── img
+	│       ├── index.html
+    ├── tasks
+	│   └── leiningen
+	│       └── tasks.clj
+	└── ui
+        └── kickstart
+            ├── client.cljs
+            ├── components.cljs
+            └── utils.cljs
+    ├── bower.json
+    ├── project.clj
+
+Rather than placing every source file under `src`, this project structure provides clear separation of concerns. Within
+each folder, namespaces are named accordingly to reflect a clear goal.
+
 ### Setup
 
 First-time Clojure/Clojurescript developers, make sure you installed [jdk7 or above](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html).
@@ -78,7 +115,16 @@ To avoid compiling ClojureScript for each build, AOT Clojurescript locally in yo
 
 	./scripts/compile_cljsc
 
-### Env-vars
+
+Optionally, improve Jvm launch times with [drip](https://github.com/ninjudd/drip)
+
+    brew install drip
+
+Initialize drip by running [lein-drip](https://github.com/josteink/lein-drip) once as:
+
+	lein drip
+
+### Env Vars
 
 Environment variables are managed with [environ](https://github.com/weavejester/environ). For example, add the following in
 your local `~/.lein/profiles.clj` to enable twitter oAuth.
@@ -122,16 +168,6 @@ There are two modes for deployment:
 
 TODO
 
-### Advanced
-
-Improve Jvm launch times with [drip](https://github.com/ninjudd/drip)
-
-    brew install drip
-
-Initialize drip by running [lein-drip](https://github.com/josteink/lein-drip) once as:
-
-    lein drip
-
 ## Plugins
 
 **Visuall Debugger**
@@ -149,44 +185,6 @@ James Reeves created another excellent [library](https://github.com/weavejester/
 Both kibit and eastwood are integrated as plugins, and can be invoked like this
 
 	lein analyze
-
-## Project structure
-
-After running `lein new ringo kickstart` the project structure looks like this:
-
-    ├── api
-    │   └── kickstart
-    │       ├── db.clj
-    │       ├── router.clj
-    │       ├── server.clj
-    │       └── utils.clj
-	├── design
-	│   └── kickstart
-	│       ├── components.clj
-	│       ├── layout.clj
-	│       └── typography.clj
-	├── env
-	│   └── dev.cljs
-	├── resources
-	│   ├── data
-	│   └── public
-	│       ├── 404.html
-	│       ├── 500.html
-	│       ├── img
-	│       ├── index.html
-    ├── tasks
-	│   └── leiningen
-	│       └── tasks.clj
-	└── ui
-        └── kickstart
-            ├── client.cljs
-            ├── components.cljs
-            └── utils.cljs
-    ├── bower.json
-    ├── project.clj
-
-Rather than placing every source file under `src`, this project structure provides clear separation of concerns. Within
-each folder, namespaces are named accordingly to reflect a clear goal.
 
 ## Editors
 
