@@ -11,6 +11,8 @@
 
 ;; (sec/set-config! :prefix "#")
 
+(def host "http://localhost:3449/" )
+
 (let [history (History.)
       navigation EventType/NAVIGATE]
   (events/listen history
@@ -23,7 +25,7 @@
    page
    state/app-state
    {:target (.getElementById js/document id)
-    :shared {:url client/host}}))
+    :shared {:url host}}))
 
 (defn dispatch-current-route []
   (sec/dispatch! (.-pathname (.-location js/window))))

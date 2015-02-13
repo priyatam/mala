@@ -4,11 +4,8 @@
             [sablono.core :as html :refer-macros [html]]
             [ringo.state :as state :refer [app-state]]
             [ringo.components :as components]
-            [ringo.client :as client]
             [ringo.router :as router]))
-
 
 (router/routes)
 (router/dispatch-current-route)
-
 (router/mount "app" components/d3-chart)

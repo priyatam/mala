@@ -7,6 +7,7 @@ node_modules
 pom.xml
 .lein*
 .nrepl*
+repl*
 .env
 *jar
 /lib/
