@@ -20,7 +20,7 @@
                  #(-> % .-token sec/dispatch!))
   (doto history (.setEnabled true)))
 
-(defn- mount [id page]
+(defn mount [id page]
   (om/root
    page
    state/app-state

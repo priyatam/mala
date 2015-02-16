@@ -1,4 +1,4 @@
-(ns ringo.components
+(ns ringo.components.graph
   (:require-macros [cljs.core.async.macros :refer [go go-loop]])
   (:require [om.core :as om  :include-macros true]
             [cljs.core.async :refer [<! chan put! sliding-buffer]]
@@ -28,7 +28,7 @@
     (.attr (.selectAll (.-shapes x) "text")
            "transform" "rotate(45,0,12.6015625) translate(5, 0)")))
 
-(defn chart-figure [cursor owner {:keys [chart] :as opts}]
+(defn- chart-figure [cursor owner {:keys [chart] :as opts}]
   (reify
     om/IWillMount
     (will-mount [_]
@@ -50,7 +50,7 @@
       (when (seq (:data cursor))
         (draw-chart cursor chart)))))
 
-(defn form-row [event-chan]
+(defn- form-row [event-chan]
   (fn [the-item owner]
     (om/component
       (let [{:keys [id type description unit]} the-item]
@@ -67,7 +67,7 @@
           [:td description]
           [:td unit]])))))
 
-(defn device-form
+(defn- device-form
   [cursor owner]
   (reify
     om/IWillMount
@@ -90,7 +90,7 @@
                     [:th "Unit"]]]
            [:tbody (om/build-all (form-row event-chan) devices {:key :id})]]])))))
 
-(defn d3-chart [cursor owner]
+(defn view [cursor owner]
   (reify
     om/IInitState
     (init-state [_]
@@ -100,7 +100,7 @@
     (render-state [_ {:keys [chans]}]
       (html
        [:div {:class "container"}
-        [:h3 {:key "head"} (str "Mastering Clojure & Clojurescript")]
+        [:h3 {:key "head"} (str "Graphs with D3")]
         ;; Build table with form components for selecting devices
         (om/build device-form
                   (:devices cursor)

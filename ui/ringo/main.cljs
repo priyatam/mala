@@ -3,9 +3,9 @@
             [om.dom :as dom]
             [sablono.core :as html :refer-macros [html]]
             [ringo.state :as state :refer [app-state]]
-            [ringo.components :as components]
+            [ringo.components.graph :as graph]
             [ringo.router :as router]))
 
 (router/routes)
 (router/dispatch-current-route)
-(router/mount "app" components/d3-chart)
+(router/mount "graph" graph/view)
