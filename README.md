@@ -66,18 +66,6 @@ After running `lein new ringo kickstart` the project structure looks like this:
 	│       ├── components.clj
 	│       ├── layout.clj
 	│       └── typography.clj
-	├── env
-	│   └── dev.cljs
-	├── resources
-	│   ├── data
-	│   └── public
-	│       ├── 404.html
-	│       ├── 500.html
-	│       ├── img
-	│       ├── index.html
-    ├── tasks
-	│   └── leiningen
-	│       └── tasks.clj
 	└── ui
 		└── kickstart
 			├── client.cljs
@@ -88,11 +76,15 @@ After running `lein new ringo kickstart` the project structure looks like this:
 			├── state.cljs
 			├── types.cljs
 			└── utils.cljs
-    ├── bower.json
-    ├── project.clj
+	├── resources
+	│   ├── data
+	│   └── public
+	│       ├── img
+	│       ├── index.html
+   
 
-Rather than placing every source file under `src`, this project structure provides clear separation of concerns with
-namespaces named to reflect a clear goal.
+Rather than placing every source file under `src`, this project structure provides clear
+separation of concerns with namespaces named to reflect a clear goal.
 
 ### Setup
 
