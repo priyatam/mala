@@ -1,12 +1,10 @@
 (ns ringo.router
-  (:require [secretary.core :as sec :include-macros true]
-            [om.core :as om]
+  (:require [goog.events :as events]
+            [goog.history.EventType :as EventType][om.core :as om]
             [om.dom :as dom]
-            [sablono.core :as html :refer-macros [html]]
-            [ringo.state :as state]
-            [ringo.pages :as pages]
-            [goog.events :as events]
-            [goog.history.EventType :as EventType])
+            [secretary.core :as sec :include-macros true]
+            [ringo.state :as state :refer [app-state]]
+            [ringo.pages :as pages])
   (:import goog.History))
 
 ;; (sec/set-config! :prefix "#")
@@ -23,7 +21,7 @@
 (defn mount [id page]
   (om/root
    page
-   state/app-state
+   app-state
    {:target (.getElementById js/document id)
     :shared {:url host}}))
 
@@ -32,4 +30,4 @@
 
 (defn routes []
   (sec/defroute about "/about" []
-    (mount "app" pages/about)))
+    (mount "graph" pages/about)))

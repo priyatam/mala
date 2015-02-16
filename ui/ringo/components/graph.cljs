@@ -99,7 +99,7 @@
     om/IRenderState
     (render-state [_ {:keys [chans]}]
       (html
-       [:div {:class "container"}
+       [:div {:class "graph"}
         [:h3 {:key "head"} (str "Graphs with D3")]
         ;; Build table with form components for selecting devices
         (om/build device-form

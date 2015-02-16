@@ -55,6 +55,9 @@
    [:header (font font-family-sans-serif 4 700 0.3 1.5 "small-caps")]
    [:footer (font font-family-sans-serif 1 100 0.3 1.5)]])
 
+(def graph
+  [:.graph (font font-family-serif 1.5 300 0.3 2)])
+
 (def defaults
   [:body :p :h1 :h2 (font font-family-sans-serif 2 300 0.3 2)])
 
