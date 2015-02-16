@@ -19,10 +19,8 @@
                  [fogus/ring-edn "0.2.0"]
                  [ring-cors "0.1.6"]
                  [compojure "1.3.1"]
-                 [clj-http "1.0.1"]
                  [cljs-http "0.1.25"]
                  [http-kit "2.1.18"]
-                 [oauth-clj "0.1.13"]
                  [org.omcljs/om "0.8.8"]
                  [sablono "0.3.1"]
                  [secretary "1.2.1"]
@@ -53,6 +51,7 @@
   :profiles {:dev {:dependencies [[figwheel "0.2.3-SNAPSHOT"]
                                   [ring-mock "0.1.5"]
                                   [ring/ring-devel "1.3.1"]
+                                  [leiningen "2.5.0"]
                                   [midje "1.6.3"
                                    :exclusions [org.codehaus.plexus/plexus-utils]]]
                    :env {:is-dev true}
