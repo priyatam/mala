@@ -13,8 +13,7 @@ A starterkit for building apps with Garden, Ring, Core.Async, and Om.
   - [Project Structure](#project-structure)
   - [Setup](#setup)
   - [Env Vars](#env-vars)
-  - [REPL](#repl)
-  - [Development](#development)
+  - [REPL Development](#repl-development)
 - [Plugins](#plugins)
 - [Editors](#editors)
   - [Lighttable](#lighttable)
@@ -69,7 +68,9 @@ After running `lein new ringo kickstart` the project structure looks like this:
 	└── ui
 		└── kickstart
 			├── client.cljs
-			├── components.cljs
+			├── components
+			│   ├── graph.cljs
+			│   └── typeahead.cljs
 			├── main.cljs
 			├── pages.cljs
 			├── router.cljs
@@ -83,8 +84,8 @@ After running `lein new ringo kickstart` the project structure looks like this:
 	│       ├── index.html
    
 
-Rather than placing every source file under `src`, this project structure provides clear
-separation of concerns with namespaces named to reflect a clear goal.
+Rather than placing every source file under `src`, this project structure provides a
+clear separation of concerns with namespaces named to reflect goals.
 
 ### Setup
 
@@ -99,7 +100,7 @@ Add the following to your `bash_profile`:
 
 Compile ClojureScript ahead of time [AOT](http://swannodette.github.io/2014/12/22/waitin/) instead of compiling for each build:
 
-	./scripts/compile_cljsc
+	lein trampoline run -m clojure.main -e "(compile 'cljs.repl.node) (compile 'cljs.repl.browser) (compile 'cljs.core)"
 
 Optionally, improve Jvm launch times with [drip](https://github.com/ninjudd/drip)
 
@@ -117,20 +118,12 @@ your local `~/.lein/profiles.clj` to enable twitter oAuth.
 - :twitter-api-key
 - :twitter-api-secret
 
-### REPL
+### REPL Development
 
-There are two repls.
-
-1. A Node REPL bundled with Clojurescript (requires rlwrap) provides the fastest repl environment without a browser context:
-
-		./scripts/repl
-
-2. While it is possible to code live with the Clojurescript's in-built [brepl](https://github.com/clojure/clojurescript/wiki/The-REPL-and-Evaluation-Environments#browser-as-evaluation-environment), figwheel provides a deeper experience by providing an
+While it is possible to code live with the Clojurescript's in-built [brepl](https://github.com/clojure/clojurescript/wiki/The-REPL-and-Evaluation-Environments#browser-as-evaluation-environment), figwheel provides a deeper experience by providing an
 interactive environment for [reloadable-code](https://github.com/bhauman/lein-figwheel#writing-reloadable-code). 
 
-Ringo bundles figwheel, which embeds cljs brepl, and can be started with `lein dev` (see below)
-
-### Development
+Ringo bundles figwheel, which embeds cljs repl/brepl, to simplify repl-driven development.
 
 Start figwheel, garden/css watches, a ring api server, and auto reload classes/css on the fly
 
