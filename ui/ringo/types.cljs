@@ -1,5 +1,6 @@
 (ns ringo.types
-  (:require [clojure.string :as string]))
+  (:require [clojure.string :as string]
+            [om.core :as om]))
 
 ;; Source: https://github.com/omcljs/om/blob/master/examples/typeahead/src/core.cljs
 ;; Strings and numbers work as cursors and React doesn't know how to handle these
