@@ -106,7 +106,7 @@ Optionally, improve Jvm launch times with [drip](https://github.com/ninjudd/drip
 
     brew install drip
 
-Initialize drip by running [lein-drip](https://github.com/josteink/lein-drip) once as:
+Add [lein-drip](https://github.com/josteink/lein-drip) in `~/.lein/profiles.clj` and initialize drip by running:
 
 	lein drip
 
@@ -151,7 +151,7 @@ With Magnar's [Prone](https://github.com/magnars/prone), exceptions and ring err
 
 **Clojure Formatting**
 
-James Reeves created another excellent [library](https://github.com/weavejester/cljfmt) that formats source code.
+James Reeves created an excellent [library](https://github.com/weavejester/cljfmt) that formats source code:
 
 	lein format
 
