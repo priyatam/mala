@@ -28,11 +28,11 @@
                  [prone "0.8.0"]
                  [environ "1.0.0"]]
 
-  :source-paths ["api" "tasks" "target/classes"]
+  :source-paths ["src/api" "tasks" "target/classes"]
 
   :cljsbuild {
               :builds [{:id "dev"
-                        :source-paths ["ui" "env"]
+                        :source-paths ["src/ui" "env"]
                         :compiler {
                                    :output-to "resources/public/js/components.js"
                                    :output-dir "resources/public/js/out"
@@ -61,22 +61,20 @@
                               :open-file-command "emacsclient"
                               :ring-handler ringo.server/app}
                    :garden {:builds [{:id "components"
-                                      :source-paths ["design"]
+                                      :source-paths ["src/design"]
                                       :stylesheet ringo.components/styles
                                       :compiler {:output-to "resources/public/css/components.css"
                                                  :pretty-print? true}}
                                      {:id "layout"
-                                      :source-paths ["design"]
+                                      :source-paths ["src/design"]
                                       :stylesheet ringo.layout/styles
                                       :compiler {:output-to "resources/public/css/layout.css"
                                                  :pretty-print? true}}
                                      {:id "typography"
-                                      :source-paths ["design"]
+                                      :source-paths ["src/design"]
                                       :stylesheet ringo.typography/styles
                                       :compiler {:output-to "resources/public/css/typography.css"
-                                                 :pretty-print? true}}]}
-                  }
-
+                                                 :pretty-print? true}}]}}
              :uberjar {:aot :all}}
 
   :plugins [[lein-cljsbuild "1.0.4"]
