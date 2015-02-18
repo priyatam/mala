@@ -1,6 +1,5 @@
-(ns ringo.server
-  (:require [environ.core :refer [env]]
-            [clojure.java.io :as io]
+(ns api.server
+  (:require [clojure.java.io :as io]
             [ring.middleware.cors :refer :all]
             [ring.middleware.defaults :refer :all]
             [ring.middleware.edn :refer :all]
@@ -13,7 +12,8 @@
             [prone.debug :refer [debug]]
             [prone.middleware :as prone]
             [org.httpkit.server :as httpkit]
-            [ringo.router :as router])
+            [environ.core :refer [env]]
+            [api.router :as router])
   (:gen-class))
 
 ;; Middleware

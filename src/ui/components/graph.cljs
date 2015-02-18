@@ -1,9 +1,9 @@
-(ns ringo.components.graph
+(ns ui.components.graph
   (:require-macros [cljs.core.async.macros :refer [go go-loop]])
   (:require [om.core :as om  :include-macros true]
             [cljs.core.async :refer [<! chan put! sliding-buffer]]
             [sablono.core :as html :refer-macros [html]]
-            [ringo.client :as client :refer [GET]]))
+            [ui.client :as client :refer [GET]]))
 
 (defn- get-measurements [cursor owner message]
   (let [host (:url (om/get-shared owner))

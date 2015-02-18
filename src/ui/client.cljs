@@ -1,8 +1,8 @@
-(ns ringo.client
+(ns ui.client
   (:require-macros [cljs.core.async.macros :refer [go]])
   (:require [cljs-http.client :as http]
             [cljs.core.async :refer [<!]]
-            [ringo.utils :refer [log logp]]))
+            [ui.utils :refer [log logp]]))
 
 (defn handler [response]
   (.log js/console (str response)))

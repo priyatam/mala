@@ -1,4 +1,4 @@
-(ns ringo.utils
+(ns ui.utils
   (:require [cljs.reader :as reader]
             [clojure.string :as str])
   (:import [goog.ui IdGenerator]))

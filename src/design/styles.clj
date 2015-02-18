@@ -1,9 +1,9 @@
-(ns ringo.styles
+(ns design.styles
   (:require [garden.def :refer [defstyles defrule defkeyframes]]
             [garden.core :refer [css]]
-            [ringo.components :as components]
-            [ringo.typography :as typography]
-            [ringo.layout :as layout]))
+            [design.components :as components]
+            [design.typography :as typography]
+            [design.layout :as layout]))
 
 (def all
   (merge components/styles layout/styles typography/styles))

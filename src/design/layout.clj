@@ -1,4 +1,4 @@
-(ns ringo.layout
+(ns design.layout
   (:refer-clojure :exclude [+ - * /])
   (:require [garden.def :refer [defstyles defrule defkeyframes]]
             [garden.core :refer [css]]

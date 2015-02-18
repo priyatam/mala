@@ -1,4 +1,4 @@
-(ns ringo.router
+(ns api.router
   (:require [environ.core :refer [env]]
             [clojure.java.io :as io]
             [ring.middleware.content-type :refer :all]
@@ -15,7 +15,7 @@
             [compojure.core :refer [context defroutes GET PUT POST DELETE ANY]]
             [compojure.route :as route]
             [prone.debug :refer [debug]]
-            [ringo.db :as db])
+            [api.db :as db])
   (:import java.net.URI))
 
 (defn edn-response [data & [status]]
@@ -49,7 +49,7 @@
                     (edn-response libraries))))
 
            (GET "/authors" []
-                                        ;(debug)
+                ;;(debug)
                 (let [authors (get-in db/data [:authors])]
                   (when authors
                     (edn-response authors))))

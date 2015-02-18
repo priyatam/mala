@@ -1,15 +1,16 @@
 (ns dev.repl
   (:require-macros
    [figwheel.client.utils :refer [enable-dev-blocks!]])
-  (:require [ringo.main :as main]
+  (:require [ui.main :as main]
             [figwheel.client :as fw]))
 
 (enable-console-print!)
 (enable-dev-blocks!)
 
+(print "Starting Figwheel Repl ... ")
+
 (fw/start
  {:websocket-url "ws://localhost:3449/figwheel-ws"
-  :build-id "dev"
   :on-jsload (fn []
-               (print "Starting Figwheel ... "))
+               (print "Figwheel ... js loaded "))
   :load-warninged-code true})

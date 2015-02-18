@@ -28,12 +28,12 @@
                  [prone "0.8.0"]
                  [environ "1.0.0"]]
 
-  :source-paths ["src/api" "tasks" "target/classes"]
+  :source-paths ["src" "tasks" "target/classes"]
 
   :clean-targets ^{:protect false} ["resources/public/js" "target/classes"]
 
   :cljsbuild {:builds
-              {:app {:source-paths ["src/ui" "env"]
+              {:app {:source-paths ["src/ui"]
                      :compiler {:output-to "resources/public/js/components.js"
                                 :output-dir "resources/public/js/out"
                                 :main dev.repl
@@ -48,17 +48,17 @@
                                   [ring/ring-devel "1.3.1"]]
                    :env {:is-dev true}
                    :cljsbuild {:builds
-                               {:app {:source-paths ["env"]}}}
+                               {:app {:source-paths ["env/dev"]}}}
                    :figwheel {:http-server-root "public"
                               :server-port 3449
                               :nrepl-port 7888
                               :css-dirs ["resources/public/css"]
                               :open-file-command "emacsclient"
-                              :ring-handler ringo.server/app}
+                              :ring-handler api.server/app}
                    :garden {:builds
                             [{:id "design"
                               :source-paths ["src/design"]
-                              :stylesheet ringo.styles/all
+                              :stylesheet design.styles/all
                               :compiler {:output-to "resources/public/css/styles.css"
                                          :pretty-print true}}]}}
 
@@ -69,7 +69,7 @@
                        :garden {:builds
                                 [{:id "prod"
                                   :source-paths ["src/design"]
-                                  :stylesheet ringo.styles/all
+                                  :stylesheet design.styles/all
                                   :compiler {:output-to "resources/public/css/styles.css"
                                              :pretty-print? false}}]}
                        :cljsbuild {:builds
@@ -89,11 +89,11 @@
             [lein-cljfmt "0.1.7"]
             [jonase/eastwood "0.2.1"]]
 
-  :aliases {"init"  ["pdo" "bower" "install," "deps"]
+  :aliases {"clean-all"  ["pdo" "clean," "garden" "clean"]
             "dev" ["pdo" "garden" "auto," "figwheel"]
             "format" ["cljfmt" "check"]
             "analyze" ["pdo" "kibit," "eastwood"]
             "prod" ["pdo" "clean," "uberjar"]}
 
-  :main ^:skip-aot ringo.server
+  :main ^:skip-aot api.server
   :uberjar-name "ringo.jar")

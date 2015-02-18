@@ -1,4 +1,4 @@
-(ns ringo.typography
+(ns design.typography
   (:refer-clojure :exclude [+ - * / rem])
   (:require [garden.def :refer [defstyles defrule defkeyframes]]
             [garden.core :refer [css]]
@@ -67,4 +67,4 @@
       (wrap [:h1 :h2 :h3 :h4 :h5 :h6])))
 
 (defstyles styles
-  (list defaults typesetting))
+  (list 'defaults typesetting))

@@ -1,4 +1,4 @@
-(ns ringo.types
+(ns ui.types
   (:require [clojure.string :as string]
             [om.core :as om]))
 

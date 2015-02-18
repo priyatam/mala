@@ -1,4 +1,4 @@
-(ns ringo.pages
+(ns ui.pages
   (:require [om.core :as om]
             [om.dom :as dom]
             [sablono.core :as html :refer-macros [html]]))

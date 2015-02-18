@@ -1,8 +1,7 @@
-(ns ringo.utils
+(ns api.utils
   (:require [clojure.java.io :as io]
             [clojure.string :as str]
             [environ.core :refer [env]]))
-
 
 (defmacro dbg [body]
   "Cheap inline debugging"

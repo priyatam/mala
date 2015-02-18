@@ -1,4 +1,4 @@
-(ns ringo.state
+(ns ui.state
   (:require [om.core :as om]
             [om.dom :as dom]))
 
@@ -8,7 +8,7 @@
   (nth chars (rand-int (count chars))))
 
 (defn- rand-word []
-  (apply str (take (inc (rand-int 10)) (repeatedly rand-char))))
+  (apply str (take (inc (rand-int 5)) (repeatedly rand-char))))
 
 (defonce app-state
   (atom {:text "Hello Ringo!"

@@ -1,4 +1,4 @@
-(ns ringo.components
+(ns design.components
   (:refer-clojure :exclude [+ - * /])
   (:require [garden.def :refer [defstyles defrule defkeyframes]]
             [garden.core :refer [css]]
@@ -7,7 +7,7 @@
             [garden.color :as color :refer [hsl rgb]]
             [garden.arithmetic :refer [+ - * /]]
             [garden.stylesheet :refer [at-media]]
-            [ringo.typography :as typo]))
+            [design.typography :as typo]))
 
 ;; Mixins
 

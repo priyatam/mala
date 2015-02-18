@@ -1,10 +1,10 @@
-(ns ringo.router
+(ns ui.router
   (:require [goog.events :as events]
             [goog.history.EventType :as EventType][om.core :as om]
             [om.dom :as dom]
             [secretary.core :as sec :include-macros true]
-            [ringo.state :as state :refer [app-state]]
-            [ringo.pages :as pages])
+            [ui.state :as state :refer [app-state]]
+            [ui.pages :as pages])
   (:import goog.History))
 
 ;; (sec/set-config! :prefix "#")

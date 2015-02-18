@@ -1,6 +1,6 @@
 ;; credit: https://github.com/omcljs/om/blob/master/examples/typeahead/src/core.cljs
 
-(ns ringo.components.typeahead
+(ns ui.components.typeahead
   (:refer-clojure :exclude [chars])
   (:require [om.core :as om :include-macros true]
             [om.dom :as dom :include-macros true]
