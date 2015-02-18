@@ -10,5 +10,5 @@
 (router/routes)
 (router/dispatch-current-route)
 
-(router/mount "graph" graph/view)
+;;(router/mount "graph" graph/view)
 (router/mount "typeahead" typeahead/view)

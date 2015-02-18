@@ -1,4 +1,4 @@
-(ns dev
+(ns dev.repl
   (:require-macros
    [figwheel.client.utils :refer [enable-dev-blocks!]])
   (:require [ringo.main :as main]

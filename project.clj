@@ -30,52 +30,53 @@
 
   :source-paths ["src/api" "tasks" "target/classes"]
 
-  :cljsbuild {
-              :builds [{:id "dev"
-                        :source-paths ["src/ui" "env"]
-                        :compiler {
-                                   :output-to "resources/public/js/components.js"
-                                   :output-dir "resources/public/js/out"
-                                   :main dev
-                                   :asset-path "js/out"
-                                   :optimizations :none
-                                   :cache-analysis true
-                                   :source-map true}}
-                       {:id "prod"
-                        :source-paths ["ui"]
-                        :compiler {:output-to "dist/components.min.js"
-                                   :main ringo.main
-                                   :optimizations :advanced
-                                   :pretty-print false}}]}
+  :clean-targets ^{:protect false} ["resources/public/js" "target/classes"]
+
+  :cljsbuild {:builds
+              {:app {:source-paths ["src/ui" "env"]
+                     :compiler {:output-to "resources/public/js/components.js"
+                                :output-dir "resources/public/js/out"
+                                :main dev.repl
+                                :asset-path "js/out"
+                                :optimizations :none
+                                :cache-analysis true
+                                :source-map true}}}}
 
   :profiles {:dev {:dependencies [[figwheel "0.2.5-SNAPSHOT"]
                                   [figwheel-sidecar "0.2.5-SNAPSHOT"]
                                   [ring-mock "0.1.5"]
-                                  [ring/ring-devel "1.3.1"]
-                                  [leiningen "2.5.0"]]
+                                  [ring/ring-devel "1.3.1"]]
                    :env {:is-dev true}
+                   :cljsbuild {:builds
+                               {:app {:source-paths ["env"]}}}
                    :figwheel {:http-server-root "public"
                               :server-port 3449
                               :nrepl-port 7888
                               :css-dirs ["resources/public/css"]
                               :open-file-command "emacsclient"
                               :ring-handler ringo.server/app}
-                   :garden {:builds [{:id "components"
-                                      :source-paths ["src/design"]
-                                      :stylesheet ringo.components/styles
-                                      :compiler {:output-to "resources/public/css/components.css"
-                                                 :pretty-print? true}}
-                                     {:id "layout"
-                                      :source-paths ["src/design"]
-                                      :stylesheet ringo.layout/styles
-                                      :compiler {:output-to "resources/public/css/layout.css"
-                                                 :pretty-print? true}}
-                                     {:id "typography"
-                                      :source-paths ["src/design"]
-                                      :stylesheet ringo.typography/styles
-                                      :compiler {:output-to "resources/public/css/typography.css"
-                                                 :pretty-print? true}}]}}
-             :uberjar {:aot :all}}
+                   :garden {:builds
+                            [{:id "design"
+                              :source-paths ["src/design"]
+                              :stylesheet ringo.styles/all
+                              :compiler {:output-to "resources/public/css/styles.css"
+                                         :pretty-print true}}]}}
+
+             :uberjar {:hooks [leiningen.garden leiningen.cljsbuild]
+                       :env {:production true}
+                       :omit-source true
+                       :aot :all
+                       :garden {:builds
+                                [{:id "prod"
+                                  :source-paths ["src/design"]
+                                  :stylesheet ringo.styles/all
+                                  :compiler {:output-to "resources/public/css/styles.css"
+                                             :pretty-print? false}}]}
+                       :cljsbuild {:builds
+                                   {:prod {:source-paths ["src/ui"]
+                                           :compiler {:output-to "resources/public/js/components.js"
+                                                      :optimizations :advanced
+                                                      :pretty-print false}}}}}}
 
   :plugins [[lein-cljsbuild "1.0.4"]
             [lein-figwheel "0.2.5-SNAPSHOT"]
@@ -86,14 +87,13 @@
             [lein-garden "0.2.5"]
             [lein-pdo "0.1.1"]
             [lein-cljfmt "0.1.7"]
-            [jonase/eastwood "0.2.1"]
-            [org.clojars.wokier/lein-bower "0.3.0"]]
+            [jonase/eastwood "0.2.1"]]
 
   :aliases {"init"  ["pdo" "bower" "install," "deps"]
-            "dev" ["pdo" "figwheel," "garden" "auto"]
+            "dev" ["pdo" "garden" "auto," "figwheel"]
             "format" ["cljfmt" "check"]
             "analyze" ["pdo" "kibit," "eastwood"]
-            "release" ["pdo" "cljsbuild" "once" "prod"]}
+            "prod" ["pdo" "clean," "uberjar"]}
 
   :main ^:skip-aot ringo.server
   :uberjar-name "ringo.jar")

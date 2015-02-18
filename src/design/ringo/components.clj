@@ -47,8 +47,7 @@
     :height (px 30)
     :width (px 350)
     :overflow "hidden"
-    :border-radius (em 10)
-    }])
+    :border-radius (em 10)}])
 
 (def typeahead
   [:h2.typeahead {:color "#666"
