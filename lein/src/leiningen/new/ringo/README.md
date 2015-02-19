@@ -35,8 +35,8 @@ Start figwheel, watch garden, start a ring api server, and auto reload cljs/cljs
 
 	lein dev
 
-Checkout `http://localhost:3449/`
-	
+After a succesfull build, open/refresh `http://localhost:3449/`; you will see a Cljs brepl on the prompt
+
 Bundle entire app into an uberjar
 
 	lein prod
