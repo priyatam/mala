@@ -12,5 +12,4 @@ repl
 *jar
 /lib/
 /classes/
-/**/target/
-/**/pom.properties
+/target/
