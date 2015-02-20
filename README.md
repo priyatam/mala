@@ -1,7 +1,7 @@
 Ringo
 =====
 
-A starterkit for building apps with Garden, Ring, Core.Async, and Om.
+An optimized starterkit for coding _and_ designing Clojurescript apps with Garden, Ring, and Om.
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
@@ -10,11 +10,13 @@ A starterkit for building apps with Garden, Ring, Core.Async, and Om.
 - [Goals](#goals)
 - [Quickstart](#quickstart)
 - [Setup](#setup)
-- [REPL/BREPL](#replbrepl)
-- [Plugins](#plugins)
+- [Development](#development)
+- [Debugging](#debugging)
+- [Lein Template](#lein-template)
 - [Editors](#editors)
   - [Lighttable](#lighttable)
   - [Emacs/Cider](#emacscider)
+- [References](#references)
 - [Thanks](#thanks)
 - [Status](#status)
 - [License](#license)
@@ -23,18 +25,22 @@ A starterkit for building apps with Garden, Ring, Core.Async, and Om.
 
 ## Goals
 
-Ringo is a reference om/ring/garden app and leiningen template that demonstrates the following:
+[Curate](https://github.com/ring-clojure/ring-defaults), [upgrade](http://swannodette.github.io/2014/12/22/waitin/), follow [Om](https://github.com/omcljs/om/blob/master/CHANGES.md) versions, and maintain a pleasant leiningen template with a reference app.
+
+	Fighwheel -> Garden -> Om -> Core.Async -> Ring
+
+## Features
 
 - separate workflows for _design_, _ui_, and _api_
 - sane project structure and namespaces
-- live reloading and browser repl, with [figwheel](https://github.com/bhauman/lein-figwheel)
+- live reloading and browser repl with [figwheel](https://github.com/bhauman/lein-figwheel)
 - curated ring middleware
-- core.async, instead of ajax
-- static and async server, with [http-kit](http://www.http-kit.org)
-- integrated asset pipeline in leiningen
-- bower integration
 - curated lein plugins
+- curated cljsjs libraries
+- core.async
+- static and async server, with [http-kit](http://www.http-kit.org)
 - leiningen tasks
+- asset pipeline in leinigen (uberjar and others)
 
 ## Quickstart
 
@@ -48,42 +54,52 @@ Checkout `http://localhost:3449/`
 
 The generated project structure looks like this:
 
-    ├── api
-    │   └── kickstart
-    │       ├── router.clj
-    │       ├── server.clj
-    │       └── utils.clj
+	env
+	├── dev
+	│  └── repl.cljs
+	src
+	├── api
+	│   ├── db.clj
+	│   ├── router.clj
+	│   ├── server.clj
+	│   └── utils.clj
 	├── design
-	│   └── kickstart
-	│       ├── components.clj
-	│       ├── layout.clj
-	│       └── typography.clj
+	│   ├── components.clj
+	│   ├── layout.clj
+	│   ├── styles.clj
+	│   └── typography.clj
 	└── ui
-		└── kickstart
-			├── client.cljs
-			├── components
-			│   ├── graph.cljs
-			│   └── typeahead.cljs
-			├── main.cljs
-			├── pages.cljs
-			├── router.cljs
-			├── state.cljs
-			├── types.cljs
-			└── utils.cljs
-	├── resources
-	│   ├── data
-	│   └── public
-	│       ├── img
-	│       ├── index.html
-   
+		├── client.cljs
+		├── components
+		│  ├── graph.cljs
+		│  └── typeahead.cljs
+		├── main.cljs
+		├── pages.cljs
+		├── router.cljs
+		├── state.cljs
+		├── types.cljs
+		└── utils.cljs
+	tasks
+	└── leiningen
+    └── tasks.clj
+	resources
+	├── data
+	│  └── population.csv
+	└── public
+		├── css
+		│  └── styles.css
+		└── js
+			└── components.js
+		├── index.html
 
-This structure provides a clear separation of concerns with namespaces named to reflect goals. You may
-still want to read the setup below that covers the newer repl/brepl and advanced cljs compilation notes.
+The project structure follows a simple naming convention, with noun-based namespaces that follow api, design, and ui. By providing a clear separation of concerns and yet binding them into a ns (not arbitrary developer-centric folder/filename structures like 'core'), components across 
+
+You may still want to read the setup below that covers the newer repl/brepl and advanced cljs compilation notes.
 
 ## Setup
 
 First-time Clojure/Clojurescript developers, assuming you have [jdk7](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) or above, install leiningen (a build and task runner similar to mvn, pip, or npm).
-
+ 
     brew install leiningen
 
 Add the following to your `bash_profile` to improve lein launch times
@@ -93,7 +109,7 @@ Add the following to your `bash_profile` to improve lein launch times
 
 Compile ClojureScript ahead of time with [AOT](http://swannodette.github.io/2014/12/22/waitin/), instead of compiling for each build
 
-	lein trampoline run -m clojure.main -e "(compile 'cljs.repl.node) (compile 'cljs.repl.browser) (compile 'cljs.core)"
+	chmod 755 compile-cljsc && compile-cljsc
 
 Optionally, improve Jvm launch times with [drip](https://github.com/ninjudd/drip)
 
@@ -109,7 +125,7 @@ following in your local `~/.lein/profiles.clj` to enable twitter oAuth.
 - :twitter-api-key
 - :twitter-api-secret
 
-## REPL/BREPL
+## Development
 
 While it is possible to code live with the Clojurescript's in-built [brepl](https://github.com/clojure/clojurescript/wiki/The-REPL-and-Evaluation-Environments#browser-as-evaluation-environment), figwheel provides a deeper experience by providing an
 interactive environment for [reloadable-code](https://github.com/bhauman/lein-figwheel#writing-reloadable-code) and css.
@@ -118,6 +134,8 @@ Ringo bundles figwheel to simplify the repl-driven development.
 Start figwheel, watch garden, start a ring api server, and auto reload cljs/cljs/css on the fly
 
 	lein dev
+
+After a succesfull build, open/refresh `http://localhost:3449/`; you will see a Cljs brepl on the prompt. Enjoy live coding!
 
 Bundle entire app into an uberjar
 
@@ -129,7 +147,16 @@ Assuming you installed [foreman](https://github.com/ddollar/foreman), test the a
 	
 Checkout `http://localhost:5000/`
 
-## Plugins
+James Reeves created an excellent [library](https://github.com/weavejester/cljfmt) that formats source code
+
+	lein format
+
+Both [kibit](https://github.com/jonase/kibit) and [eastwood](https://github.com/jonase/eastwood) are excellent
+static code analyzers, and are integrated as plugin
+
+	lein analyze
+
+## Debugging
 
 **Visuall Debugger**
 
@@ -137,17 +164,9 @@ With Magnar's [Prone](https://github.com/magnars/prone), exceptions and ring err
 
 ![](doc/img/browser-debug.png)
 
-**Clojure Formatting**
+## Lein Template
 
-James Reeves created an excellent [library](https://github.com/weavejester/cljfmt) that formats source code
-
-	lein format
-
-**Static Code Analyzer**
-
-Both kibit and eastwood are integrated as plugins, and can be invoked like this
-
-	lein analyze
+A minimal lein-template, based on the reference app present in this directory is present under `lein`. Any significant changes in project structure and dependencies will be updated in parallel to the leiningen template.
 
 ## Editors
 
@@ -171,11 +190,13 @@ popular templates:
 - [mies-om](https://github.com/swannodette/mies-om)
 - [chestnut](https://github.com/plexus/chestnut)
 
+Further examples of Om can be found at [om-cookbook](https://github.com/omcljs/om-cookbook).
+
 ## Thanks
 
 A big thanks to @swannodette for pushing the limits of Clojurescript and Om, @weavejester for creating beautiful
 libraries like Ring and Compojure, Joel Holbrooks for garden and secretary, and Bhauman for fighweel!
-Some sample components are taken from [Om Cookbook](https://github.com/annapawlicka/om-cookbookhttps://github.com/omcljs/om-cookbook).
+Some sample components are taken from Om Cookbook.
 
 ## Status
 

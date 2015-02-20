@@ -33,7 +33,7 @@
   :clean-targets ^{:protect false} ["resources/public/js" "target/classes"]
 
   :cljsbuild {:builds
-              {:app {:source-paths ["src/ui"]
+              {:app {:source-paths ["src"]
                      :compiler {:output-to "resources/public/js/components.js"
                                 :output-dir "resources/public/js/out"
                                 :main dev.repl
@@ -73,7 +73,7 @@
                                   :compiler {:output-to "resources/public/css/styles.css"
                                              :pretty-print? false}}]}
                        :cljsbuild {:builds
-                                   {:prod {:source-paths ["src/ui"]
+                                   {:prod {:source-paths ["src"]
                                            :compiler {:output-to "resources/public/js/components.js"
                                                       :optimizations :advanced
                                                       :pretty-print false}}}}}}
