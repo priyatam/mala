@@ -1,10 +1,10 @@
-# Ringo Leiningen Template
+# A Leiningen Template for Mala
 
-A Leiningen template for [Ringo](https://github.com/priyatam/ringo).
+A Leiningen template for [Mala](https://github.com/priyatam/mala).
 
 ## Usage
 
-    lein new ringo kickstart
+    lein new mala chant
 
 ## Development
 
@@ -14,9 +14,9 @@ Templates are just maven artifacts. For local development, upload the artifacts 
 
 Test it out by creating a new template
 
-    lein new ringo kickstart
+    lein new chant kickstart
 
-Move to the directory and run `lein ringo`, check if things look good.
+Move to the directory and run `lein dev`, check if things look good.
 
 All good? Upload the template into Clojars
 

@@ -1,33 +1,11 @@
-Ringo
+Mala
 =====
 
-An optimized starterkit for coding _and_ designing Clojurescript apps with Garden, Ring, and Om.
+![https://img1.etsystatic.com/055/0/7696985/il_340x270.701636245_97hx.jpg](doc/img/mala-cljs.png)
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**
+## Goal
 
-- [Goals](#goals)
-- [Quickstart](#quickstart)
-- [Setup](#setup)
-- [Development](#development)
-- [Debugging](#debugging)
-- [Lein Template](#lein-template)
-- [Editors](#editors)
-  - [Lighttable](#lighttable)
-  - [Emacs/Cider](#emacscider)
-- [References](#references)
-- [Thanks](#thanks)
-- [Status](#status)
-- [License](#license)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
-## Goals
-
-[Curate](https://github.com/ring-clojure/ring-defaults), [upgrade](http://swannodette.github.io/2014/12/22/waitin/), follow [Om](https://github.com/omcljs/om/blob/master/CHANGES.md) versions, and maintain a pleasant leiningen template with a reference app.
-
-	Fighwheel -> Garden -> Om -> Core.Async -> Ring
+Provide an optimized starterkit and a reference app for coding _and_ designing Clojurescript apps with Garden, Ring, and Om.
 
 ## Features
 
@@ -40,61 +18,50 @@ An optimized starterkit for coding _and_ designing Clojurescript apps with Garde
 - core.async
 - static and async server, with [http-kit](http://www.http-kit.org)
 - leiningen tasks
-- asset pipeline in leinigen (uberjar and others)
+- asset pipeline in leinigen
+- [up](http://swannodette.github.io/2014/12/22/waitin/) to [date](https://github.com/omcljs/om/blob/master/CHANGES.md)
+dependencies, puhlease!
 
 ## Quickstart
 
 Seasoned Clojure/Clojurescript developers may install the template, like so:
 
-	lein new ringo kickstart
-	cd kickstart
-	lein dev
+    lein new mala kickstart
+    cd kickstart
+    lein dev
 
-Checkout `http://localhost:3449/`
+Open `http://localhost:3449/`
 
-The generated project structure looks like this:
+The generated src looks like this:
 
-	env
-	├── dev
-	│  └── repl.cljs
-	src
-	├── api
-	│   ├── db.clj
-	│   ├── router.clj
-	│   ├── server.clj
-	│   └── utils.clj
-	├── design
-	│   ├── components.clj
-	│   ├── layout.clj
-	│   ├── styles.clj
-	│   └── typography.clj
-	└── ui
-		├── client.cljs
-		├── components
-		│  ├── graph.cljs
-		│  └── typeahead.cljs
-		├── main.cljs
-		├── pages.cljs
-		├── router.cljs
-		├── state.cljs
-		├── types.cljs
-		└── utils.cljs
-	tasks
-	└── leiningen
-    └── tasks.clj
-	resources
-	├── data
-	│  └── population.csv
-	└── public
-		├── css
-		│  └── styles.css
-		└── js
-			└── components.js
-		├── index.html
+    env
+    ├── dev
+    │  └── repl.cljs
+    src
+    ├── api
+    │   ├── db.clj
+    │   ├── router.clj
+    │   ├── server.clj
+    │   └── utils.clj
+    ├── design
+    │   ├── components.clj
+    │   ├── layout.clj
+    │   ├── styles.clj
+    │   └── typography.clj
+    └── ui
+        ├── client.cljs
+        ├── components
+        │  ├── hello.cljs
+        │  └── typeahead.cljs
+        ├── main.cljs
+        ├── pages.cljs
+        ├── router.cljs
+        ├── state.cljs
+        ├── types.cljs
+        └── utils.cljs
 
-The project structure follows a simple naming convention, with noun-based namespaces that follow api, design, and ui. By providing a clear separation of concerns and yet binding them into a ns (not arbitrary developer-centric folder/filename structures like 'core'), components across 
-
-You may still want to read the setup below that covers the newer repl/brepl and advanced cljs compilation notes.
+The project structure follows a simple naming convention, a clear separation of concerns with noun-based namespaces
+that follow api, design, and ui.
 
 ## Setup
 
@@ -109,15 +76,7 @@ Add the following to your `bash_profile` to improve lein launch times
 
 Compile ClojureScript ahead of time with [AOT](http://swannodette.github.io/2014/12/22/waitin/), instead of compiling for each build
 
-	chmod 755 compile-cljsc && compile-cljsc
-
-Optionally, improve Jvm launch times with [drip](https://github.com/ninjudd/drip)
-
-    brew install drip
-
-Add [lein-drip](https://github.com/josteink/lein-drip) in `~/.lein/profiles.clj` and initialize drip by running
-
-	lein drip
+    chmod 755 compile-cljsc && compile-cljsc
 
 Environment variables are managed with [environ](https://github.com/weavejester/environ). For example add the
 following in your local `~/.lein/profiles.clj` to enable twitter oAuth.
@@ -129,44 +88,49 @@ following in your local `~/.lein/profiles.clj` to enable twitter oAuth.
 
 While it is possible to code live with the Clojurescript's in-built [brepl](https://github.com/clojure/clojurescript/wiki/The-REPL-and-Evaluation-Environments#browser-as-evaluation-environment), figwheel provides a deeper experience by providing an
 interactive environment for [reloadable-code](https://github.com/bhauman/lein-figwheel#writing-reloadable-code) and css.
-Ringo bundles figwheel to simplify the repl-driven development.
 
-Start figwheel, watch garden, start a ring api server, and auto reload cljs/cljs/css on the fly
+Mala bundles figwheel to simplify the repl-driven development.
 
-	lein dev
+Start figwheel, watch garden, start a ring api server and auto reload cljs/cljs/css on the fly
 
-After a succesfull build, open/refresh `http://localhost:3449/`; you will see a Cljs brepl on the prompt. Enjoy live coding!
+    lein dev
+
+If the build is successful open/refresh `http://localhost:3449/`; you'll see a Cljs brepl on the prompt. Enjoy live coding!
 
 Bundle entire app into an uberjar
 
-	lein prod
+    lein prod
 
 Assuming you installed [foreman](https://github.com/ddollar/foreman), test the app before going live
 
-	foreman start
-	
+    foreman start
+    
 Checkout `http://localhost:5000/`
 
 James Reeves created an excellent [library](https://github.com/weavejester/cljfmt) that formats source code
 
-	lein format
+    lein format
 
 Both [kibit](https://github.com/jonase/kibit) and [eastwood](https://github.com/jonase/eastwood) are excellent
 static code analyzers, and are integrated as plugin
 
-	lein analyze
+    lein analyze
 
-## Debugging
-
-**Visuall Debugger**
-
-With Magnar's [Prone](https://github.com/magnars/prone), exceptions and ring errors can be visually inspected.
+Visual Debugger: Magnar's [Prone](https://github.com/magnars/prone) lets you visualize exceptions and ring errors on the browser.
 
 ![](doc/img/browser-debug.png)
 
+Optionally, improve Jvm launch times with [drip](https://github.com/ninjudd/drip)
+
+    brew install drip
+
+Add [lein-drip](https://github.com/josteink/lein-drip) in `~/.lein/profiles.clj` and initialize drip by running
+
+    lein drip
+
 ## Lein Template
 
-A minimal lein-template, based on the reference app present in this directory is present under `lein`. Any significant changes in project structure and dependencies will be updated in parallel to the leiningen template.
+A minimal lein-template, based on the reference app present in this directory is under `lein`. Any significant changes in project structure and dependencies will be updated both in teh reference app and leiningen template, in parallel.
 
 ## Editors
 
@@ -183,8 +147,7 @@ Emacs is recommended for those looking beyond Lighttable. If you're new to Emacs
 
 ## References
 
-There are several lein templates that offer a 'starterkit' of sorts for Cljs/Clj development. Here are some
-popular templates:
+Other lein templates for Cljs/Clj development:
 
 - [mies](https://github.com/swannodette/mies)
 - [mies-om](https://github.com/swannodette/mies-om)
@@ -194,25 +157,26 @@ Further examples of Om can be found at [om-cookbook](https://github.com/omcljs/o
 
 ## Thanks
 
-A big thanks to @swannodette for pushing the limits of Clojurescript and Om, @weavejester for creating beautiful
-libraries like Ring and Compojure, Joel Holbrooks for garden and secretary, and Bhauman for fighweel!
+A big thanks to @swannodette for pushing the limits of Clojurescript and Om, @weavejester for creating Ring,
+Joel Holbrooks for garden and secretary, and Bhauman for fighweel.
+
 Some sample components are taken from Om Cookbook.
 
 ## Status
 
-0.2.x
+0.2.0
 
-Future roadmap includes stabilizing the core, improving the lein template experience, and adding developer guides.
 An ideal reference app would be similar to the likes of [Flask-Heroku](https://github.com/zachwill/flask_heroku)
 and [Express](https://github.com/madhums/node-express-mongoose-demo).
 
 TODO:
 
-- Integrate asset pipeline with [Optimus](https://github.com/magnars/optimus)
-- Om Components showcase
+- Replace figwheel with a minimal [Cljs brepl](https://github.com/swannodette/mies/commit/d2da9f032e6a6e23f4eb598b5131209bda5f04c1)
+- Asset pipeline with [Optimus](https://github.com/magnars/optimus)
 - AWS/Heroku/Docker integration
+- Bootcljs?
 
-[0.1.x versions](https://github.com/priyatam/ringo/tree/hybrid) included a Less workflow with plain old cljbuld autos.
+[0.1.x versions](https://github.com/priyatam/mala/tree/hybrid) included a Less workflow with plain old cljbuld.
 
 ## License
 

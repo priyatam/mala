@@ -70,7 +70,7 @@ Emacs is recommended for those looking beyond Lighttable. If you're new to Emacs
 
 ## Thanks
 
-The project templates is generated with [Ringo](https://github.com/priyatam/ringo).
+The project templates is generated with [Mala](https://github.com/priyatam/mala).
 
 ## Status
 

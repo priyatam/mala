@@ -1,13 +1,13 @@
-(ns leiningen.new.ringo
+(ns leiningen.new.mala
   (:require [leiningen.new.templates :refer [renderer name-to-path ->files]]
             [leiningen.core.main :as main]))
 
-(def render (renderer "ringo"))
+(def render (renderer "mala"))
 
-(defn ringo [name]
+(defn mala [name]
   (let [data {:name name
               :sanitized (name-to-path name)}]
-    (main/info "Generating fresh 'lein new' ringo project.")
+    (main/info "Generating fresh 'lein new' mala project.")
     (->files data
       ["project.clj" (render "project.clj" data)]
       ["compile_cljsc" (render "compile_cljsc" data)]
