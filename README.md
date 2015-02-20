@@ -1,7 +1,7 @@
 Mala
 =====
 
-![https://img1.etsystatic.com/055/0/7696985/il_340x270.701636245_97hx.jpg](doc/img/mala-cljs.png)
+![](doc/img/mala-cljs.jpg)
 
 ## Goal
 
