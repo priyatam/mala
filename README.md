@@ -7,7 +7,7 @@ Mala
 
 ## Goal
 
-Provide a starterkit and a reference app for coding _and_ designing Clojurescript apps with Garden, Ring, and Om.
+An integrated reference app for building SPA in Clojurescript with Garden, Ring, and Om.
 
 ## Features
 
@@ -67,11 +67,8 @@ Open `http://localhost:3449/`.
 
 ## Setup
 
-First-time Clojure/Clojurescript developers, assuming you have [jdk7](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) or above, install leiningen (a build and task runner similar to mvn, pip, or npm).
- 
-    brew install leiningen
-
-Add the following to your `bash_profile` to improve lein launch times
+First-time Clojure/Clojurescript developers, assuming you have [leinigen](http://leiningen.org) add the following
+to your `bash_profile` to improve lein launch times
 
     export LEIN_FAST_TRAMPOLINE=y
     alias cljsbuild="lein trampoline cljsbuild $@"
@@ -87,13 +84,13 @@ Environment variables are managed with [environ](https://github.com/weavejester/
 While it is possible to code live with the Clojurescript's in-built [brepl](https://github.com/clojure/clojurescript/wiki/The-REPL-and-Evaluation-Environments#browser-as-evaluation-environment), figwheel provides a deeper experience by providing an
 interactive environment for [reloadable-code](https://github.com/bhauman/lein-figwheel#writing-reloadable-code) and css.
 
-Mala bundles figwheel to simplify the repl-driven development.
+Mala bundles figwheel to simplify repl-driven development.
 
 Start figwheel, watch garden, start a ring api server and auto reload cljs/cljs/css on the fly
 
     lein dev
 
-If the build is successful open/refresh `http://localhost:3449/`; you'll see a Cljs brepl on the prompt. Enjoy live coding!
+If the build is successful, open/refresh `http://localhost:3449/`: you'll see a Cljs brepl on the prompt. Enjoy live coding!
 
 Bundle entire app into an uberjar
 
@@ -105,12 +102,19 @@ Assuming you installed [foreman](https://github.com/ddollar/foreman), test the a
     
 Preview `http://localhost:5000/`
 
-James Reeves created an excellent [library](https://github.com/weavejester/cljfmt) that formats source code
+## Tools
+
+Instrumentation helpers for Om components are enabled by integrating [Om-i](https://github.com/PrecursorApp/om-i). Preview
+them with
+
+	"ctrl" "alt" "shift" "j"
+
+Format sourcecode with this [library](https://github.com/weavejester/cljfmt)
 
     lein format
 
 Both [kibit](https://github.com/jonase/kibit) and [eastwood](https://github.com/jonase/eastwood) are excellent
-static code analyzers, and are integrated as plugin
+static code analyzers, and can be invoked with
 
     lein analyze
 
@@ -138,7 +142,7 @@ Clojurescript code by _connecting_ "External Browser", and including the websock
 
 ### Emacs/Cider
 
-Starting 0.2.5, you can [enable an nrepl](https://github.com/bhauman/lein-figwheel/wiki/Using-the-Figwheel-REPL-within-NRepl)
+Starting with 0.2.5, you can [enable an nrepl](https://github.com/bhauman/lein-figwheel/wiki/Using-the-Figwheel-REPL-within-NRepl)
 connection to a running figwheel.
 
 	M-x cider-connect
@@ -153,11 +157,6 @@ config for those new to Emacs.
 
 ## References
 
-Other lein templates for Cljs/Clj development:
-
-- [mies](https://github.com/swannodette/mies)
-- [mies-om](https://github.com/swannodette/mies-om)
-- [chestnut](https://github.com/plexus/chestnut)
 - [om-cookbook](https://github.com/omcljs/om-cookbook)
 
 ## Thanks
@@ -177,7 +176,6 @@ TODO:
 
 - Asset pipeline with [Optimus](https://github.com/magnars/optimus)
 - AWS/Heroku/Docker integration
-- Bootcljs?
 
 [0.1.x versions](https://github.com/priyatam/mala/tree/hybrid) included a Less workflow with plain old cljbuld.
 

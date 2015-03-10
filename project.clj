@@ -1,4 +1,4 @@
-(defproject mala "0.2.1"
+(defproject mala "0.2.2"
   :description "A starterkit for building apps with Garden, Ring, and Om"
   :url "https://github.com/priyatam/mala"
   :license {:name "Eclipse Public License"
