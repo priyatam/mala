@@ -14,11 +14,11 @@ Templates are just maven artifacts. For local development, upload the artifacts 
 
 Test it out by creating a new template
 
-    lein new chant kickstart
+    lein new mala chant
 
 Move to the directory and run `lein dev`, check if things look good.
 
-All good? Upload the template into Clojars
+All good? Upload the template into Clojars:
 
     lein deploy clojars
 
@@ -30,8 +30,8 @@ If it's your first time uploading to Clojars add this to your `.lein/profiles.cl
                            :update :always}]]
 ```
 						   
-If you need to deploy to clojars with gpg, read Leiningen Deploy [tutoroial](https://github.com/technomancy/leiningen/blob/stable/doc/DEPLOY.md)
-or this [blog](http://bendb.com/how-to-deploy-to-clojars/).
+If you need to deploy to clojars with gpg, read Leiningen deploy [tutorial](https://github.com/technomancy/leiningen/blob/stable/doc/DEPLOY.md)
+or this [blog](http://bendb.com/how-to-deploy-to-clojars/). 
 
 ## License
 
