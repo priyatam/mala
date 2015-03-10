@@ -7,7 +7,7 @@ Mala
 
 ## Goal
 
-Provide an optimized starterkit and a reference app for coding _and_ designing Clojurescript apps with Garden, Ring, and Om.
+Provide a starterkit and a reference app for coding _and_ designing Clojurescript apps with Garden, Ring, and Om.
 
 ## Features
 
@@ -31,8 +31,6 @@ Seasoned Clojure/Clojurescript developers may install the template, like so:
     lein new mala kickstart
     cd kickstart
     lein dev
-
-Open `http://localhost:3449/`
 
 The generated src looks like this:
 
@@ -62,8 +60,10 @@ The generated src looks like this:
         ├── types.cljs
         └── utils.cljs
 
-The project structure follows a simple naming convention, a clear separation of concerns with noun-based namespaces
-that follow api, design, and ui.
+The project structure follows a simple naming convention, a clear separation of concerns with noun-based
+namespaces that follow api, design, and ui.
+
+Open `http://localhost:3449/`.
 
 ## Setup
 
@@ -76,15 +76,11 @@ Add the following to your `bash_profile` to improve lein launch times
     export LEIN_FAST_TRAMPOLINE=y
     alias cljsbuild="lein trampoline cljsbuild $@"
 
-Compile ClojureScript ahead of time with [AOT](http://swannodette.github.io/2014/12/22/waitin/), instead of compiling for each build
+Compile ClojureScript ahead of time with [AOT](http://swannodette.github.io/2014/12/22/waitin/)
 
     chmod 755 compile-cljsc && compile-cljsc
 
-Environment variables are managed with [environ](https://github.com/weavejester/environ). For example add the
-following in your local `~/.lein/profiles.clj` to enable twitter oAuth.
-
-- :twitter-api-key
-- :twitter-api-secret
+Environment variables are managed with [environ](https://github.com/weavejester/environ). 
 
 ## Development
 
@@ -107,7 +103,7 @@ Assuming you installed [foreman](https://github.com/ddollar/foreman), test the a
 
     foreman start
     
-Checkout `http://localhost:5000/`
+Preview `http://localhost:5000/`
 
 James Reeves created an excellent [library](https://github.com/weavejester/cljfmt) that formats source code
 
@@ -122,12 +118,10 @@ Visual Debugger: Magnar's [Prone](https://github.com/magnars/prone) lets you vis
 
 ![](doc/img/browser-debug.png)
 
-Optionally, improve Jvm launch times with [drip](https://github.com/ninjudd/drip)
+Optionally, improve Jvm launch times with [drip](https://github.com/ninjudd/drip). Add [lein-drip](https://github.com/josteink/lein-drip)
+in `~/.lein/profiles.clj` and initialize drip by running
 
     brew install drip
-
-Add [lein-drip](https://github.com/josteink/lein-drip) in `~/.lein/profiles.clj` and initialize drip by running
-
     lein drip
 
 ## Lein Template
@@ -144,8 +138,18 @@ Clojurescript code by _connecting_ "External Browser", and including the websock
 
 ### Emacs/Cider
 
-Emacs is recommended for those looking beyond Lighttable. If you're new to Emacs, checkout
-[Cider-light](https://github.com/priyatam/cider-light), my guide and Cider config for those new to Emacs. 
+Starting 0.2.5, you can [enable an nrepl](https://github.com/bhauman/lein-figwheel/wiki/Using-the-Figwheel-REPL-within-NRepl)
+connection to a running figwheel.
+
+	M-x cider-connect
+	<enter> localhost:7888
+	(use 'figwheel-sidecar.repl-api)
+	(cljs-repl)
+
+You can now open any cljs file and start evaluating code in Emacs.
+
+If you're new to Emacs, checkout [Cider-light](https://github.com/priyatam/cider-light), my guide and Cider
+config for those new to Emacs. 
 
 ## References
 
@@ -154,8 +158,7 @@ Other lein templates for Cljs/Clj development:
 - [mies](https://github.com/swannodette/mies)
 - [mies-om](https://github.com/swannodette/mies-om)
 - [chestnut](https://github.com/plexus/chestnut)
-
-Further examples of Om can be found at [om-cookbook](https://github.com/omcljs/om-cookbook).
+- [om-cookbook](https://github.com/omcljs/om-cookbook)
 
 ## Thanks
 
@@ -166,14 +169,12 @@ Some sample components are taken from Om Cookbook.
 
 ## Status
 
-0.2.0
+0.2.1
 
-An ideal reference app would be similar to the likes of [Flask-Heroku](https://github.com/zachwill/flask_heroku)
-and [Express](https://github.com/madhums/node-express-mongoose-demo).
+An ideal reference app would be similar to the likes of [React-Starterkit](https://github.com/kriasoft/react-starter-kit), [Flask-Heroku](https://github.com/zachwill/flask_heroku), and [Express](https://github.com/madhums/node-express-mongoose-demo).
 
 TODO:
 
-- Replace figwheel with a minimal [Cljs brepl](https://github.com/swannodette/mies/commit/d2da9f032e6a6e23f4eb598b5131209bda5f04c1)
 - Asset pipeline with [Optimus](https://github.com/magnars/optimus)
 - AWS/Heroku/Docker integration
 - Bootcljs?
