@@ -4,12 +4,13 @@
             [om.dom :as dom]
             [secretary.core :as sec :include-macros true]
             [ui.state :as state :refer [app-state]]
-            [ui.pages :as pages])
+            [ui.pages :as pages]
+            [ui.utils :as utils])
   (:import goog.History))
 
 ;; (sec/set-config! :prefix "#")
 
-(def host "http://localhost:3449/" )
+(def host "http://localhost:3449/")
 
 (let [history (History.)
       navigation EventType/NAVIGATE]
@@ -23,7 +24,8 @@
    page
    app-state
    {:target (.getElementById js/document id)
-    :shared {:url host}}))
+    :shared {:url host}
+    :instrument (utils/with-omi)}))
 
 (defn dispatch-current-route []
   (sec/dispatch! (.-pathname (.-location js/window))))

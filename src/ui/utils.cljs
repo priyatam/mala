@@ -1,6 +1,8 @@
 (ns ui.utils
   (:require [cljs.reader :as reader]
-            [clojure.string :as str])
+            [clojure.string :as str]
+            [om.core :as om]
+            [om-i.core :as omi])
   (:import [goog.ui IdGenerator]))
 
 (enable-console-print!)
@@ -18,10 +20,10 @@
     (.apply (.-log js/console) js/console
             (into-array (map clj->js messages)))))
 
-(defn logp "Print given arguments and return the last one"
-  [& values]
-  (log (apply pr-str values))
-  (last values))
+  (defn logp "Print given arguments and return the last one"
+    [& values]
+    (log (apply pr-str values))
+    (last values))
 
 ;; Interop
 
@@ -55,3 +57,14 @@
                        [(.toString  (bit-or 0x8 (bit-and 0x3 (rand-int 15))) 16)]
                        (take 3 (drop 15 r)) ["-"]
                        (take 12 (drop 18 r))))))
+
+
+
+;; Om Instrumentation
+
+(defn with-omi []
+  (fn [f cursor m]
+    (om/build* f cursor
+               (assoc m
+                      :descriptor omi/instrumentation-methods))))
+

@@ -1,6 +1,7 @@
 (ns ui.main
   (:require [om.core :as om]
             [om.dom :as dom]
+            [om-i.core :as omi]
             [sablono.core :as html :refer-macros [html]]
             [ui.state :as state :refer [app-state]]
             [ui.components.graph :as graph]
@@ -10,5 +11,7 @@
 (router/routes)
 (router/dispatch-current-route)
 
-;;(router/mount "graph" graph/view)
+(router/mount "graph" graph/view)
 (router/mount "typeahead" typeahead/view)
+
+(omi/setup-component-stats!)

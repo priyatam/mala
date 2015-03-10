@@ -45,7 +45,8 @@
   :profiles {:dev {:dependencies [[figwheel "0.2.5-SNAPSHOT"]
                                   [figwheel-sidecar "0.2.5-SNAPSHOT"]
                                   [ring-mock "0.1.5"]
-                                  [ring/ring-devel "1.3.1"]]
+                                  [ring/ring-devel "1.3.1"]
+                                  [precursor/om-i "0.1.6"]]
                    :env {:is-dev true}
                    :cljsbuild {:builds
                                {:app {:source-paths ["env/dev"]}}}
