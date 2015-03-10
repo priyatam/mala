@@ -25,7 +25,7 @@ static code analyzers, and can be invoked with
 
 Visual Debugger: Magnar's [Prone](https://github.com/magnars/prone) lets you visualize exceptions and ring errors on the browser.
 
-![](doc/img/browser-debug.png)
+![](img/browser-debug.png)
 
 ## Design
 
