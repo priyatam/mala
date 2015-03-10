@@ -168,7 +168,7 @@ Some sample components are taken from Om Cookbook.
 
 ## Status
 
-0.2.1
+[![Clojars Project](http://clojars.org/mala/lein-template/latest-version.svg)](http://clojars.org/mala/lein-template)
 
 An ideal reference app would be similar to the likes of [React-Starterkit](https://github.com/kriasoft/react-starter-kit), [Flask-Heroku](https://github.com/zachwill/flask_heroku), and [Express](https://github.com/madhums/node-express-mongoose-demo).
 
