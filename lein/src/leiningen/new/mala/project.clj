@@ -10,7 +10,7 @@
   :global-vars {*warn-on-reflection* false *assert* false}
 
   :dependencies [[org.clojure/clojure "1.6.0"]
-                 [org.clojure/clojurescript "0.0-2843"]
+                 [org.clojure/clojurescript "0.0-2850"]
                  [org.clojure/core.async "0.1.346.0-17112a-alpha"]
                  [ring/ring-core "1.3.2"]
                  [ring/ring-defaults "0.1.3"]

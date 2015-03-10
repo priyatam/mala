@@ -1,16 +1,16 @@
-(defproject ringo "0.2.0-SNAPSHOT"
+(defproject mala "0.2.1"
   :description "A starterkit for building apps with Garden, Ring, and Om"
-  :url "https://github.com/priyatam/ringo"
+  :url "https://github.com/priyatam/mala"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :scm {:name "git"
-        :url "https://github.com/priyatam/ringo"}
+        :url "https://github.com/priyatam/mala"}
   :min-lein-version "2.5.0"
   :jvm-opts ["-Xms768m" "-Xmx768m"]
   :global-vars {*warn-on-reflection* false *assert* false}
 
   :dependencies [[org.clojure/clojure "1.6.0"]
-                 [org.clojure/clojurescript "0.0-2843"]
+                 [org.clojure/clojurescript "0.0-2850"]
                  [org.clojure/core.async "0.1.346.0-17112a-alpha"]
                  [ring/ring-core "1.3.2"]
                  [ring/ring-defaults "0.1.3"]
