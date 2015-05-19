@@ -4,6 +4,7 @@ resources/public/js
 out/
 node_modules
 pom.xml
+lein/pom*
 .lein*
 .nrepl*
 repl
