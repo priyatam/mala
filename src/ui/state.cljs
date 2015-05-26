@@ -11,12 +11,12 @@
   (apply str (take (inc (rand-int 5)) (repeatedly rand-char))))
 
 (defonce app-state
-  (atom {:text "Hello Ringo!"
+  (atom {:text "Hello Mala."
          :devices {:all []}
          :chart {:data []}
          :words (into []
                       (map (fn [w i] {:index i :word w :count (count w)})
                            (sort (into [] (take 100 (repeatedly rand-word))))
-                           (range)))}))
-
-
+                           (range)))
+         :menu [{:name "Typeahead" :path "/typeahead"}
+                {:name "Dimple" :path "/graph"}]}))
