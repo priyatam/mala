@@ -6,8 +6,9 @@
   (:import [goog.ui IdGenerator]))
 
 (enable-console-print!)
-
 (def debug true)
+
+(def host "http://127.0.0.1:3449/")
 
 (defonce base-url (str js/window.location.origin "/"))
 
