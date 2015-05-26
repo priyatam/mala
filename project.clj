@@ -23,7 +23,7 @@
             [lein-garden "0.2.5"]
             [lein-pdo "0.1.1"]]
 
-  :source-paths ["src" "target/classes"]
+  :source-paths ["src" "env" "target/classes"]
 
   :clean-targets ^{:protect false} ["resources/public/js" "target/classes"]
 
@@ -51,6 +51,10 @@
 
   :profiles {:dev {:dependencies [[figwheel "0.3.3"]
                                   [figwheel-sidecar "0.3.3"]
+                                  [ring/ring-json "0.3.1"]
+                                  [fogus/ring-edn "0.2.0"]
+                                  [compojure "1.3.4"]
+                                  [javax.servlet/servlet-api "2.5"]
                                   [precursor/om-i "0.1.6"]]
                    :env {:is-dev true}
                    :cljsbuild {:builds
@@ -60,8 +64,7 @@
                               :nrepl-port 7888
                               :css-dirs ["resources/public/css"]
                               :open-file-command "emacsclient"
-                              ;; :ring-handler api.server/app
-                              }}}
+                              :ring-handler dev.mock/api}}}
 
   :aliases {"clean-all"  ["pdo" "clean," "garden" "clean"]
             "dev" ["pdo" "garden" "auto," "figwheel"]

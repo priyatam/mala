@@ -8,7 +8,7 @@
 (defn- get-measurements [cursor owner message]
   (let [host (:url (om/get-shared owner))
         {:keys [id type]} message
-        url (str host "api/device/" id "/type/" type "/measurements")]
+        url (str host "device/" id "/type/" type "/measurements")]
     (GET url #(om/update! cursor [:data] %))))
 
 (defn- draw-chart [cursor {:keys [div bounds x-axis y-axis plot]}]
@@ -73,7 +73,7 @@
     om/IWillMount
     (will-mount [_]
       (let [host (:url (om/get-shared owner))
-            url (str host "api/devices")]
+            url (str host "devices")]
         (GET url #(om/update! cursor [:all] %))))
     om/IRenderState
     (render-state [_ {:keys [event-chan]}]
