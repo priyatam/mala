@@ -9,12 +9,11 @@
             [ui.components.typeahead :as typeahead]
             [ui.router :as router]))
 
-(router/routes)
+(router/enable-history)
 (router/dispatch-current-route)
 
-(router/mount "graph" graph/view)
-(router/mount "typeahead" typeahead/view)
-
 (omi/setup-component-stats!)
-
 (omi-hacks/insert-styles)
+
+(defn main []
+  (-> js/document .-location (set! "#/")))
