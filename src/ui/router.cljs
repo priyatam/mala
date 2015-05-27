@@ -22,8 +22,6 @@
                    #(-> % .-token sec/dispatch!))
     (doto history (.setEnabled true))))
 
-(def history (History.))
-
 (defn mount [id page]
   (om/root
    page
@@ -38,15 +36,15 @@
    app-state
    {:target (.getElementById js/document id)}))
 
-(defn refresh-navigation []
-  (let [token (.getToken history)
+(defn refresh-navigation [app-state]
+  (let [token (.getToken (History.))
         set-active (fn [nav]
                      (assoc nav :active (= (:path nav) token)))]
-    (swap! state #(map set-active %))))
+    (swap! app-state #(map set-active %))))
 
-(defn on-navigate [event]
-  (refresh-navigation)
-  (secretary/dispatch! (.-token event)))
+(defn on-navigate [event handler]
+  (handler)
+  (sec/dispatch! (.-token event)))
 
 (defroute "/" []
   (mount "app" nav/view))
