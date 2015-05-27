@@ -7,12 +7,11 @@
             [ui.components.graph :as graph]
             [ui.components.typeahead :as typeahead]
             [ui.components.navigation :as nav]
+            [ui.components.page :as page]
             [ui.utils :as utils])
   (:import goog.History))
 
 ;; (sec/set-config! :prefix "#")
-
-(def host "http://127.0.0.1:3449/")
 
 (defn enable-history []
   ;;(sec/set-config! :prefix "#")
@@ -30,7 +29,7 @@
    page
    app-state
    {:target (.getElementById js/document id)
-    :shared {:url host}
+    :shared {:url utils/host}
     :instrument (utils/with-omi)}))
 
 (defn unmount [id]
@@ -55,6 +54,8 @@
   (mount "app" graph/view))
 (defroute "/typeahead" []
   (mount "app" typeahead/view))
+(defroute "/mesh" []
+  (mount "app" page/view))
 
 (defn dispatch-current-route []
   (sec/dispatch! (.-pathname (.-location js/window))))
