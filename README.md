@@ -7,25 +7,22 @@ Mala
 
 ## Goal
 
-A reference app and Leiningen template for building SPA in Clojurescript with Garden, Ring, and Om.
+Design and build UIs in Clojurescript and Om ecosystem, all the way.
 
 ## Features
 
-- sane project structure
-- workflows for api, design, and user-interface
-- live [reloadable-code](https://github.com/bhauman/lein-figwheel#writing-reloadable-code) and brepl with figwheel
-- static analyzers with [kibit](https://github.com/jonase/kibit) and [eastwood](https://github.com/jonase/eastwood) 
-- curated ring [middleware](https://github.com/ring-clojure/ring-defaults)
-- curated lein plugins
-- curated cljsjs libraries
+- Sane project structure
+- Live, reloadable code with [Figwheel](https://github.com/bhauman/lein-figwheel#writing-reloadable-code)
+- Responsive Design with [Garden](https://github.com/noprompt/garden) and [Mesh](https://github.com/facjure/mesh)
+- Co-located components and stylesheets
+- Routing with Secretary
+- Ajax with core.async
+- Mock server with real Compojure routes
+- Helper utilities
+- Curated lein plugins
+- Showcase of integrated Examples from select [cljsjs](http://cljsjs.github.io) libraries
 - [om-i](https://github.com/PrecursorApp/om-i) instrumentation 
-- async server with [http-kit](http://www.http-kit.org)
-- core.async integration, no ajax
-- visual debugger with [prone](https://github.com/magnars/prone)
-- asset pipeline and tasks in leinigen
-- automatic sourcecode formatting with [cljfmt](https://github.com/weavejester/cljfmt)
-- environment variables with [environ](https://github.com/weavejester/environ)
-- [up](http://swannodette.github.io/2014/12/22/waitin/) to [date](https://github.com/omcljs/om/blob/master/CHANGES.md) dependencies!
+- [up](http://swannodette.github.io/2014/12/22/waitin/) to [date](https://github.com/omcljs/om/blob/master/CHANGES.md) dependencies
 
 ## Quickstart
 
@@ -34,48 +31,40 @@ A reference app and Leiningen template for building SPA in Clojurescript with Ga
 
 The generated src looks like this:
 
-    env
-    ├── dev
-    │  └── repl.cljs
-    src
-    ├── api
-    │   ├── db.clj
-    │   ├── router.clj
-    │   ├── server.clj
-    │   └── utils.clj
-    ├── design
-    │   ├── components.clj
-    │   ├── layout.clj
-    │   ├── styles.clj
-    │   └── typography.clj
-    └── ui
+	src
+	├── layout
+	│   ├── grid.clj
+	│   ├── index.clj
+	│   └── typography.clj
+	└── ui
         ├── client.cljs
-        ├── components
-        │  ├── hello.cljs
-        │  └── typeahead.cljs
-        ├── main.cljs
-        ├── pages.cljs
-        ├── router.cljs
-        ├── state.cljs
-        ├── types.cljs
-        └── utils.cljs
+		├── components
+		    ├── graph.cljs
+			├── navigation.cljs
+			├── page.cljs
+			├── page_styles.cljs
+            ├── typeahead.cljs
+            └── typeahead_styles.cljs
+		├── main.cljs
+		├── router.cljs
+		├── state.cljs
+		├── types.cljs
+		└── utils.cljs
+	env
+	└── dev
+       ├── mock.clj
+       └── repl.cljs
 
-Start figwheel, watch garden, and fire a ring api server for live coding:
+Start figwheel, watch garden, and fire a local mock server with live coding:
 
     lein dev
 
-Open/refresh `http://localhost:3449/` for a Cljs brepl on the prompt.
+Open `http://localhost:3449/` for a Cljs brepl on the prompt.
 
-Ready to deploy? Generate an uberjar:
+Ready to deploy? Generate an optimized js file
 
-    lein prod
+    lein release
 
-Test with [foreman](https://github.com/ddollar/foreman):
-
-    foreman start
-    
-Preview staging `http://localhost:5000/`
-	
 ## Documentation
 
 A guide with installation, workflows, and best practices is under [doc](/doc).
@@ -86,26 +75,23 @@ A minimal lein-template, based on this reference app, is under `lein`. Significa
 
 ## Credits
 
-A big thanks to @swannodette for pushing the limits of Clojurescript and Om, @weavejester for creating Ring, Joel Holbrooks for Garden, and Bhauman for Fighweel.
+A big thanks to @swannodette for Om, Joel Holbrooks for Garden, and Bhauman for
+Fighweel. Some code samples were inspired and copied from:
 
-Best practices and code inspired and taken from:
-
-- [circleci-frontend](https://github.com/circleci/frontend)
-- [david nolen's blog](http://swannodette.github.io)
 - [goya](https://github.com/jackschaedler/goya)
-- [omchaya](https://github.com/sgrove/omchaya)
+- [typeahead](https://github.com/omcljs/om/blob/master/examples/typeahead/src/core.cljs)
+- [circleci-frontend](https://github.com/circleci/frontend)
 - [om-cookbook](https://github.com/omcljs/om-cookbook)
 
 ## Status
 
 [![Clojars Project](http://clojars.org/mala/lein-template/latest-version.svg)](http://clojars.org/mala/lein-template)
 
-An ideal reference app would be similar to the likes of [React-Starterkit](https://github.com/kriasoft/react-starter-kit), [Flask-Heroku](https://github.com/zachwill/flask_heroku), and [Express](https://github.com/madhums/node-express-mongoose-demo).
-
-[0.1.x versions](https://github.com/priyatam/mala/tree/hybrid) included a Less workflow with plain old cljbuld.
+- 0.2.x versions included a fullstack template, with Ring/Compojure and uberjar support.
+- [0.1.x versions](https://github.com/priyatam/mala/tree/hybrid) included a Less workflow with plain old cljbuld.
 
 ## License
 
-Copyright © 2015 Priyatam Mudivarti, and others.
+Copyright © 2015 Priyatam Mudivarti.
 
 Released under the Eclipse Public License, same as Clojure.
