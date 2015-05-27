@@ -1,3 +1,5 @@
+#!/bin/sh
+
 # deploy new template locally and test
 
 cd lein
