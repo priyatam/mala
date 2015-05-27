@@ -1,4 +1,4 @@
-(ns ui.main
+(ns core
   (:require [om.core :as om]
             [om.dom :as dom]
             [om-i.core :as omi]
@@ -8,6 +8,8 @@
             [ui.components.graph :as graph]
             [ui.components.typeahead :as typeahead]
             [ui.router :as router]))
+
+(enable-console-print!)
 
 (router/enable-history)
 (router/dispatch-current-route)

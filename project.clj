@@ -41,7 +41,7 @@
                        {:id "prod"
                         :source-paths ["src"]
                         :compiler {:output-to "dist/components.min.js"
-                                   :main ui.main
+                                   :main core
                                    :optimizations :advanced
                                    :pretty-print false}}]
               :test-commands {"unit-tests" ["phantomjs" :runner]}}
