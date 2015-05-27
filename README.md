@@ -5,9 +5,7 @@ Mala
 
 ![](doc/img/mala-cljs.jpg)
 
-## Goal
-
-Design and build UIs in Clojurescript and Om ecosystem, all the way.
+A complete User Interface project template (and refernece app) integrating several Om components, Responsive Design, Router, Event handling and more, with an emphasis on using Clojurescript _all the way_.
 
 ## Features
 
@@ -21,7 +19,7 @@ Design and build UIs in Clojurescript and Om ecosystem, all the way.
 - Helper utilities
 - Curated lein plugins
 - Showcase of integrated Examples from select [cljsjs](http://cljsjs.github.io) libraries
-- [om-i](https://github.com/PrecursorApp/om-i) instrumentation 
+- Integrated [Ankha](https://github.com/noprompt/ankha) inspector, [Om-i](https://github.com/PrecursorApp/om-i) instrumentation
 - [up](http://swannodette.github.io/2014/12/22/waitin/) to [date](https://github.com/omcljs/om/blob/master/CHANGES.md) dependencies
 
 ## Quickstart
@@ -39,27 +37,24 @@ The generated src looks like this:
 	└── ui
         ├── client.cljs
 		├── components
-		    ├── graph.cljs
-			├── navigation.cljs
-			├── page.cljs
-			├── page_styles.cljs
-            ├── typeahead.cljs
-            └── typeahead_styles.cljs
-		├── main.cljs
+		    ├── <comp>.cljs
+			├── <comp-style>.cljs
 		├── router.cljs
 		├── state.cljs
 		├── types.cljs
 		└── utils.cljs
+	├── main.cljs
 	env
 	└── dev
        ├── mock.clj
        └── repl.cljs
+	   └── debug.cljs
 
-Start figwheel, watch garden, and fire a local mock server with live coding:
+Start figwheel, watch garden, and a figwheel server integrated with [mock router](https://github.com/priyatam/mala/blob/master/env/dev/mock.clj):
 
     lein dev
 
-Open `http://localhost:3449/` for a Cljs brepl on the prompt.
+Open `http://localhost:3449/` and look for a Cljs brepl on the prompt.
 
 Ready to deploy? Generate an optimized js file
 
@@ -67,11 +62,13 @@ Ready to deploy? Generate an optimized js file
 
 ## Documentation
 
-A guide with installation, workflows, and best practices is under [doc](/doc).
+A guide with  workflows and best practices is under [doc](/doc).
 
 ## Leiningen Template
 
-A minimal lein-template, based on this reference app, is under `lein`. Significant changes in the project structure and dependencies will be updated both in the reference app and leiningen template.
+A lein-template based on this reference app is under `lein`. Significant changes in the project structure and dependencies will be updated both in the reference app and leiningen template.
+
+For a production-ready Ring server template for building micro-services, see [ring-micro](https://github.com/priyatam/ring-micro).
 
 ## Credits
 
