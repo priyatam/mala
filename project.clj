@@ -20,6 +20,7 @@
                  [facjure/mesh "0.2.7"]]
 
   :plugins [[lein-cljsbuild "1.0.5"]
+            [com.cemerick/clojurescript.test "0.2.3"]
             [lein-figwheel "0.3.3"]
             [lein-garden "0.2.5"]
             [lein-pdo "0.1.1"]]
@@ -28,39 +29,39 @@
 
   :clean-targets ^{:protect false} ["resources/public/js" "target/classes"]
 
-  :cljsbuild {:builds
-              [{:id "app"
-                :source-paths ["src" "env/dev"]
-                :compiler {:output-to "resources/public/js/components.js"
-                           :output-dir "resources/public/js/out"
-                           :main dev.repl
-                           :asset-path "js/out"
-                           :optimizations :none
-                           :cache-analysis true
-                           :source-map true}}
-               {:id "prod"
-                :source-paths ["src"]
-                :compiler {:output-to "dist/components.min.js"
-                           :main ui.main
-                           :optimizations :advanced
-                           :pretty-print false}}]}
+  :cljsbuild {:builds [{:id "app"
+                        :source-paths ["src" "env/dev"]
+                        :compiler {:output-to "resources/public/js/components.js"
+                                   :output-dir "resources/public/js/out"
+                                   :main dev.repl
+                                   :asset-path "js/out"
+                                   :optimizations :none
+                                   :cache-analysis true
+                                   :source-map true}}
+                       {:id "prod"
+                        :source-paths ["src"]
+                        :compiler {:output-to "dist/components.min.js"
+                                   :main ui.main
+                                   :optimizations :advanced
+                                   :pretty-print false}}]
+              :test-commands {"unit-tests" ["phantomjs" :runner]}}
 
-  :garden {:builds
-           [{:id "design"
-             :source-paths ["src/design"]
-             :stylesheet layout.index/styles
-             :compiler {:output-to "resources/public/css/styles.css"
-                        :pretty-print true}}
-            {:id "prod"
-             :source-paths ["src/design"]
-             :stylesheet layout.index/styles
-             :compiler {:output-to "dist/styles.min.css"
-                        :pretty-print? false}}]}
+  :garden {:builds [{:id "design"
+                     :source-paths ["src/design"]
+                     :stylesheet layout.index/styles
+                     :compiler {:output-to "resources/public/css/styles.css"
+                                :pretty-print true}}
+                    {:id "prod"
+                     :source-paths ["src/design"]
+                     :stylesheet layout.index/styles
+                     :compiler {:output-to "dist/styles.min.css"
+                                :pretty-print? false}}]}
 
   :profiles {:dev {:env {:is-dev true}
-                   :dependencies [[figwheel "0.3.3"]
+                   :dependencies [[com.cemerick/clojurescript.test "0.3.3"]
+                                  [figwheel "0.3.3"]
                                   [figwheel-sidecar "0.3.3"]
-                                   [ring/ring-json "0.3.1"]
+                                  [ring/ring-json "0.3.1"]
                                   [fogus/ring-edn "0.2.0"]
                                   [compojure "1.3.4"]
                                   [javax.servlet/servlet-api "2.5"]
