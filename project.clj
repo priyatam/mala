@@ -1,5 +1,5 @@
 (defproject mala "0.4.0"
-  :description "A curated template for building and designing UIs in Clojurescript"
+  :description "A integrated project template for building and designing UIs in Clojurescript"
   :url "https://github.com/priyatam/mala"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
@@ -29,14 +29,21 @@
   :clean-targets ^{:protect false} ["resources/public/js" "target/classes"]
 
   :cljsbuild {:builds
-              {:app {:source-paths ["src"]
-                     :compiler {:output-to "resources/public/js/components.js"
-                                :output-dir "resources/public/js/out"
-                                :main dev.repl
-                                :asset-path "js/out"
-                                :optimizations :none
-                                :cache-analysis true
-                                :source-map true}}}}
+              [{:id "app"
+                :source-paths ["src" "env/dev"]
+                :compiler {:output-to "resources/public/js/components.js"
+                           :output-dir "resources/public/js/out"
+                           :main dev.repl
+                           :asset-path "js/out"
+                           :optimizations :none
+                           :cache-analysis true
+                           :source-map true}}
+               {:id "prod"
+                :source-paths ["src"]
+                :compiler {:output-to "dist/components.min.js"
+                           :main ui.main
+                           :optimizations :advanced
+                           :pretty-print false}}]}
 
   :garden {:builds
            [{:id "design"
@@ -47,19 +54,17 @@
             {:id "prod"
              :source-paths ["src/design"]
              :stylesheet layout.index/styles
-             :compiler {:output-to "resources/public/css/styles.css"
+             :compiler {:output-to "dist/styles.min.css"
                         :pretty-print? false}}]}
 
-  :profiles {:dev {:dependencies [[figwheel "0.3.3"]
+  :profiles {:dev {:env {:is-dev true}
+                   :dependencies [[figwheel "0.3.3"]
                                   [figwheel-sidecar "0.3.3"]
-                                  [ring/ring-json "0.3.1"]
+                                   [ring/ring-json "0.3.1"]
                                   [fogus/ring-edn "0.2.0"]
                                   [compojure "1.3.4"]
                                   [javax.servlet/servlet-api "2.5"]
                                   [precursor/om-i "0.1.6"]]
-                   :env {:is-dev true}
-                   :cljsbuild {:builds
-                               {:app {:source-paths ["env/dev"]}}}
                    :figwheel {:http-server-root "public"
                               :server-port 3449
                               :nrepl-port 7888
