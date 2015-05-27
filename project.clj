@@ -16,7 +16,8 @@
                  [sablono "0.3.4"]
                  [secretary "1.2.3"]
                  [cljs-http "0.1.30"]
-                 [garden "1.2.5"]]
+                 [garden "1.2.5"]
+                 [facjure/mesh "0.2.7"]]
 
   :plugins [[lein-cljsbuild "1.0.5"]
             [lein-figwheel "0.3.3"]
@@ -40,12 +41,12 @@
   :garden {:builds
            [{:id "design"
              :source-paths ["src/design"]
-             :stylesheet design.styles/all
+             :stylesheet layout.index/styles
              :compiler {:output-to "resources/public/css/styles.css"
                         :pretty-print true}}
             {:id "prod"
              :source-paths ["src/design"]
-             :stylesheet design.styles/all
+             :stylesheet layout.index/styles
              :compiler {:output-to "resources/public/css/styles.css"
                         :pretty-print? false}}]}
 
@@ -67,5 +68,5 @@
                               :ring-handler dev.mock/api}}}
 
   :aliases {"clean-all"  ["pdo" "clean," "garden" "clean"]
-            "dev" ["pdo" "garden" "auto," "figwheel"]
-            "release" ["pdo" "clean," "garden" "prod," "cljsbuild" "prod"]})
+            "dev" ["pdo" "garden" "auto" "design," "figwheel"]
+            "release" ["pdo" "clean," "garden" "once" "prod," "cljsbuild" "once" "prod"]})
