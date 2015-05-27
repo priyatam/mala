@@ -1,11 +1,11 @@
-;; credit: https://github.com/omcljs/om/blob/master/examples/typeahead/src/core.cljs
-
 (ns ui.components.typeahead
   (:refer-clojure :exclude [chars])
   (:require [om.core :as om :include-macros true]
             [om.dom :as dom :include-macros true]
             [sablono.core :as html :refer-macros [html]]
-            [clojure.string :as string]))
+            [clojure.string :as string]
+            [mesh.dom :as mesh-dom :refer [insert-styles]]
+            [ui.components.typeahead-styles :as styles]))
 
 (defn- hidden [^boolean bool]
   (if bool
@@ -47,6 +47,10 @@
   (reify
     om/IInitState
     (init-state [_] {:text ""})
+    om/IWillMount
+    (will-mount [_]
+      (println "Widget Mounting")
+      (insert-styles styles/index))
     om/IRenderState
     (render-state [_ {:keys [text]}]
       (let [words (:words data)]
@@ -58,10 +62,11 @@
                    :value text
                    :class "search"
                    :on-change #(change % owner)}]
-          [:ul (om/build-all item words
-                             {:fn (fn [x]
-                                    (if-not (string/blank? text)
-                                      (cond-> x
-                                        (not (zero? (.indexOf (:word x) text)))
-                                        (assoc :hidden true))
-                                      x))})]])))))
+          [:ul (om/build-all
+                item words
+                {:fn (fn [x]
+                       (if-not (string/blank? text)
+                         (cond-> x
+                           (not (zero? (.indexOf (:word x) text)))
+                           (assoc :hidden true))
+                         x))})]])))))
