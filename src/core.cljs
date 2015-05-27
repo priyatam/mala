@@ -7,12 +7,15 @@
             [ui.state :as state :refer [app-state]]
             [ui.components.graph :as graph]
             [ui.components.typeahead :as typeahead]
+            [dev.debug :as debug]
             [ui.router :as router]))
 
 (enable-console-print!)
 
 (router/enable-history)
 (router/dispatch-current-route)
+
+(router/mount "debugger" debug/inspector)
 
 (omi/setup-component-stats!)
 (omi-hacks/insert-styles)

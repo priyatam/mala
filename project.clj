@@ -65,7 +65,8 @@
                                   [fogus/ring-edn "0.2.0"]
                                   [compojure "1.3.4"]
                                   [javax.servlet/servlet-api "2.5"]
-                                  [precursor/om-i "0.1.6"]]
+                                  [precursor/om-i "0.1.6"]
+                                  [ankha "0.1.4"]]
                    :figwheel {:http-server-root "public"
                               :server-port 3449
                               :nrepl-port 7888

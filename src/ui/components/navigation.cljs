@@ -49,5 +49,4 @@
         header-snippet
         [:nav
          [:ul
-          (om/build-all item-view (:menu app))]]
-        footer-snippet]))))
+          (om/build-all item-view (:menu app))]]]))))
