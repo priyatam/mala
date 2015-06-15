@@ -1,4 +1,4 @@
-(ns core
+(ns ui.core
   (:require [om.core :as om]
             [om.dom :as dom]
             [om-i.core :as omi]
