@@ -1,5 +1,4 @@
 (ns ui.components.typeahead
-  (:refer-clojure :exclude [chars])
   (:require [om.core :as om :include-macros true]
             [om.dom :as dom :include-macros true]
             [sablono.core :as html :refer-macros [html]]

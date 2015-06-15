@@ -2,10 +2,10 @@
   (:require [om.core :as om]
             [om.dom :as dom]))
 
-(def chars (into [] "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"))
+(def characters (into [] "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"))
 
 (defn- rand-char []
-  (nth chars (rand-int (count chars))))
+  (nth characters (rand-int (count characters))))
 
 (defn- rand-word []
   (apply str (take (inc (rand-int 5)) (repeatedly rand-char))))
