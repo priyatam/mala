@@ -1,4 +1,4 @@
-(defproject mala/lein-template "0.3.0"
+(defproject mala/lein-template "0.4.0"
   :description "A Leiningen template for Mala"
   :url "https://github.com/priyatam/mala/lein"
   :license {:name "Eclipse Public License"

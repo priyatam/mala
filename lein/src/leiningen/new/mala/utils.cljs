@@ -5,13 +5,9 @@
             [om-i.core :as omi])
   (:import [goog.ui IdGenerator]))
 
-(enable-console-print!)
-
-(def debug true)
+(def host "http://127.0.0.1:3449/")
 
 (defonce base-url (str js/window.location.origin "/"))
-
-;; Logging
 
 (defn log
   "log messages if the browser console is open"
@@ -20,12 +16,10 @@
     (.apply (.-log js/console) js/console
             (into-array (map clj->js messages)))))
 
-(defn logp "Print given arguments and return the last one"
-  [& values]
-  (log (apply pr-str values))
-  (last values))
-
-;; Interop
+  (defn logp "Print given arguments and return the last one"
+    [& values]
+    (log (apply pr-str values))
+    (last values))
 
 (defn $ [id]
   (.getElementById js/document id))
@@ -33,16 +27,14 @@
 (defn to-clj [data]
   (js->clj data :keywordize-keys true))
 
-;; String
-
 (defn format
   "Format a string using goog.string.format"
   [fmt & args]
   (apply goog.string/format fmt args))
 
-;; Stuff
-
-(defn guid []
+(defn guid
+  "Generate a Guid"
+  []
   (-> IdGenerator
       .getInstance
       .getNextUniqueId))
@@ -58,10 +50,9 @@
                        (take 3 (drop 15 r)) ["-"]
                        (take 12 (drop 18 r))))))
 
-;; Om Instrumentation
 (defn with-omi []
+  "Adds Om Instrumentation (dev mode)"
   (fn [f cursor m]
     (om/build* f cursor
                (assoc m
                       :descriptor omi/instrumentation-methods))))
-

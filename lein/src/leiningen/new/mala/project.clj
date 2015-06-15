@@ -1,100 +1,79 @@
-(defproject {{name}} "0.1.0"
-  :description "A starterkit for building apps with Garden, Ring, and Om"
+(defproject {{name}} "0.4.0"
+  :description "A integrated template for building and designing UIs in Clojurescript"
   :url "https://github.com/author/{{name}}"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :scm {:name "git"
         :url "https://github.com/author/{{name}}"}
   :min-lein-version "2.5.0"
-  :jvm-opts ["-Xms768m" "-Xmx768m"]
+  :jvm-opts ["-Xms512m" "-server"]
   :global-vars {*warn-on-reflection* false *assert* false}
 
-  :dependencies [[org.clojure/clojure "1.7.0-beta3"]
-                 [org.clojure/clojurescript "0.0-3211"]
+  :dependencies [[org.clojure/clojure "1.7.0-RC1"]
+                 [org.clojure/clojurescript "0.0-3308"]
                  [org.clojure/core.async "0.1.346.0-17112a-alpha"]
-                 [ring/ring-core "1.3.2"]
-                 [ring/ring-defaults "0.1.5"]
-                 [ring/ring-headers "0.1.3"]
-                 [ring/ring-json "0.3.1"]
-                 [fogus/ring-edn "0.2.0"]
-                 [ring-cors "0.1.7"]
-                 [compojure "1.3.4"]
-                 [cljs-http "0.1.30"]
-                 [http-kit "2.1.18"]
                  [org.omcljs/om "0.8.8"]
                  [sablono "0.3.4"]
                  [secretary "1.2.3"]
+                 [cljs-http "0.1.30"]
                  [garden "1.2.5"]
-                 [prone "0.8.1"]
-                 [environ "1.0.0"]]
+                 [facjure/mesh "0.2.7"]]
 
-  :source-paths ["src" "tasks" "target/classes"]
+  :plugins [[lein-cljsbuild "1.0.6"]
+            [com.cemerick/clojurescript.test "0.2.3"]
+            [lein-figwheel "0.3.3"]
+            [lein-garden "0.2.5"]
+            [lein-pdo "0.1.1"]]
+
+  :source-paths ["src" "env" "target/classes"]
 
   :clean-targets ^{:protect false} ["resources/public/js" "target/classes"]
 
-  :cljsbuild {:builds
-              {:app {:source-paths ["src"]
-                     :compiler {:output-to "resources/public/js/components.js"
-                                :output-dir "resources/public/js/out"
-                                :main dev.repl
-                                :asset-path "js/out"
-                                :optimizations :none
-                                :cache-analysis true
-                                :source-map true}}}}
+  :cljsbuild {:builds [{:id "app"
+                        :source-paths ["src" "env/dev"]
+                        :compiler {:output-to "resources/public/js/components.js"
+                                   :output-dir "resources/public/js/out"
+                                   :main dev.repl
+                                   :asset-path "js/out"
+                                   :optimizations :none
+                                   :cache-analysis true
+                                   :source-map true}}
+                       {:id "prod"
+                        :source-paths ["src"]
+                        :compiler {:output-to "dist/components.min.js"
+                                   :main core
+                                   :optimizations :advanced
+                                   :pretty-print false}}]
+              :test-commands {"unit-tests" ["phantomjs" :runner]}}
 
-  :profiles {:dev {:dependencies [[figwheel "0.3.3"]
+  :garden {:builds [{:id "design"
+                     :source-paths ["src/design"]
+                     :stylesheet {{name}}.layout.index/styles
+                     :compiler {:output-to "resources/public/css/styles.css"
+                                :pretty-print true}}
+                    {:id "prod"
+                     :source-paths ["src/design"]
+                     :stylesheet {{name}}.layout.index/styles
+                     :compiler {:output-to "dist/styles.min.css"
+                                :pretty-print? false}}]}
+
+  :profiles {:dev {:env {:is-dev true}
+                   :dependencies [[com.cemerick/clojurescript.test "0.3.3"]
+                                  [figwheel "0.3.3"]
                                   [figwheel-sidecar "0.3.3"]
-                                  [ring/ring-mock "0.2.0"]
-                                  [ring/ring-devel "1.3.1"]
-                                  [precursor/om-i "0.1.6"]]
-                   :env {:is-dev true}
-                   :cljsbuild {:builds
-                               {:app {:source-paths ["env/dev"]}}}
+                                  [ring/ring-json "0.3.1"]
+                                  [fogus/ring-edn "0.2.0"]
+                                  [compojure "1.3.4"]
+                                  [javax.servlet/servlet-api "2.5"]
+                                  [precursor/om-i "0.1.6"]
+                                  [ankha "0.1.4"]]
                    :figwheel {:http-server-root "public"
                               :server-port 3449
                               :nrepl-port 7888
                               :css-dirs ["resources/public/css"]
-                              ;; :open-file-command "emacsclient"
-                              :ring-handler {{name}}.api.server/app}
-                   :garden {:builds
-                            [{:id "design"
-                              :source-paths ["src/{{name}}/design"]
-                              :stylesheet {{name}}.design.styles/all
-                              :compiler {:output-to "resources/public/css/styles.css"
-                                         :pretty-print true}}]}}
-
-             :uberjar {:hooks [leiningen.garden leiningen.cljsbuild]
-                       :env {:production true}
-                       :omit-source true
-                       :aot :all
-                       :garden {:builds
-                                [{:id "prod"
-                                  :source-paths ["src/{{name}}/design"]
-                                  :stylesheet {{name}}.design.styles/all
-                                  :compiler {:output-to "resources/public/css/styles.css"
-                                             :pretty-print? false}}]}
-                       :cljsbuild {:builds
-                                   {:prod {:source-paths ["src"]
-                                           :compiler {:output-to "resources/public/js/components.js"
-                                                      :optimizations :advanced
-                                                      :pretty-print false}}}}}}
-
-  :plugins [[lein-cljsbuild "1.0.5"]
-            [lein-figwheel "0.3.3"]
-            [lein-environ "1.0.0"]
-            [lein-ring "0.9.3"]
-            [lein-kibit "0.0.8"]
-            [lein-pprint "1.1.1"]
-            [lein-garden "0.2.5"]
-            [lein-pdo "0.1.1"]
-            [lein-cljfmt "0.1.7"]
-            [jonase/eastwood "0.2.1"]]
+                              :open-file-command "emacsclient"
+                              :ring-handler dev.mock/api}}}
 
   :aliases {"clean-all"  ["pdo" "clean," "garden" "clean"]
-            "dev" ["pdo" "garden" "auto," "figwheel"]
-            "format" ["cljfmt" "check"]
-            "analyze" ["pdo" "kibit," "eastwood"]
-            "prod" ["pdo" "clean," "uberjar"]}
-
-  :main ^:skip-aot {{name}}.api.server
-  :uberjar-name "{{name}}.jar")
+            "dev" ["pdo" "garden" "auto" "design," "figwheel"]
+            "release" ["pdo" "clean," "garden" "once" "prod," "cljsbuild" "once" "prod"]})

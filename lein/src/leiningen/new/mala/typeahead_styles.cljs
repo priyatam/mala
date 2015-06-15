@@ -1,15 +1,10 @@
-(ns {{name}}.design.components
-  (:refer-clojure :exclude [+ - * /])
-  (:require [garden.def :refer [defstyles defrule defkeyframes]]
-            [garden.core :refer [css]]
+(ns {{name}}.ui.components.typeahead-styles
+  (:require [garden.core :refer [css]]
             [garden.units :as u :refer [px pt]]
             [garden.units :refer (px+ px* px- px-div em)]
             [garden.color :as color :refer [hsl rgb]]
             [garden.arithmetic :refer [+ - * /]]
-            [garden.stylesheet :refer [at-media]]
-            [{{name}}.design.typography :as typo]))
-
-;; Mixins
+            [garden.stylesheet :refer [at-media]]))
 
 (defn partly-rounded
   ([r1] (partly-rounded r1 r1))
@@ -17,11 +12,13 @@
    {:border {:top-right-radius r1
              :bottom-left-radius r2}}))
 
-;; Components
+(def box
+  [:.box
+   {:-moz {:border-radius "px"
+           :box-sizing "border-box"}}])
 
 (def word
-  [:span.word {:font-family typo/font-family-monospace
-               :border-radius (em 1)
+  [:span.word {:border-radius (em 1)
                :font-size (px 16)
                :word-spacing (em 2)
                :padding (em 0.5)}])
@@ -50,9 +47,10 @@
                   :line-height (em 1)
                   :word-spacing (em 2)}])
 
-(defstyles styles
-  (list input-search
+(def index
+  (css (list
+        input-search
         typeahead
         word
         word-index
-        word-count-sep))
+        word-count-sep)))
