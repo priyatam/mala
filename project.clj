@@ -1,4 +1,4 @@
-(defproject mala "0.4.0"
+(defproject mala "0.4.1"
   :description "A integrated project template for building and designing UIs in Clojurescript"
   :url "https://github.com/priyatam/mala"
   :license {:name "Eclipse Public License"
@@ -9,7 +9,7 @@
   :jvm-opts ["-Xms768m" "-server"]
   :global-vars {*warn-on-reflection* false *assert* false}
 
-  :dependencies [[org.clojure/clojure "1.7.0-RC1"]
+  :dependencies [[org.clojure/clojure "1.7.0"]
                  [org.clojure/clojurescript "0.0-3308"]
                  [org.clojure/core.async "0.1.346.0-17112a-alpha"]
                  [org.omcljs/om "0.8.8"]
@@ -65,7 +65,7 @@
                                   [fogus/ring-edn "0.2.0"]
                                   [compojure "1.3.4"]
                                   [javax.servlet/servlet-api "2.5"]
-                                  [precursor/om-i "0.1.6"]
+                                  [precursor/om-i "0.1.7"]
                                   [ankha "0.1.4"]]
                    :figwheel {:http-server-root "public"
                               :server-port 3449
