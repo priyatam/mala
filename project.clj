@@ -16,10 +16,10 @@
                  [sablono "0.3.4"]
                  [secretary "1.2.3"]
                  [cljs-http "0.1.30"]
-                 [garden "1.2.5"]
-                 [facjure/mesh "0.2.7"]]
+                 [facjure/mesh "0.3.0"]]
 
-  :plugins [[lein-cljsbuild "1.0.6"]
+  :plugins [[cider/cider-nrepl "0.9.1"]
+            [lein-cljsbuild "1.0.6"]
             [com.cemerick/clojurescript.test "0.2.3"]
             [lein-figwheel "0.3.3"]
             [lein-garden "0.2.5"]
@@ -47,18 +47,19 @@
               :test-commands {"unit-tests" ["phantomjs" :runner]}}
 
   :garden {:builds [{:id "design"
-                     :source-paths ["src/design"]
+                     :source-paths ["src"]
                      :stylesheet layout.index/styles
                      :compiler {:output-to "resources/public/css/styles.css"
                                 :pretty-print true}}
                     {:id "prod"
-                     :source-paths ["src/design"]
+                     :source-paths ["src"]
                      :stylesheet layout.index/styles
                      :compiler {:output-to "dist/styles.min.css"
                                 :pretty-print? false}}]}
 
   :profiles {:dev {:env {:is-dev true}
-                   :dependencies [[com.cemerick/clojurescript.test "0.3.3"]
+                   :dependencies [[org.clojure/tools.nrepl "0.2.10"]
+                                  [com.cemerick/clojurescript.test "0.3.3"]
                                   [figwheel "0.3.3"]
                                   [figwheel-sidecar "0.3.3"]
                                   [ring/ring-json "0.3.1"]
