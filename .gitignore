@@ -15,5 +15,4 @@ repl
 /classes/
 /**/target/
 /**/pom.properties
-test.sh
 example
