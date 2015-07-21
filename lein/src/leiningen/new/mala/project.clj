@@ -1,4 +1,4 @@
-(defproject {{name}} "0.4.0"
+(defproject {{name}} "0.1.0"
   :description "A integrated template for building and designing UIs in Clojurescript"
   :url "https://github.com/author/{{name}}"
   :license {:name "Eclipse Public License"
@@ -9,17 +9,18 @@
   :jvm-opts ["-Xms512m" "-server"]
   :global-vars {*warn-on-reflection* false *assert* false}
 
-  :dependencies [[org.clojure/clojure "1.7.0-RC1"]
+  :dependencies [[org.clojure/clojure "1.7.0"]
                  [org.clojure/clojurescript "0.0-3308"]
                  [org.clojure/core.async "0.1.346.0-17112a-alpha"]
-                 [org.omcljs/om "0.8.8"]
+                 [org.omcljs/om "0.9.0"]
                  [sablono "0.3.4"]
                  [secretary "1.2.3"]
                  [cljs-http "0.1.30"]
                  [garden "1.2.5"]
-                 [facjure/mesh "0.2.7"]]
+                 [facjure/mesh "0.3.0"]]
 
-  :plugins [[lein-cljsbuild "1.0.6"]
+  :plugins [[cider/cider-nrepl "0.9.1"]
+            [lein-cljsbuild "1.0.6"]
             [com.cemerick/clojurescript.test "0.2.3"]
             [lein-figwheel "0.3.3"]
             [lein-garden "0.2.5"]
@@ -47,25 +48,26 @@
               :test-commands {"unit-tests" ["phantomjs" :runner]}}
 
   :garden {:builds [{:id "design"
-                     :source-paths ["src/design"]
+                     :source-paths ["src"]
                      :stylesheet {{name}}.layout.index/styles
                      :compiler {:output-to "resources/public/css/styles.css"
                                 :pretty-print true}}
                     {:id "prod"
-                     :source-paths ["src/design"]
+                     :source-paths ["src"]
                      :stylesheet {{name}}.layout.index/styles
                      :compiler {:output-to "dist/styles.min.css"
                                 :pretty-print? false}}]}
 
   :profiles {:dev {:env {:is-dev true}
-                   :dependencies [[com.cemerick/clojurescript.test "0.3.3"]
+                   :dependencies [[org.clojure/tools.nrepl "0.2.10"]
+                                  [com.cemerick/clojurescript.test "0.3.3"]
                                   [figwheel "0.3.3"]
                                   [figwheel-sidecar "0.3.3"]
                                   [ring/ring-json "0.3.1"]
                                   [fogus/ring-edn "0.2.0"]
                                   [compojure "1.3.4"]
                                   [javax.servlet/servlet-api "2.5"]
-                                  [precursor/om-i "0.1.6"]
+                                  [precursor/om-i "0.1.7"]
                                   [ankha "0.1.4"]]
                    :figwheel {:http-server-root "public"
                               :server-port 3449
