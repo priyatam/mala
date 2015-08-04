@@ -8,6 +8,7 @@
             [ui.components.typeahead :as typeahead]
             [ui.components.navigation :as nav]
             [ui.components.page :as page]
+            [ui.components.layout :as layout]
             [ui.utils :as utils])
   (:import goog.History))
 
@@ -54,6 +55,8 @@
   (mount "app" typeahead/view))
 (defroute "/mesh" []
   (mount "app" page/view))
+(defroute "/layout" []
+  (mount "app" layout/view))
 
 (defn dispatch-current-route []
   (sec/dispatch! (.-pathname (.-location js/window))))

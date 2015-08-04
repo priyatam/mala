@@ -13,5 +13,5 @@
       (html
        [:div
         [:hr]
-        [:h3 "AppState Inspector"]
+        [:h3 "AppState"]
         [:code {:style {:flex "0 0 40%"}} (om/build ankha/inspector (dissoc app :comms))]]))))
