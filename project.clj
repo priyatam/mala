@@ -1,4 +1,4 @@
-(defproject mala "0.4.1"
+(defproject mala "0.5.0"
   :description "A integrated project template for building and designing UIs in Clojurescript"
   :url "https://github.com/priyatam/mala"
   :license {:name "Eclipse Public License"
