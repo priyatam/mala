@@ -29,7 +29,8 @@
    app-state
    {:target (.getElementById js/document id)
     :shared {:url utils/host}
-    :instrument (utils/with-omi)}))
+    ;:instrument (utils/with-omi)
+    }))
 
 (defn unmount [id]
   (om/root

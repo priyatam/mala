@@ -18,9 +18,12 @@
                       (map (fn [w i] {:index i :word w :count (count w)})
                            (sort (into [] (take 100 (repeatedly rand-word))))
                            (range)))
-         :menu [{:name "Typeahead" :path "/typeahead"}
-                {:name "Dimple" :path "/graph"}
-                {:name "Mesh" :path "/mesh"}]
+         :menu [{:name "Search" :path "/typeahead"}
+                {:name "Graphs" :path "/graph"}
+                {:name "Layout" :path "/layout"}
+                {:name "Design" :path "/mesh"}]
+         :layout {:rows ["an" "engineer" "without a" "designer" "is a" "parking lot"]
+                  :columns ["a" "designer" "without an" "engineer" "is an art gallery"]}
          :content {:title "Thinking Clojurescript"
                    :issue "Issue #1"
                    :publisher "The Facjure Review"
