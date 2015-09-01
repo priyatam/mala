@@ -13,15 +13,12 @@
                  [org.clojure/clojurescript "1.7.28"]
                  [org.clojure/core.async "0.1.346.0-17112a-alpha"]
                  [org.omcljs/om "0.9.0"]
-                 [sablono "0.3.5"]
+                 [sablono "0.3.6"]
                  [secretary "1.2.3"]
-                 [cljs-http "0.1.36"]
-                 [garden "1.2.5"]
-                 [facjure/mesh "0.3.0"]]
+                 [cljs-http "0.1.37"]
+                 [facjure/mesh "0.4.0"]]
 
-  :plugins [[cider/cider-nrepl "0.9.1"]
-            [lein-cljsbuild "1.0.6"]
-            [com.cemerick/clojurescript.test "0.3.3"]
+  :plugins [[lein-cljsbuild "1.0.6"]
             [lein-figwheel "0.3.3"]
             [lein-garden "0.2.5"]
             [lein-pdo "0.1.1"]]
@@ -59,9 +56,7 @@
                                 :pretty-print? false}}]}
 
   :profiles {:dev {:env {:is-dev true}
-                   :dependencies [[org.clojure/tools.nrepl "0.2.10"]
-                                  [com.cemerick/clojurescript.test "0.3.3"]
-                                  [figwheel "0.3.3"]
+                   :dependencies [[figwheel "0.3.3"]
                                   [figwheel-sidecar "0.3.3"]
                                   [ring/ring-json "0.3.1"]
                                   [fogus/ring-edn "0.2.0"]

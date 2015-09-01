@@ -1,4 +1,4 @@
-(defproject mala "0.5.0"
+(defproject mala "0.5.1"
   :description "A integrated project template for building and designing UIs in Clojurescript"
   :url "https://github.com/priyatam/mala"
   :license {:name "Eclipse Public License"
@@ -56,9 +56,7 @@
                                 :pretty-print? false}}]}
 
   :profiles {:dev {:env {:is-dev true}
-                   :dependencies [[org.clojure/tools.nrepl "0.2.10"]
-                                  [com.cemerick/clojurescript.test "0.3.3"]
-                                  [figwheel "0.3.3"]
+                   :dependencies [[figwheel "0.3.3"]
                                   [figwheel-sidecar "0.3.3"]
                                   [ring/ring-json "0.3.1"]
                                   [fogus/ring-edn "0.2.0"]

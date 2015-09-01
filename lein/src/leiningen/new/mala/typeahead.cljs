@@ -4,7 +4,7 @@
             [om.dom :as dom :include-macros true]
             [sablono.core :as html :refer-macros [html]]
             [clojure.string :as string]
-            [mesh.dom :as mesh-dom :refer [insert-styles]]
+            [gardener.dom :refer [insert-styles]]
             [{{name}}.ui.components.typeahead-styles :as styles]))
 
 (defn- hidden [^boolean bool]
