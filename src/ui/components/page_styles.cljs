@@ -2,10 +2,10 @@
   (:require  [garden.core :refer [css]]
              [garden.units :as u :refer [px pt em]]
              [garden.color :as color :refer [hsl rgb]]
-             [mesh.dom :as mesh-dom :refer [insert-styles]]
+             [gardener.dom :as mesh-dom :refer [insert-styles]]
+             [gardener.images :as images]
+             [gardener.respond :as respond :refer [breakpoints]]
              [mesh.utils :as utils]
-             [mesh.images :as images]
-             [mesh.respond :as respond :refer [breakpoints]]
              [mesh.grid :as grid]
              [mesh.typography :as typo :refer [typeset]]
              [mesh.typesetting :as typesetting :refer [scale-type make-serifs]]))

@@ -8,12 +8,7 @@
             [garden.stylesheet :refer [at-media]]
             [garden.units :as u :refer [px pt em]]
             [garden.color :as color :refer [hsl rgb]]
-            [mesh.dom :as mesh-dom :refer [insert-styles]]
-            [mesh.utils :as utils]
-            [mesh.images :as images]
-            [mesh.respond :as respond :refer [breakpoints]]
-            [mesh.grid :as grid]
-            [mesh.typography :as typo :refer [typeset]]
+            [gardener.dom :refer [insert-styles]]
             [ui.state :as state]
             [ui.utils :refer [host]]
             [ui.components.page-styles :as styles]))
