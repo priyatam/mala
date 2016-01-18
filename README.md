@@ -1,7 +1,7 @@
 Mala
 =====
 
-![](doc/img/mala-cljs.jpg)
+![](resources/public/img/mala-cljs.jpg)
 
 A UI template (and reference app) built on Om, with modular components, router,
 async event handling, and responsive design with an emphasis on using Clojurescript
