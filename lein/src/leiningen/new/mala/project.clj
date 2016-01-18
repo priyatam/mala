@@ -10,17 +10,20 @@
   :global-vars {*warn-on-reflection* false *assert* false}
 
   :dependencies [[org.clojure/clojure "1.7.0"]
-                 [org.clojure/clojurescript "1.7.28"]
-                 [org.clojure/core.async "0.1.346.0-17112a-alpha"]
+                 [org.clojure/clojurescript "1.7.228"]
+                 [org.clojure/core.async "0.2.374"]
                  [org.omcljs/om "0.9.0"]
-                 [sablono "0.3.6"]
+                 [cljsjs/react "0.14.3-0"]
+                 [cljsjs/react-dom "0.14.3-1"]
+                 [cljsjs/react-dom-server "0.14.3-0"]
+                 [facjure/mesh "0.4.0"]
+                 [sablono "0.5.3"]
                  [secretary "1.2.3"]
-                 [cljs-http "0.1.37"]
-                 [facjure/mesh "0.4.0"]]
+                 [cljs-http "0.1.39"]]
 
-  :plugins [[lein-cljsbuild "1.0.6"]
-            [lein-figwheel "0.3.3"]
-            [lein-garden "0.2.5"]
+  :plugins [[lein-cljsbuild "1.1.2"]
+            [lein-figwheel "0.5.0"]
+            [lein-garden "0.2.6"]
             [lein-pdo "0.1.1"]]
 
   :source-paths ["src" "env" "target/classes"]
@@ -56,9 +59,9 @@
                                 :pretty-print? false}}]}
 
   :profiles {:dev {:env {:is-dev true}
-                   :dependencies [[figwheel "0.3.3"]
-                                  [figwheel-sidecar "0.3.3"]
-                                  [ring/ring-json "0.3.1"]
+                   :dependencies [[figwheel "0.5.0"]
+                                  [figwheel-sidecar "0.5.0"]
+                                  [ring/ring-json "0.4.0"]
                                   [fogus/ring-edn "0.2.0"]
                                   [compojure "1.3.4"]
                                   [javax.servlet/servlet-api "2.5"]
