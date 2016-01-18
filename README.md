@@ -3,17 +3,17 @@ Mala
 
 ![](doc/img/mala-cljs.jpg)
 
-A complete User Interface project template (and reference app) built on Om.next,
-integrating modular components, router, event handling, and responsive design with
-an emphasis on using Clojurescript _all the way_.
+A UI template (and reference app) built on Om, with modular components, router,
+async event handling, and responsive design with an emphasis on using Clojurescript
+_all the way_.
 
 ## Features
 
 - Project structure for design and ui components
 - Integrated Om components
-- Responsive Design with Clojurescript using [Garden](https://github.com/noprompt/garden) and [Mesh](https://github.com/facjure/mesh)
+- Responsive Design with Clojurescript using [Mesh](https://github.com/facjure/mesh) (not bootstrap, not less/sass)
 - Core.async
-- Live, reloadable code with [Figwheel](https://github.com/bhauman/lein-figwheel#writing-reloadable-code)
+- Reloadable code with [Figwheel](https://github.com/bhauman/lein-figwheel#writing-reloadable-code)
 - Routing with Secretary
 - Mock api server with _real_ Compojure routes
 - Curated [cljsjs](http://cljsjs.github.io) libraries
@@ -68,9 +68,9 @@ Ready to deploy? Generate an optimized js file
 
     lein release
 
-## Documentation
+## Wiki
 
-A guide with  workflows and best practices is under [doc](/doc).
+For more info, see the [wiki](https://github.com/priyatam/mala/wiki).
 
 ## Leiningen Template
 
@@ -94,11 +94,8 @@ Fighweel. Some code samples were copied from:
 
 [![Clojars Project](http://clojars.org/mala/lein-template/latest-version.svg)](http://clojars.org/mala/lein-template)
 
-- 0.2.x versions included a fullstack template, with Ring/Compojure and uberjar support.
-- [0.1.x versions](https://github.com/priyatam/mala/tree/hybrid) included a Less workflow with plain old cljbuld.
-
 ## License
 
-Copyright © 2015 Priyatam Mudivarti.
+Copyright © 2016 Priyatam Mudivarti.
 
 Released under the Eclipse Public License, same as Clojure.
