@@ -1,0 +1,73 @@
+<html>
+    <head>
+        <title>Schengen Zone Calculator</title>
+        <link rel="stylesheet" type"text/css" href="schengen.css">
+        <link rel="stylesheet" media="screen" type="text/css" href="pikaday.css" />
+    </head>
+    <body>
+
+      <div class="container">
+        <header>
+          <h1>Schengen calculator</h1>
+          <h2>For Visa-Free visitors</h2>
+        <p>You may stay in the Schengen area for no more than 90 days in any 180 day period. Simple, right? Well I guess you don't need this calculator at all then.</p>
+        </header>
+        <main>
+          <p><strong>Enter your stays in the Schengen area below, in chronological order.</strong></p>
+          <table class="entry-table">
+            <thead>
+              <tr>
+                <th>Entry</th>
+                <th>Exit</th>
+                <th>Duration</th>
+                <th></th>
+              </tr>
+            </thead>
+              <tbody class="travel-dates">
+                <tr class="date-row">
+                  <td>
+                      <input type="date" class="entry">
+                  </td>
+                  <td>
+                      <input type="date" class="exit">
+                  </td>
+                  <td class="duration">
+                      76 days
+                  </td>
+                  <td class="dissoc">
+                    <a><i class="fi-x"></i></a>
+                  </td>
+                </tr>
+              </tbody>
+          </table>
+
+          <div class="add-stay">
+            <a><i class="fi-plus"></i> Add a stay</a>
+          </div>
+
+          <div class="results-area">
+            <h2>Results</h2>
+            <p class="disclaimer"></p>
+            <ul class="results">
+                <li class="stay-tpl">
+                  If you return before <span class="return-date">August 12</span>, you may stay for
+                  <span class="days-left"> 12</span> days.
+                </li>
+            </ul>
+            <p>If you return after that, you may stay the full 90 days.</p>
+          </div><!-- .results-area -->
+
+        </main>
+
+        <footer>
+          <p>Made by <a href="http://adambard.com/">Exceedingly handsome web developer Adam Bard</a></p>
+        </footer>
+
+        <!-- scripts -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.12.0/react.min.js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.7.0/moment.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.4.0/pikaday.min.js"></script>
+       	<script src="main.js"></script>
+    </div>
+  </body>
+</html>

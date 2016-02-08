@@ -1,0 +1,99 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,700);
+@import url(fonts/foundation-icons.css);
+
+body{
+  font-family: "Open Sans", "Arial", sans-serif;
+  line-height: 26px;
+  color: #666;
+}
+
+a{
+  color: #07f;
+  cursor: pointer;
+  text-decoration: none;
+  border-bottom: 1px solid;
+  font-weight: bold;
+}
+a:hover{
+  color: #0bf;
+}
+
+p{
+  margin: 0;
+  margin-top: 26px;
+  line-height: 26px;
+}
+
+
+header{
+  text-align: center;
+}
+
+h1, h2, h3, h4, h5, h6{
+  line-height: 26px;
+  margin: 0;
+  margin-top: 26px;
+}
+
+header h1{ color: #f90; }
+header h2{ color: #aaa; font-weight: 400; }
+header p{
+  text-align: left;
+}
+
+.container{
+  margin: 0px auto;
+  width: 728px;
+}
+
+.entry-table{
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 26px;
+}
+.entry-table th{
+  text-align: left;
+  background: #f90;
+  color: #fff;
+}
+
+.entry-table th, .entry-table td{
+  padding: 5px;
+}
+.entry-table tr:nth-child(2n) td{
+  background: #eee;
+}
+
+.entry-table td input{
+  font-family: inherit;
+  font-size: inherit;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  padding: 3px;
+}
+
+.dissoc{
+}
+
+.dissoc a{
+  border: 0;
+}
+
+.add-stay{
+  margin-top: 26px;
+  padding: 5px;
+  text-align: right;
+}
+
+span.return-date, span.days-left{
+  font-weight: bold;
+  border-bottom: 1px solid;
+}
+
+.disclaimer.ok{
+  color: #4c0;
+}
+
+.disclaimer.warn{
+  color: #c40;
+}
